@@ -116,8 +116,8 @@ Edit `index.html`.
 - Education, the short biography, and programs are in **About**.
 - Skills are listed only as they appear on the resume. Java is marked Basic on purpose.
 - Projects, papers, and certifications are in **Experience & projects**.
-- Email, phone, and LinkedIn are in **Contact** and in the JSON-LD block in `<head>`.
-- The resume does not include a GitHub profile URL, so the page does not link to one. To add it, put a real profile link in the contact list, for example `https://github.com/your-username`, and add the same URL to the `sameAs` array.
+- Email, LinkedIn, and GitHub are icon links in **Contact** and in the JSON-LD block in `<head>`. The email address is not printed on the page. The phone number is not shown.
+- Certificate images live in `certs/`. AWS points at `certs/aws.jpeg`, Python points at `certs/python.jpeg`, and the Google AI certificate points at its Coursera link.
 
 Keep the page specific. Do not add a job, a metric, or a certificate that is not on the resume.
 

@@ -43,12 +43,21 @@
     justify-content: center;
   }
 
+  .site-header {
+    background: var(--paper);
+  }
+
   .site-nav {
     position: fixed;
-    inset: var(--header) 0 0 0;
+    z-index: 35;
+    top: var(--header);
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: auto;
+    overflow: auto;
     background: var(--paper);
-    padding: 1.25rem var(--gutter) 2rem;
-    transform: translateY(-0.5rem);
+    padding: 0.5rem var(--gutter) 2rem;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
