@@ -251,13 +251,17 @@
       place-items: center;
       width: 34px;
       height: 34px;
-      border-radius: 10px;
+      border-radius: 50%;
+      overflow: hidden;
       background: var(--bg-dark);
-      color: var(--parchment-100);
-      font-family: var(--font-display);
-      font-style: italic;
-      font-size: 1.05rem;
       box-shadow: 0 4px 12px rgba(27, 60, 49, 0.22);
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
     }
 
     .nav-list {
@@ -1362,7 +1366,9 @@
   <header class="site-header" data-header>
     <div class="container header-inner">
       <a class="brand" href="#top">
-        <span class="brand-mark" aria-hidden="true">B</span>
+        <span class="brand-mark" aria-hidden="true">
+          <img src="assets/images/icon.jpeg" alt="" width="34" height="34" />
+        </span>
         <span>Portfolio</span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">
