@@ -8,35 +8,26 @@
   <meta name="author" content="Bhanu Prakash Kakarla" />
   <meta name="theme-color" content="#1b3c31" />
 
-  <!-- Fonts: Fraunces (editorial display) + Outfit (crisp geometric UI/body) + JetBrains Mono (indices/metadata) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..650&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* =========================================================================
-       1. DESIGN TOKENS & SYSTEM THEME
-       ========================================================================= */
     :root {
-      /* Editorial Palette: Forest Green & Warm Parchment */
       --forest-950: #0c1d17;
       --forest-900: #132c23;
       --forest-800: #1b3c31;
       --forest-700: #244e40;
       --forest-600: #2f6251;
-      --sage-200: #d5e2dc;
-      --sage-100: #eaf1ee;
 
       --parchment-50: #fcfaf6;
       --parchment-100: #f7f4ed;
       --parchment-200: #efe9dc;
-      --parchment-300: #e2d9c6;
 
-      /* Active Semantic Tokens (Light / Editorial Default) */
       --bg-canvas: var(--parchment-100);
       --bg-alt: var(--parchment-200);
       --bg-surface: var(--parchment-50);
-      --bg-glass: rgba(247, 244, 237, 0.82);
+      --bg-glass: rgba(247, 244, 237, 0.86);
       --bg-dark: var(--forest-800);
       --bg-dark-deep: var(--forest-900);
       --bg-dark-card: rgba(255, 255, 255, 0.05);
@@ -45,7 +36,7 @@
       --text-secondary: #43534c;
       --text-muted: #65766e;
       --text-on-dark: var(--parchment-100);
-      --text-on-dark-muted: rgba(247, 244, 237, 0.76);
+      --text-on-dark-muted: rgba(247, 244, 237, 0.78);
 
       --accent: var(--forest-800);
       --accent-hover: var(--forest-700);
@@ -60,52 +51,22 @@
       --shadow-md: 0 14px 34px rgba(19, 44, 35, 0.08);
       --shadow-lg: 0 24px 60px rgba(12, 29, 23, 0.16);
 
-      /* Typography */
       --font-display: "Fraunces", Georgia, "Times New Roman", serif;
       --font-sans: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-      /* Layout & Radii */
       --container-max: 1180px;
       --gutter: clamp(1.15rem, 4vw, 2.5rem);
-      --section-space: clamp(4.5rem, 8.5vw, 7.5rem);
+      --section-space: clamp(4.25rem, 8vw, 7rem);
       --radius-sm: 8px;
       --radius-md: 14px;
       --radius-lg: 22px;
       --radius-pill: 999px;
 
-      /* Motion */
       --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
       --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root.auto-theme {
-        --bg-canvas: #0f1b16;
-        --bg-alt: #15251e;
-        --bg-surface: #182b23;
-        --bg-glass: rgba(15, 27, 22, 0.82);
-
-        --text-primary: #f2efe9;
-        --text-secondary: #c4d0ca;
-        --text-muted: #8fa198;
-
-        --accent: #56967f;
-        --accent-hover: #6cb097;
-        --accent-soft: rgba(86, 150, 127, 0.14);
-
-        --border-subtle: rgba(242, 239, 233, 0.12);
-        --border-strong: rgba(242, 239, 233, 0.24);
-
-        --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.25);
-        --shadow-md: 0 14px 36px rgba(0, 0, 0, 0.35);
-        --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.5);
-      }
-    }
-
-    /* =========================================================================
-       2. RESET & BASE STYLES
-       ========================================================================= */
     *, *::before, *::after {
       box-sizing: border-box;
     }
@@ -124,11 +85,9 @@
       color: var(--text-primary);
       background-color: var(--bg-canvas);
       overflow-x: clip;
-      transition: background-color 0.35s var(--ease-out), color 0.35s var(--ease-out);
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Subtle ambient grain/radial wash */
     body::before {
       content: "";
       position: fixed;
@@ -186,9 +145,12 @@
       white-space: nowrap;
     }
 
-    /* =========================================================================
-       3. SCROLL PROGRESS BAR & SKIP LINK
-       ========================================================================= */
+    /* Keep reveal sections visible by default so nothing ever stays hidden */
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+
     .scroll-progress {
       position: fixed;
       top: 0;
@@ -197,7 +159,6 @@
       width: 0%;
       z-index: 120;
       background: linear-gradient(90deg, var(--forest-800), var(--accent-gold), var(--forest-600));
-      transition: width 0.08s linear;
     }
 
     .skip-link {
@@ -218,9 +179,7 @@
       top: 1rem;
     }
 
-    /* =========================================================================
-       4. HEADER & NAVIGATION
-       ========================================================================= */
+    /* Header */
     .site-header {
       position: sticky;
       top: 0;
@@ -229,7 +188,6 @@
       backdrop-filter: blur(14px) saturate(140%);
       -webkit-backdrop-filter: blur(14px) saturate(140%);
       border-bottom: 1px solid var(--border-subtle);
-      transition: background-color 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
     }
 
     .site-header.is-scrolled {
@@ -360,11 +318,9 @@
       transform: translateY(-6px) rotate(-45deg);
     }
 
-    /* =========================================================================
-       5. HERO SECTION
-       ========================================================================= */
+    /* Hero */
     .hero {
-      padding-block: clamp(3rem, 6.5vw, 5.5rem);
+      padding-block: clamp(3rem, 6.5vw, 5.25rem);
     }
 
     .hero-grid {
@@ -421,17 +377,10 @@
       color: var(--forest-800);
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root.auto-theme .hero-line-italic {
-        color: #82c4ac;
-      }
-    }
-
     .hero-lede {
       margin: 0 0 1rem;
       font-size: clamp(1.1rem, 1.55vw, 1.28rem);
       line-height: 1.55;
-      font-weight: 400;
       color: var(--text-primary);
       max-width: 52ch;
     }
@@ -449,7 +398,6 @@
       gap: 0.9rem;
     }
 
-    /* Buttons */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -467,10 +415,6 @@
       transform: translateY(-2px);
     }
 
-    .btn:active {
-      transform: translateY(0);
-    }
-
     .btn-primary {
       background: var(--forest-800);
       color: var(--parchment-100);
@@ -480,7 +424,6 @@
     .btn-primary:hover,
     .btn-primary:focus-visible {
       background: var(--forest-700);
-      box-shadow: 0 12px 26px rgba(27, 60, 49, 0.28);
     }
 
     .btn-ghost {
@@ -495,33 +438,11 @@
       border-color: var(--accent);
     }
 
-    .btn-light {
-      background: var(--parchment-100);
-      color: var(--forest-900);
-      font-weight: 600;
-    }
-
-    .btn-light:hover {
-      background: var(--parchment-200);
-    }
-
-    .btn-outline-light {
-      border: 1px solid var(--border-dark);
-      color: var(--parchment-100);
-    }
-
-    .btn-outline-light:hover {
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    /* Portrait Frame */
     .portrait-wrap {
-      position: relative;
       margin: 0;
     }
 
     .portrait-card {
-      position: relative;
       border-radius: var(--radius-lg);
       overflow: hidden;
       background: var(--bg-alt);
@@ -563,9 +484,7 @@
       box-shadow: 0 0 0 3px rgba(34, 160, 107, 0.2);
     }
 
-    /* =========================================================================
-       6. SECTIONS & HEADERS
-       ========================================================================= */
+    /* Sections */
     .section {
       padding-block: var(--section-space);
       border-top: 1px solid var(--border-subtle);
@@ -595,9 +514,7 @@
       color: var(--text-secondary);
     }
 
-    /* =========================================================================
-       7. ABOUT & TIMELINE
-       ========================================================================= */
+    /* About & Timeline */
     .about-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr);
@@ -719,9 +636,7 @@
       color: var(--text-secondary);
     }
 
-    /* =========================================================================
-       8. SKILLS MATRIX
-       ========================================================================= */
+    /* Skills */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
@@ -776,9 +691,7 @@
       color: var(--accent);
     }
 
-    /* =========================================================================
-       9. WORK: FILTER TABS, PROJECTS, PUBLICATIONS & CERTIFICATIONS
-       ========================================================================= */
+    /* Work */
     .filter-bar {
       display: flex;
       flex-wrap: wrap;
@@ -887,10 +800,6 @@
       text-underline-offset: 3px;
     }
 
-    .inline-link:hover {
-      color: var(--accent-hover);
-    }
-
     .tag-row {
       display: flex;
       flex-wrap: wrap;
@@ -935,11 +844,6 @@
       gap: 1rem 2rem;
       padding-block: 1.1rem;
       border-bottom: 1px solid var(--border-subtle);
-      transition: padding-left 0.2s var(--ease-out);
-    }
-
-    .paper-item:hover {
-      padding-left: 0.35rem;
     }
 
     .paper-title {
@@ -1007,9 +911,7 @@
       color: var(--text-secondary);
     }
 
-    /* =========================================================================
-       10. PHOTOGRAPHY GALLERY
-       ========================================================================= */
+    /* Photography Gallery */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1035,7 +937,6 @@
       display: block;
       width: 100%;
       overflow: hidden;
-      position: relative;
     }
 
     .photo-trigger img {
@@ -1069,9 +970,7 @@
       color: var(--accent);
     }
 
-    /* =========================================================================
-       11. RESUME BANNER
-       ========================================================================= */
+    /* Resume Banner */
     .resume-box {
       display: flex;
       flex-wrap: wrap;
@@ -1098,9 +997,7 @@
       max-width: 52ch;
     }
 
-    /* =========================================================================
-       12. CONTACT & FOOTER (DARK FOREST EDITORIAL BAND)
-       ========================================================================= */
+    /* Contact & Footer */
     .dark-zone {
       background-color: var(--bg-dark);
       color: var(--text-on-dark);
@@ -1178,7 +1075,7 @@
       align-items: center;
       gap: 0.5rem;
       min-height: 38px;
-      padding: 0.4rem 0.9rem;
+      padding: 0.4rem 0.95rem;
       border-radius: var(--radius-pill);
       font-family: var(--font-mono);
       font-size: 0.82rem;
@@ -1220,9 +1117,7 @@
       text-underline-offset: 3px;
     }
 
-    /* =========================================================================
-       13. LIGHTBOX MODAL & TOAST FEEDBACK
-       ========================================================================= */
+    /* Lightbox Modal */
     .lightbox-backdrop {
       position: fixed;
       inset: 0;
@@ -1275,16 +1170,15 @@
     }
 
     .lightbox-close {
-      min-height: 36px;
-      padding: 0.35rem 0.9rem;
+      padding: 0.42rem 0.9rem;
       border-radius: var(--radius-pill);
       border: 1px solid var(--border-dark);
-      font-size: 0.86rem;
+      font-size: 0.85rem;
       color: var(--parchment-100);
     }
 
     .lightbox-close:hover {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.08);
     }
 
     .lightbox-stage {
@@ -1295,70 +1189,32 @@
     }
 
     .lightbox-stage img {
-      max-height: 64vh;
+      max-height: 66vh;
       margin-inline: auto;
       border-radius: var(--radius-sm);
       object-fit: contain;
     }
 
     .lightbox-nav {
-      min-height: 42px;
-      padding: 0.45rem 0.9rem;
+      padding: 0.55rem 0.9rem;
       border-radius: var(--radius-pill);
       border: 1px solid var(--border-dark);
-      font-size: 0.86rem;
+      font-size: 0.85rem;
       color: var(--parchment-100);
     }
 
     .lightbox-nav:hover {
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.08);
     }
 
     .lightbox-caption {
-      margin: 0.95rem 0 0;
+      margin: 0.9rem 0 0;
       text-align: center;
       font-size: 0.95rem;
       color: var(--text-on-dark-muted);
     }
 
-    .toast {
-      position: fixed;
-      bottom: 1.5rem;
-      left: 50%;
-      z-index: 180;
-      transform: translate(-50%, 24px);
-      padding: 0.65rem 1.2rem;
-      border-radius: var(--radius-pill);
-      background: var(--forest-950);
-      color: var(--parchment-100);
-      border: 1px solid var(--border-dark);
-      font-size: 0.88rem;
-      box-shadow: var(--shadow-lg);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.22s var(--ease-out), transform 0.28s var(--ease-out);
-    }
-
-    .toast.is-visible {
-      opacity: 1;
-      transform: translate(-50%, 0);
-    }
-
-    /* =========================================================================
-       14. REVEAL ANIMATIONS & RESPONSIVE BREAKPOINTS
-       ========================================================================= */
-    .reveal {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
-    }
-
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 920px) {
+    @media (max-width: 900px) {
       .hero-grid,
       .about-grid {
         grid-template-columns: 1fr;
@@ -1377,31 +1233,30 @@
       }
     }
 
-    @media (max-width: 760px) {
+    @media (max-width: 720px) {
       .nav-toggle {
         display: inline-flex;
       }
 
-      .nav-menu {
+      .site-nav {
         display: none;
         position: absolute;
         top: 100%;
         left: 0;
         right: 0;
-        background: var(--bg-surface);
+        background: var(--bg-canvas);
         border-bottom: 1px solid var(--border-subtle);
         padding: 1rem var(--gutter) 1.5rem;
-        box-shadow: var(--shadow-md);
       }
 
-      .nav-menu.is-open {
+      .site-nav.is-open {
         display: block;
       }
 
       .nav-list {
         flex-direction: column;
         align-items: flex-start;
-        gap: 0.85rem;
+        gap: 0.9rem;
       }
 
       .project-card {
@@ -1410,81 +1265,40 @@
 
       .paper-item {
         flex-direction: column;
-        gap: 0.3rem;
+        gap: 0.35rem;
       }
 
       .gallery-grid {
         grid-template-columns: 1fr;
       }
-
-      .lightbox-stage {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .lightbox-stage img {
-        grid-column: 1 / -1;
-        order: -1;
-        max-height: 52vh;
-      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .reveal { opacity: 1; transform: none; transition: none; }
+      html {
+        scroll-behavior: auto;
+      }
+
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
       }
     }
   </style>
-
-  <!-- Structured Data (JSON-LD) -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Bhanu Prakash Kakarla",
-      "email": "mailto:bpkakarla@gmail.com",
-      "jobTitle": "Computer Science Graduate",
-      "alumniOf": [
-        { "@type": "CollegeOrUniversity", "name": "Amrita Vishwa Vidyapeetham" },
-        { "@type": "EducationalOrganization", "name": "Narayana Junior College" },
-        { "@type": "EducationalOrganization", "name": "Montessori High School" }
-      ],
-      "sameAs": [
-        "https://www.linkedin.com/in/bpkakarla",
-        "https://github.com/bpkakarla"
-      ],
-      "knowsAbout": ["Machine Learning", "Python", "Software Engineering", "Photography"]
-    }
-  </script>
 </head>
+<body id="top">
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<body id="top" class="auto-theme">
-  <!-- Top scroll progress indicator -->
-  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-  <a class="skip-link" href="#main-content">Skip to main content</a>
-
-  <!-- Sticky Navigation Header -->
-  <header class="site-header" id="siteHeader">
+  <header class="site-header" data-header>
     <div class="container header-inner">
       <a class="brand" href="#top">
         <span class="brand-mark" aria-hidden="true">B</span>
         <span>Portfolio</span>
       </a>
-
-      <button
-        class="nav-toggle"
-        type="button"
-        id="navToggle"
-        aria-expanded="false"
-        aria-controls="navMenu"
-        aria-label="Toggle navigation menu"
-      >
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">
         <span class="hamburger" aria-hidden="true"></span>
       </button>
-
-      <nav class="nav-menu" id="navMenu" aria-label="Primary navigation">
+      <nav id="primary-nav" class="site-nav" aria-label="Primary navigation">
         <ul class="nav-list">
           <li><a class="nav-link" href="#about">About</a></li>
           <li><a class="nav-link" href="#skills">Skills</a></li>
@@ -1497,68 +1311,55 @@
     </div>
   </header>
 
-  <main id="main-content">
-    <!-- Hero Section -->
-    <section class="hero" aria-labelledby="heroHeading">
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-heading">
       <div class="container hero-grid">
-        <div class="hero-copy">
+        <div>
           <p class="eyebrow">Computer Science &amp; Applied AI</p>
-          <h1 class="hero-title" id="heroHeading">
+          <h1 id="hero-heading" class="hero-title">
             <span class="hero-line">Bhanu Prakash</span>
             <span class="hero-line hero-line-italic">Kakarla</span>
           </h1>
-          <p class="hero-lede">
-            I study hard problems until they become something a person can use — a model, a service, or a clearer picture of the world.
-          </p>
-          <p class="hero-sub">
-            Computer Science graduate passionate about software development, emerging technologies, and continuous learning. Beyond technology, I have a keen passion for photography and capturing meaningful moments.
-          </p>
+          <p class="hero-lede">I study hard problems until they become something a person can use — a model, a service, or a clearer picture of the world.</p>
+          <p class="hero-sub">Computer Science graduate passionate about software development, emerging technologies, and continuous learning. Beyond technology, I have a keen passion for photography and capturing meaningful moments.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="assets/documents/resume.pdf" download="Bhanu-Prakash-Kakarla-Resume.pdf" data-asset-link>
-              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-                <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-              <span>Resume</span>
+            <a class="btn btn-primary" href="assets/documents/resume.pdf" download="Bhanu-Prakash-Kakarla-Resume.pdf">
+              <svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18"><path d="M12 4v10m0 0 4-4m-4 4-4-4M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Resume
             </a>
             <a class="btn btn-ghost" href="#contact">Contact</a>
           </div>
         </div>
 
-        <div class="portrait-wrap">
-          <figure class="portrait-card">
+        <figure class="portrait-wrap">
+          <div class="portrait-card">
             <img
               src="assets/images/profile.jpeg"
               width="1199"
               height="1600"
-              alt="Portrait of Bhanu Prakash Kakarla standing on a lawn in a dark suit, with a flowering tree and campus building behind him."
-              data-fallback-label="Bhanu Prakash Kakarla"
+              alt="Portrait of Bhanu Prakash Kakarla standing on a lawn in a dark suit, with a flowering tree and a campus building behind him."
               fetchpriority="high"
-            />
-          </figure>
-          <div class="portrait-badge">
-            <span class="status-dot" aria-hidden="true"></span>
-            <span>ML Systems · Software · Photography</span>
+              decoding="async" />
           </div>
-        </div>
+          <figcaption class="portrait-badge">
+            <span class="status-dot" aria-hidden="true"></span>
+            ML Systems · Software · Photography
+          </figcaption>
+        </figure>
       </div>
     </section>
 
-    <!-- About & Education Section -->
-    <section id="about" class="section" aria-labelledby="aboutHeading">
+    <section id="about" class="section" aria-labelledby="about-heading">
       <div class="container">
         <div class="section-header reveal">
-          <p class="eyebrow">Background &amp; Discipline</p>
-          <h2 class="section-title" id="aboutHeading">About</h2>
+          <p class="eyebrow">Education and background</p>
+          <h2 id="about-heading" class="section-title">About</h2>
         </div>
 
         <div class="about-grid">
           <div class="about-prose reveal">
-            <p>
-              Sent to a boarding school at six, I grew up in a crucible that killed excuses early. Standing alone at that age teaches you to read a room, adapt fast, and own the weight when things turn rough.
-            </p>
-            <p>
-              That edge governs how I build in computer science — no shortcuts, only proof that holds up, clarity on why a system decides what it does, and raw ideas forged into software people can actually open. I don't build for applause in a vacuum; I build until the system answers every question and survives every test.
-            </p>
+            <p>Sent to a boarding school at six, I grew up in a crucible that killed excuses early. Standing alone at that age teaches you to read a room, adapt fast, and own the weight when things turn rough.</p>
+            <p>That edge governs how I build in computer science—no shortcuts, only proof that holds up, clarity on why a system decides what it does, and raw ideas forged into software people can actually open. I don't build for applause in a vacuum; I build until the system answers every question and survives every test.</p>
 
             <blockquote class="quote-block">
               <p>The best way to predict the future is to invent it.</p>
@@ -1567,21 +1368,21 @@
             <div class="pillars-grid">
               <article class="pillar-card">
                 <h3>Photography</h3>
-                <p>Unedited frames, original proportions — capturing quiet tension before a moment slips away.</p>
+                <p>Unedited frames, original proportions—I capture the quiet tension of a moment before it slips away.</p>
               </article>
               <article class="pillar-card">
-                <h3>Execution</h3>
-                <p>No guesswork, no half-measures — dissecting core problems and building until systems prove themselves.</p>
+                <h3>How I like to work</h3>
+                <p>No guesswork, no half-measures—I dissect the core problem, wire up the fundamentals, and build until the system proves itself.</p>
               </article>
               <article class="pillar-card">
                 <h3>Programs</h3>
-                <p>Amazon ML Summer Camp &amp; Flipkart Grid 5.0; backed by AWS, Google AI, and Kaggle.</p>
+                <p>Forged in Amazon ML Summer Camp and Flipkart Grid 5.0; backed by AWS, Google AI, and Kaggle.</p>
               </article>
             </div>
           </div>
 
           <div class="reveal">
-            <h3 class="side-heading">Education Timeline</h3>
+            <h3 class="side-heading">Education</h3>
             <ol class="timeline">
               <li class="timeline-item">
                 <p class="timeline-when">2021 — 2025</p>
@@ -1604,110 +1405,100 @@
       </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="section section-alt" aria-labelledby="skillsHeading">
+    <section id="skills" class="section section-alt" aria-labelledby="skills-heading">
       <div class="container">
         <div class="section-header reveal">
-          <p class="eyebrow">Technical &amp; Professional</p>
-          <h2 class="section-title" id="skillsHeading">Skills</h2>
-          <p class="section-desc">
-            The core languages, coursework, libraries, and tools I use to turn ideas into working systems.
-          </p>
+          <p class="eyebrow">Technical and professional</p>
+          <h2 id="skills-heading" class="section-title">Skills</h2>
+          <p class="section-desc">The core languages, frameworks, and tools I use to turn ideas into working systems.</p>
         </div>
 
         <div class="skills-grid">
           <article class="skill-card reveal">
-            <h3>Programming Languages</h3>
+            <h3>Programming languages</h3>
             <ul class="skill-list">
-              <li><span>Python</span></li>
-              <li><span>Java</span> <span class="badge-level">Basic</span></li>
-              <li><span>SQL</span></li>
-              <li><span>HTML</span></li>
-              <li><span>CSS</span></li>
+              <li>Python</li>
+              <li>Java <span class="badge-level">Basic</span></li>
+              <li>SQL</li>
+              <li>HTML</li>
+              <li>CSS</li>
             </ul>
           </article>
 
           <article class="skill-card reveal">
             <h3>Coursework</h3>
             <ul class="skill-list">
-              <li><span>DBMS</span></li>
-              <li><span>Object-Oriented Programming</span></li>
-              <li><span>Data Structures</span></li>
-              <li><span>Algorithms</span></li>
-              <li><span>Machine Learning</span></li>
-              <li><span>Natural Language Processing</span></li>
-              <li><span>Artificial Intelligence</span></li>
+              <li>DBMS</li>
+              <li>Object-oriented programming</li>
+              <li>Data structures</li>
+              <li>Algorithms</li>
+              <li>Machine learning</li>
+              <li>Natural language processing</li>
+              <li>Artificial intelligence</li>
             </ul>
           </article>
 
           <article class="skill-card reveal">
             <h3>Libraries</h3>
             <ul class="skill-list">
-              <li><span>Pandas</span></li>
-              <li><span>NumPy</span></li>
-              <li><span>Scikit-learn</span></li>
-              <li><span>Matplotlib</span></li>
+              <li>Pandas</li>
+              <li>NumPy</li>
+              <li>Scikit-learn</li>
+              <li>Matplotlib</li>
             </ul>
           </article>
 
           <article class="skill-card reveal">
-            <h3>Developer Tools</h3>
+            <h3>Developer tools</h3>
             <ul class="skill-list">
-              <li><span>Git / GitHub</span></li>
-              <li><span>Google Colab</span></li>
-              <li><span>VS Code</span></li>
-              <li><span>Jupyter Notebook</span></li>
-              <li><span>Anaconda</span></li>
+              <li>Git / GitHub</li>
+              <li>Google Colab</li>
+              <li>VS Code</li>
+              <li>Jupyter Notebook</li>
+              <li>Anaconda</li>
             </ul>
           </article>
 
           <article class="skill-card reveal">
-            <h3>Professional Skills</h3>
+            <h3>Professional skills</h3>
             <ul class="skill-list">
-              <li><span>Team Collaboration</span></li>
-              <li><span>Adaptability</span></li>
-              <li><span>Strategic Thinking</span></li>
-              <li><span>Time Management</span></li>
-              <li><span>Communication</span></li>
+              <li>Team collaboration</li>
+              <li>Adaptability</li>
+              <li>Strategic thinking</li>
+              <li>Time management</li>
+              <li>Communication</li>
             </ul>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Work: Projects, Publications & Certifications -->
-    <section id="work" class="section" aria-labelledby="workHeading">
+    <section id="work" class="section" aria-labelledby="work-heading">
       <div class="container">
         <div class="section-header reveal">
-          <p class="eyebrow">Selected Work</p>
-          <h2 class="section-title" id="workHeading">Experience, Projects &amp; Research</h2>
-          <p class="section-desc">
-            Systems engineered from scratch, peer-reviewed publications, and technical credentials.
-          </p>
+          <p class="eyebrow">Projects, research, and certifications</p>
+          <h2 id="work-heading" class="section-title">Experience &amp; projects</h2>
+          <p class="section-desc">Systems built from scratch, peer-reviewed research, and credentials earned along the way—work that speaks for itself.</p>
         </div>
 
-        <!-- Interactive Category Filter -->
-        <div class="filter-bar reveal" role="tablist" aria-label="Filter work items">
-          <button class="filter-btn is-active" type="button" role="tab" aria-selected="true" data-filter="all">All Work</button>
-          <button class="filter-btn" type="button" role="tab" aria-selected="false" data-filter="projects">Projects</button>
-          <button class="filter-btn" type="button" role="tab" aria-selected="false" data-filter="publications">Publications</button>
-          <button class="filter-btn" type="button" role="tab" aria-selected="false" data-filter="certifications">Certifications</button>
+        <div class="filter-bar reveal" role="tablist" aria-label="Filter work by category">
+          <button class="filter-btn is-active" type="button" data-filter="all">All Work</button>
+          <button class="filter-btn" type="button" data-filter="projects">Projects</button>
+          <button class="filter-btn" type="button" data-filter="publications">Publications</button>
+          <button class="filter-btn" type="button" data-filter="certifications">Certifications</button>
         </div>
 
-        <!-- Projects Group -->
         <div class="work-group" data-group="projects">
           <div class="projects-stack">
             <article class="project-card reveal">
               <p class="project-num" aria-hidden="true">01</p>
               <div>
-                <div class="project-top">
+                <header class="project-top">
                   <h3>AI-Driven Skin Disease Classification: A Deep Learning Approach</h3>
                   <p class="project-period"><time datetime="2024-10">Oct 2024</time> — <time datetime="2025-05">May 2025</time></p>
-                </div>
-                <p class="project-body">
-                  Developed a hybrid Vision Transformer–ResNet architecture in Python to classify nine skin conditions, integrated with LIME-based visual explainability. Outperformed EfficientNet, DenseNet, and a standalone Vision Transformer on the final-year Kaggle dataset.
-                </p>
-                <ul class="tag-row" aria-label="Technologies used">
+                </header>
+                <p class="project-body">I developed a hybrid Vision Transformer–ResNet model in Python to classify nine skin diseases. The project includes LIME-based explainability. On the final-year-project Kaggle dataset, it outperformed EfficientNet, DenseNet, and a standalone Vision Transformer.</p>
+                <ul class="tag-row" aria-label="Technologies">
                   <li>Python</li>
                   <li>Vision Transformer</li>
                   <li>ResNet</li>
@@ -1719,18 +1510,13 @@
             <article class="project-card reveal">
               <p class="project-num" aria-hidden="true">02</p>
               <div>
-                <div class="project-top">
+                <header class="project-top">
                   <h3>Agri Assist: An AI-Integrated Farmer Assistant</h3>
                   <p class="project-period"><time datetime="2024-01">Jan 2024</time> — <time datetime="2024-06">Jun 2024</time></p>
-                </div>
-                <p class="project-body">
-                  Built a full-stack smart agriculture platform using Angular and Python featuring a responsive UI, REST API integration, and an AI assistant for crop guidance, weather analytics, soil monitoring, and market insights.
-                </p>
-                <p class="project-note">
-                  Published and presented at the International Conference on Machine Learning and Data Engineering (April 2025).
-                  <a class="inline-link" href="https://www.sciencedirect.com/science/article/pii/S1877050925017119" target="_blank" rel="noopener noreferrer">Read paper</a>
-                </p>
-                <ul class="tag-row" aria-label="Technologies used">
+                </header>
+                <p class="project-body">I built a full-stack smart agriculture platform with Angular and Python. It includes a responsive interface, REST API integration, and an AI chatbot for crop recommendations, weather analytics, soil monitoring, and market insights.</p>
+                <p class="project-note">Also presented as a paper at the International Conference on Machine Learning and Data Engineering in April 2025. <a class="inline-link" href="https://www.sciencedirect.com/science/article/pii/S1877050925017119" target="_blank" rel="noopener noreferrer">Read the paper</a>.</p>
+                <ul class="tag-row" aria-label="Technologies">
                   <li>Angular</li>
                   <li>Python</li>
                   <li>REST API</li>
@@ -1741,14 +1527,12 @@
             <article class="project-card reveal">
               <p class="project-num" aria-hidden="true">03</p>
               <div>
-                <div class="project-top">
+                <header class="project-top">
                   <h3>Cutting-Edge Steel Damage Classification Powered by Cloud Technology</h3>
                   <p class="project-period"><time datetime="2024-09">Sep 2024</time> — <time datetime="2024-12">Dec 2024</time></p>
-                </div>
-                <p class="project-body">
-                  Engineered a Python-based serverless inspection pipeline on AWS combining Amazon Rekognition, AWS Lambda, and API Gateway for multi-image batch analysis aimed at scalable industrial defect detection.
-                </p>
-                <ul class="tag-row" aria-label="Technologies used">
+                </header>
+                <p class="project-body">I built a Python-based serverless system on AWS, using Amazon Rekognition, Lambda, and API Gateway to analyze multiple images. The system is aimed at scalable industrial quality control and faster defect detection.</p>
+                <ul class="tag-row" aria-label="Technologies">
                   <li>Python</li>
                   <li>Amazon Rekognition</li>
                   <li>AWS Lambda</li>
@@ -1759,41 +1543,26 @@
           </div>
         </div>
 
-        <!-- Publications Group -->
         <div class="work-group sub-block" data-group="publications">
-          <h3 class="sub-block-title">Research Publications</h3>
-          <ul class="paper-list">
+          <h3 id="research-heading" class="sub-block-title">Research publications</h3>
+          <ul class="paper-list" aria-labelledby="research-heading">
             <li class="paper-item reveal">
               <div>
-                <p class="paper-title">
-                  <a href="https://www.sciencedirect.com/science/article/pii/S1877050925017119" target="_blank" rel="noopener noreferrer">
-                    Agri Assist: An AI Integrated Farmer Assistant
-                  </a>
-                </p>
+                <p class="paper-title"><a href="https://www.sciencedirect.com/science/article/pii/S1877050925017119" target="_blank" rel="noopener noreferrer">Agri Assist: An AI Integrated Farmer Assistant</a></p>
                 <p class="paper-venue">International Conference on Machine Learning and Data Engineering</p>
               </div>
               <time class="paper-date" datetime="2025-04">April 2025</time>
             </li>
-
             <li class="paper-item reveal">
               <div>
-                <p class="paper-title">
-                  <a href="https://ieeexplore.ieee.org/abstract/document/10774699" target="_blank" rel="noopener noreferrer">
-                    A Holistic Approach to Handling Metallic Waste for Environmental Sustainability
-                  </a>
-                </p>
+                <p class="paper-title"><a href="https://ieeexplore.ieee.org/abstract/document/10774699" target="_blank" rel="noopener noreferrer">A Holistic Approach to Handling Metallic Waste for Environmental Sustainability</a></p>
                 <p class="paper-venue">3rd International Conference for Advancement in Technology (ICONAT)</p>
               </div>
               <time class="paper-date" datetime="2024-12">December 2024</time>
             </li>
-
             <li class="paper-item reveal">
               <div>
-                <p class="paper-title">
-                  <a href="https://ieeexplore.ieee.org/abstract/document/10724429" target="_blank" rel="noopener noreferrer">
-                    Image Denoising using Multiscale Transforms
-                  </a>
-                </p>
+                <p class="paper-title"><a href="https://ieeexplore.ieee.org/abstract/document/10724429" target="_blank" rel="noopener noreferrer">Image Denoising using Multiscale Transforms</a></p>
                 <p class="paper-venue">The 15th International IEEE Conference on Computing, Communication and Networking Technologies</p>
               </div>
               <time class="paper-date" datetime="2024-11">November 2024</time>
@@ -1801,12 +1570,11 @@
           </ul>
         </div>
 
-        <!-- Certifications Group -->
         <div class="work-group sub-block" data-group="certifications">
           <h3 class="sub-block-title">Certifications</h3>
           <ul class="cert-grid">
             <li class="reveal">
-              <a class="cert-card" href="certs/aws.jpeg" target="_blank" rel="noopener noreferrer" data-asset-link>
+              <a class="cert-card" href="certs/aws.jpeg" target="_blank" rel="noopener noreferrer">
                 <p class="cert-name">AWS Certified Developer – Associate</p>
                 <span class="cert-issuer">Infosys Springboard</span>
               </a>
@@ -1818,7 +1586,7 @@
               </a>
             </li>
             <li class="reveal">
-              <a class="cert-card" href="certs/python.jpeg" target="_blank" rel="noopener noreferrer" data-asset-link>
+              <a class="cert-card" href="certs/python.jpeg" target="_blank" rel="noopener noreferrer">
                 <p class="cert-name">Python</p>
                 <span class="cert-issuer">Kaggle</span>
               </a>
@@ -1828,21 +1596,18 @@
       </div>
     </section>
 
-    <!-- Photography Gallery Section -->
-    <section id="photography" class="section section-alt" aria-labelledby="photoHeading">
+    <section id="photography" class="section section-alt" aria-labelledby="photo-heading">
       <div class="container">
         <div class="section-header reveal">
-          <p class="eyebrow">Visual Journal</p>
-          <h2 class="section-title" id="photoHeading">Photography</h2>
-          <p class="section-desc">
-            Unedited frames, original proportions — still moments captured between engineering builds. Select any photograph to view full size.
-          </p>
+          <p class="eyebrow">Personal work</p>
+          <h2 id="photo-heading" class="section-title">Photography</h2>
+          <p class="section-desc">Between building systems, I capture still moments—no crops, no altered ratios, just the frame as it happened. Select any frame to expand.</p>
         </div>
 
-        <div class="gallery-grid" id="photoGallery">
+        <div class="gallery-grid" data-gallery>
           <figure class="photo-card reveal">
-            <button class="photo-trigger" type="button" data-index="0" data-caption="A coral rose photographed up close." aria-label="Inspect photograph 01: Coral rose">
-              <img src="assets/images/photo1.jpeg" width="960" height="1280" alt="A coral-pink rose in bloom photographed close against dark leaves." data-fallback-label="01 · Coral Rose" loading="lazy" />
+            <button class="photo-trigger" type="button" data-src="assets/images/photo1.jpeg" data-caption="A coral rose photographed up close." aria-label="Open photograph: Coral rose">
+              <img src="assets/images/photo1.jpeg" width="960" height="1280" alt="A coral-pink rose in bloom, photographed close against dark leaves." loading="lazy" decoding="async" />
             </button>
             <figcaption class="photo-caption">
               <span>Coral rose</span>
@@ -1851,8 +1616,8 @@
           </figure>
 
           <figure class="photo-card reveal">
-            <button class="photo-trigger" type="button" data-index="1" data-caption="The sun ringed by a halo in a bright sky." aria-label="Inspect photograph 02: Solar halo">
-              <img src="assets/images/photo2.jpeg" width="960" height="1280" alt="The sun surrounded by a faint circular halo in a bright sky." data-fallback-label="02 · Solar Halo" loading="lazy" />
+            <button class="photo-trigger" type="button" data-src="assets/images/photo2.jpeg" data-caption="The sun ringed by a halo in a bright sky." aria-label="Open photograph: Solar halo">
+              <img src="assets/images/photo2.jpeg" width="960" height="1280" alt="The sun surrounded by a faint circular halo in a blue, lightly clouded sky." loading="lazy" decoding="async" />
             </button>
             <figcaption class="photo-caption">
               <span>Solar halo</span>
@@ -1861,8 +1626,8 @@
           </figure>
 
           <figure class="photo-card reveal">
-            <button class="photo-trigger" type="button" data-index="2" data-caption="A figure walking into the surf at dusk." aria-label="Inspect photograph 03: Into the water">
-              <img src="assets/images/photo3.jpeg" width="960" height="1280" alt="A silhouetted person stepping into ocean waves at dusk." data-fallback-label="03 · Into the Water" loading="lazy" />
+            <button class="photo-trigger" type="button" data-src="assets/images/photo3.jpeg" data-caption="A figure walking into the surf at dusk." aria-label="Open photograph: Into the water">
+              <img src="assets/images/photo3.jpeg" width="960" height="1280" alt="A silhouetted person stepping into ocean waves under a dusk sky." loading="lazy" decoding="async" />
             </button>
             <figcaption class="photo-caption">
               <span>Into the water</span>
@@ -1871,8 +1636,8 @@
           </figure>
 
           <figure class="photo-card reveal">
-            <button class="photo-trigger" type="button" data-index="3" data-caption="A cold drink on a ledge above a beach at sunset." aria-label="Inspect photograph 04: Shoreline">
-              <img src="assets/images/photo4.jpeg" width="960" height="1280" alt="A glass drink on a wooden ledge overlooking a beach at sunset." data-fallback-label="04 · Shoreline" loading="lazy" />
+            <button class="photo-trigger" type="button" data-src="assets/images/photo4.jpeg" data-caption="A cold drink on a ledge above a beach at sunset." aria-label="Open photograph: Shoreline">
+              <img src="assets/images/photo4.jpeg" width="960" height="1280" alt="A mason jar drink with wafers on a wooden ledge, overlooking a busy beach at sunset." loading="lazy" decoding="async" />
             </button>
             <figcaption class="photo-caption">
               <span>Shoreline</span>
@@ -1881,8 +1646,8 @@
           </figure>
 
           <figure class="photo-card photo-card--landscape reveal">
-            <button class="photo-trigger" type="button" data-index="4" data-caption="Houses and trees spread across a steep, forested hillside." aria-label="Inspect photograph 05: Hillside">
-              <img src="assets/images/photo5.jpeg" width="1280" height="960" alt="A wide view of a forested hillside with scattered houses under a clear sky." data-fallback-label="05 · Hillside" loading="lazy" />
+            <button class="photo-trigger" type="button" data-src="assets/images/photo5.jpeg" data-caption="Houses and trees spread across a steep, forested hillside." aria-label="Open photograph: Hillside">
+              <img src="assets/images/photo5.jpeg" width="1280" height="960" alt="A wide view of a forested hillside with scattered houses under a clear sky." loading="lazy" decoding="async" />
             </button>
             <figcaption class="photo-caption">
               <span>Hillside</span>
@@ -1893,425 +1658,202 @@
       </div>
     </section>
 
-    <!-- Resume Banner -->
-    <section id="resume" class="section" aria-labelledby="resumeHeading">
+    <section id="resume" class="section" aria-labelledby="resume-heading">
       <div class="container">
         <div class="resume-box reveal">
           <div>
-            <h2 id="resumeHeading">Resume</h2>
-            <p>
-              Concise summary of my engineering background, technical stack, published papers, and certifications.
-            </p>
+            <h2 id="resume-heading">Resume</h2>
+            <p>A concise overview of my engineering background, technical stack, published research, and credentials.</p>
           </div>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="assets/documents/resume.pdf" download="Bhanu-Prakash-Kakarla-Resume.pdf" data-asset-link>
-              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-                <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-              <span>Download PDF</span>
+            <a class="btn btn-primary" href="assets/documents/resume.pdf" download="Bhanu-Prakash-Kakarla-Resume.pdf">
+              <svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18"><path d="M12 4v10m0 0 4-4m-4 4-4-4M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Download PDF
             </a>
-            <a class="btn btn-ghost" href="assets/documents/resume.pdf" target="_blank" rel="noopener noreferrer" data-asset-link>
-              Open in new tab
-            </a>
+            <a class="btn btn-ghost" href="assets/documents/resume.pdf" target="_blank" rel="noopener">Open in a new tab</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section dark-zone" aria-labelledby="contactHeading">
+    <section id="contact" class="section dark-zone" aria-labelledby="contact-heading">
       <div class="container contact-inner">
         <div class="reveal">
-          <p class="eyebrow eyebrow-light">Direct Channels</p>
-          <h2 class="contact-title" id="contactHeading">Contact</h2>
-          <p class="contact-lead">
-            Open to full-time engineering roles, technical collaborations, and conversations worth having. Reach out directly.
-          </p>
+          <p class="eyebrow eyebrow-light">Email, LinkedIn, and GitHub</p>
+          <h2 id="contact-heading" class="contact-title">Contact</h2>
+          <p class="contact-lead">Open to full-time engineering roles, technical collaborations, and conversations worth having. Reach out directly.</p>
         </div>
 
         <div class="contact-actions reveal">
-          <ul class="social-row" aria-label="Social and contact links">
+          <ul class="social-row">
             <li>
-              <a class="social-btn" href="mailto:bpkakarla@gmail.com" aria-label="Send email to Bhanu Prakash Kakarla">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M4 6.5h16v11H4v-11Z" fill="none" stroke="currentColor" stroke-width="1.7" />
-                  <path d="m4.5 7 7.5 6 7.5-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
-                </svg>
+              <a class="social-btn" href="mailto:bpkakarla@gmail.com" aria-label="Email Bhanu Prakash Kakarla">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16v11H4v-11Z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m4.5 7 7.5 6 7.5-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
               </a>
             </li>
             <li>
               <a class="social-btn" href="https://www.linkedin.com/in/bpkakarla" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M6.5 9.5V18M6.5 6.5v.02M10.5 18v-5.2a2.3 2.3 0 0 1 4.6 0V18M10.5 12.2V18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 9.5V18M6.5 6.5v.02M10.5 18v-5.2a2.3 2.3 0 0 1 4.6 0V18M10.5 12.2V18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
             </li>
             <li>
               <a class="social-btn" href="https://github.com/bpkakarla" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M9 19c-4 1.5-4-2.5-6-3m12 6v-3.9a3.1 3.1 0 0 0-.9-2.4c3 0 6-1.4 6-6a4.7 4.7 0 0 0-1.3-3.2 4.4 4.4 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.4 2.9 5.3 3.2 5.3 3.2a4.4 4.4 0 0 0-.1 3.2A4.7 4.7 0 0 0 4 9.6c0 4.6 3 6 6 6a3.1 3.1 0 0 0-.9 2.4V22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4 1.5-4-2.5-6-3m12 6v-3.9a3.1 3.1 0 0 0-.9-2.4c3 0 6-1.4 6-6a4.7 4.7 0 0 0-1.3-3.2 4.4 4.4 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.4 2.9 5.3 3.2 5.3 3.2a4.4 4.4 0 0 0-.1 3.2A4.7 4.7 0 0 0 4 9.6c0 4.6 3 6 6 6a3.1 3.1 0 0 0-.9 2.4V22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
             </li>
           </ul>
-
-          <button class="copy-email-btn" type="button" id="copyEmailBtn" data-email="bpkakarla@gmail.com">
-            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
-              <rect x="9" y="9" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.7" />
-              <path d="M5 15V6a2 2 0 0 1 2-2h9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
-            </svg>
-            <span id="copyEmailLabel">Copy bpkakarla@gmail.com</span>
+          <button class="copy-email-btn" type="button" data-copy-email="bpkakarla@gmail.com">
+            <span>Copy bpkakarla@gmail.com</span>
           </button>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>&copy; <span id="copyrightYear">2026</span> Bhanu Prakash Kakarla. All rights reserved.</p>
+      <p>&copy; <span id="current-year">2026</span> Bhanu Prakash Kakarla. All rights reserved.</p>
       <a href="#top">Back to top</a>
     </div>
   </footer>
 
-  <!-- Lightbox Viewer -->
-  <div class="lightbox-backdrop" id="lightbox" role="dialog" aria-modal="true" aria-label="Photograph viewer" aria-hidden="true">
+  <div class="lightbox-backdrop" id="lightbox" role="dialog" aria-modal="true" aria-label="Photograph viewer" hidden>
     <div class="lightbox-panel">
       <div class="lightbox-head">
-        <p class="lightbox-counter" id="lightboxCounter">01 / 05</p>
-        <button class="lightbox-close" type="button" id="lightboxClose">Close</button>
+        <p class="lightbox-counter" data-lightbox-counter></p>
+        <button class="lightbox-close" type="button" data-lightbox-close>Close</button>
       </div>
       <div class="lightbox-stage">
-        <button class="lightbox-nav" type="button" id="lightboxPrev" aria-label="Previous photograph">Prev</button>
-        <img id="lightboxImg" src="" alt="" />
-        <button class="lightbox-nav" type="button" id="lightboxNext" aria-label="Next photograph">Next</button>
+        <button class="lightbox-nav" type="button" data-lightbox-prev aria-label="Previous photograph">Prev</button>
+        <img src="" alt="" data-lightbox-img />
+        <button class="lightbox-nav" type="button" data-lightbox-next aria-label="Next photograph">Next</button>
       </div>
-      <p class="lightbox-caption" id="lightboxCaption"></p>
+      <p class="lightbox-caption" data-lightbox-caption></p>
     </div>
   </div>
 
-  <!-- Non-blocking status toast -->
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-  <!-- =========================================================================
-       15. VANILLA JAVASCRIPT (INTERACTIONS, FILTERS, LIGHTBOX & FALLBACKS)
-       ========================================================================= */
   <script>
     (function () {
-      "use strict";
-
-      /* Helper: non-blocking toast notification */
-      const toastEl = document.getElementById("toast");
-      let toastTimer = null;
-      function showToast(message) {
-        if (!toastEl) return;
-        toastEl.textContent = message;
-        toastEl.classList.add("is-visible");
-        clearTimeout(toastTimer);
-        toastTimer = setTimeout(() => {
-          toastEl.classList.remove("is-visible");
-        }, 2800);
-      }
-
-      /* Dynamic year */
-      const yearEl = document.getElementById("copyrightYear");
+      const yearEl = document.getElementById("current-year");
       if (yearEl) {
         yearEl.textContent = String(new Date().getFullYear());
       }
 
-      /* Scroll progress bar & header elevation */
-      const progressBar = document.getElementById("scrollProgress");
-      const siteHeader = document.getElementById("siteHeader");
-
-      function updateScrollState() {
-        const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+      const progressBar = document.querySelector(".scroll-progress");
+      const header = document.querySelector("[data-header]");
+      const updateScroll = () => {
+        const scrollTop = window.scrollY || window.pageYOffset;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
-        if (progressBar) progressBar.style.width = pct.toFixed(2) + "%";
-        if (siteHeader) siteHeader.classList.toggle("is-scrolled", scrollTop > 12);
-      }
+        if (progressBar) {
+          const pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+          progressBar.style.width = pct + "%";
+        }
+        if (header) {
+          header.classList.toggle("is-scrolled", scrollTop > 12);
+        }
+      };
+      window.addEventListener("scroll", updateScroll, { passive: true });
+      updateScroll();
 
-      window.addEventListener("scroll", updateScrollState, { passive: true });
-      updateScrollState();
-
-      /* Mobile Navigation Drawer */
-      const navToggle = document.getElementById("navToggle");
-      const navMenu = document.getElementById("navMenu");
-
-      if (navToggle && navMenu) {
+      const navToggle = document.querySelector(".nav-toggle");
+      const navEl = document.getElementById("primary-nav");
+      if (navToggle && navEl) {
         navToggle.addEventListener("click", () => {
-          const isOpen = navToggle.getAttribute("aria-expanded") === "true";
-          navToggle.setAttribute("aria-expanded", String(!isOpen));
-          navMenu.classList.toggle("is-open", !isOpen);
+          const expanded = navToggle.getAttribute("aria-expanded") === "true";
+          navToggle.setAttribute("aria-expanded", String(!expanded));
+          navEl.classList.toggle("is-open", !expanded);
         });
 
-        navMenu.querySelectorAll("a").forEach((link) => {
+        navEl.querySelectorAll("a").forEach((link) => {
           link.addEventListener("click", () => {
             navToggle.setAttribute("aria-expanded", "false");
-            navMenu.classList.remove("is-open");
+            navEl.classList.remove("is-open");
           });
         });
       }
 
-      /* Active Nav Link Highlighting on Scroll */
-      const sections = Array.from(document.querySelectorAll("main section[id]"));
-      const navLinks = Array.from(document.querySelectorAll(".nav-link"));
-
-      if ("IntersectionObserver" in window && sections.length && navLinks.length) {
-        const navObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                const id = entry.target.getAttribute("id");
-                navLinks.forEach((link) => {
-                  link.classList.toggle("is-active", link.getAttribute("href") === "#" + id);
-                });
-              }
-            });
-          },
-          { rootMargin: "-35% 0px -55% 0px" }
-        );
-        sections.forEach((sec) => navObserver.observe(sec));
-      }
-
-      /* Reveal Elements on Scroll */
-      const revealEls = Array.from(document.querySelectorAll(".reveal"));
-      if ("IntersectionObserver" in window && revealEls.length) {
-        const revealObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("is-visible");
-                revealObserver.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.08, rootMargin: "0px 0px -24px 0px" }
-        );
-        revealEls.forEach((el) => revealObserver.observe(el));
-
-        // Safety fallback so nothing stays hidden if observer doesn't trigger
-        setTimeout(() => {
-          revealEls.forEach((el) => el.classList.add("is-visible"));
-        }, 1200);
-      } else {
-        revealEls.forEach((el) => el.classList.add("is-visible"));
-      }
-
-      /* Work Section Category Filter Tabs */
-      const filterButtons = Array.from(document.querySelectorAll(".filter-btn"));
-      const workGroups = Array.from(document.querySelectorAll(".work-group"));
-
-      filterButtons.forEach((btn) => {
+      const filterBtns = document.querySelectorAll(".filter-btn");
+      const workGroups = document.querySelectorAll(".work-group");
+      filterBtns.forEach((btn) => {
         btn.addEventListener("click", () => {
-          const selected = btn.getAttribute("data-filter") || "all";
-
-          filterButtons.forEach((b) => {
-            const active = b === btn;
-            b.classList.toggle("is-active", active);
-            b.setAttribute("aria-selected", String(active));
-          });
-
+          const filter = btn.getAttribute("data-filter");
+          filterBtns.forEach((b) => b.classList.toggle("is-active", b === btn));
           workGroups.forEach((group) => {
-            const groupName = group.getAttribute("data-group");
-            const shouldShow = selected === "all" || selected === groupName;
-            group.hidden = !shouldShow;
-            if (shouldShow) {
-              group.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-visible"));
-            }
+            const type = group.getAttribute("data-group");
+            group.hidden = filter !== "all" && filter !== type;
           });
         });
       });
 
-      /* Graceful Image Fallback (SVG placeholder if local asset missing in sandbox) */
-      function makePlaceholderSvg(label, isLandscape) {
-        const w = isLandscape ? 1280 : 960;
-        const h = isLandscape ? 960 : 1280;
-        const safeLabel = String(label || "Preview").replace(/[<>&"]/g, "");
-        const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
-          <defs>
-            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#1b3c31"/>
-              <stop offset="100%" stop-color="#2f6251"/>
-            </linearGradient>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#g)"/>
-          <circle cx="${w * 0.82}" cy="${h * 0.18}" r="${Math.min(w, h) * 0.14}" fill="#dfb86b" opacity="0.18"/>
-          <text x="50%" y="48%" dominant-baseline="middle" text-anchor="middle" fill="#f7f4ed" font-family="Georgia, serif" font-style="italic" font-size="${Math.round(w * 0.042)}">${safeLabel}</text>
-          <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#d5e2dc" font-family="sans-serif" font-size="${Math.round(w * 0.022)}" opacity="0.8">Bhanu Prakash Kakarla</text>
-        </svg>`;
-        return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
-      }
-
-      document.querySelectorAll("img").forEach((img) => {
-        img.addEventListener("error", function handleImgError() {
-          if (img.dataset.fallbackApplied) return;
-          img.dataset.fallbackApplied = "true";
-          const isLandscape = Boolean(img.closest(".photo-card--landscape"));
-          const label = img.dataset.fallbackLabel || img.alt || "Portfolio Media";
-          img.src = makePlaceholderSvg(label, isLandscape);
-        });
-      });
-
-      /* Copy Email Button */
-      const copyEmailBtn = document.getElementById("copyEmailBtn");
-      const copyEmailLabel = document.getElementById("copyEmailLabel");
-
-      if (copyEmailBtn) {
-        copyEmailBtn.addEventListener("click", async () => {
-          const email = copyEmailBtn.getAttribute("data-email") || "bpkakarla@gmail.com";
-          let copied = false;
-
+      const copyBtn = document.querySelector("[data-copy-email]");
+      if (copyBtn) {
+        copyBtn.addEventListener("click", async () => {
+          const email = copyBtn.getAttribute("data-copy-email") || "bpkakarla@gmail.com";
+          const label = copyBtn.querySelector("span");
           try {
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-              await navigator.clipboard.writeText(email);
-              copied = true;
+            await navigator.clipboard.writeText(email);
+            if (label) {
+              label.textContent = "Copied " + email;
+              setTimeout(() => { label.textContent = "Copy " + email; }, 2200);
             }
           } catch (_) {
-            copied = false;
-          }
-
-          if (!copied) {
-            try {
-              const temp = document.createElement("textarea");
-              temp.value = email;
-              temp.setAttribute("readonly", "");
-              temp.style.position = "fixed";
-              temp.style.opacity = "0";
-              document.body.appendChild(temp);
-              temp.select();
-              copied = document.execCommand("copy");
-              document.body.removeChild(temp);
-            } catch (_) {
-              copied = false;
-            }
-          }
-
-          if (copied) {
-            if (copyEmailLabel) copyEmailLabel.textContent = "Copied " + email;
-            showToast("Email address copied to clipboard");
-            setTimeout(() => {
-              if (copyEmailLabel) copyEmailLabel.textContent = "Copy " + email;
-            }, 2400);
-          } else {
-            showToast("Email: " + email);
+            window.location.href = "mailto:" + email;
           }
         });
       }
 
-      /* Photography Lightbox */
       const triggers = Array.from(document.querySelectorAll(".photo-trigger"));
       const lightbox = document.getElementById("lightbox");
-      const lightboxImg = document.getElementById("lightboxImg");
-      const lightboxCaption = document.getElementById("lightboxCaption");
-      const lightboxCounter = document.getElementById("lightboxCounter");
-      const lightboxClose = document.getElementById("lightboxClose");
-      const lightboxPrev = document.getElementById("lightboxPrev");
-      const lightboxNext = document.getElementById("lightboxNext");
-
+      const lbImg = lightbox ? lightbox.querySelector("[data-lightbox-img]") : null;
+      const lbCaption = lightbox ? lightbox.querySelector("[data-lightbox-caption]") : null;
+      const lbCounter = lightbox ? lightbox.querySelector("[data-lightbox-counter]") : null;
+      const lbClose = lightbox ? lightbox.querySelector("[data-lightbox-close]") : null;
+      const lbPrev = lightbox ? lightbox.querySelector("[data-lightbox-prev]") : null;
+      const lbNext = lightbox ? lightbox.querySelector("[data-lightbox-next]") : null;
       let currentIndex = 0;
-      let lastFocusedTrigger = null;
 
-      const items = triggers.map((btn, idx) => {
+      const showPhoto = (index) => {
+        if (!triggers.length || !lightbox || !lbImg) return;
+        currentIndex = (index + triggers.length) % triggers.length;
+        const btn = triggers[currentIndex];
         const img = btn.querySelector("img");
-        return {
-          index: idx,
-          src: img ? img.currentSrc || img.src : "",
-          alt: img ? img.alt : "",
-          caption: btn.getAttribute("data-caption") || "",
-          label: img ? img.dataset.fallbackLabel || "Photograph" : "Photograph",
-          landscape: Boolean(btn.closest(".photo-card--landscape"))
-        };
-      });
+        lbImg.src = btn.getAttribute("data-src") || (img ? img.src : "");
+        lbImg.alt = img ? img.alt : "";
+        if (lbCaption) lbCaption.textContent = btn.getAttribute("data-caption") || "";
+        if (lbCounter) lbCounter.textContent = `${currentIndex + 1} / ${triggers.length}`;
+      };
 
-      function renderLightbox(index) {
-        if (!items.length) return;
-        currentIndex = (index + items.length) % items.length;
-        const item = items[currentIndex];
-        const triggerImg = triggers[currentIndex]?.querySelector("img");
-        const resolvedSrc = triggerImg ? triggerImg.currentSrc || triggerImg.src : item.src;
-
-        if (lightboxImg) {
-          lightboxImg.src = resolvedSrc;
-          lightboxImg.alt = item.alt;
-          lightboxImg.onerror = () => {
-            lightboxImg.src = makePlaceholderSvg(item.label, item.landscape);
-          };
-        }
-        if (lightboxCaption) lightboxCaption.textContent = item.caption;
-        if (lightboxCounter) {
-          lightboxCounter.textContent =
-            String(currentIndex + 1).padStart(2, "0") +
-            " / " +
-            String(items.length).padStart(2, "0");
-        }
-      }
-
-      function openLightbox(index, returnFocusTo) {
+      const openLightbox = (index) => {
         if (!lightbox) return;
-        lastFocusedTrigger = returnFocusTo || null;
-        renderLightbox(index);
-        lightbox.classList.add("is-open");
-        lightbox.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-        if (lightboxClose) lightboxClose.focus();
-      }
+        showPhoto(index);
+        lightbox.hidden = false;
+        requestAnimationFrame(() => lightbox.classList.add("is-open"));
+      };
 
-      function closeLightbox() {
+      const closeLightbox = () => {
         if (!lightbox) return;
         lightbox.classList.remove("is-open");
-        lightbox.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-        if (lastFocusedTrigger && typeof lastFocusedTrigger.focus === "function") {
-          lastFocusedTrigger.focus();
-        }
-      }
+        setTimeout(() => { lightbox.hidden = true; }, 220);
+      };
 
       triggers.forEach((btn, idx) => {
-        btn.addEventListener("click", () => openLightbox(idx, btn));
+        btn.addEventListener("click", () => openLightbox(idx));
       });
-
-      if (lightboxClose) lightboxClose.addEventListener("click", closeLightbox);
-      if (lightboxPrev) lightboxPrev.addEventListener("click", () => renderLightbox(currentIndex - 1));
-      if (lightboxNext) lightboxNext.addEventListener("click", () => renderLightbox(currentIndex + 1));
+      if (lbClose) lbClose.addEventListener("click", closeLightbox);
+      if (lbPrev) lbPrev.addEventListener("click", () => showPhoto(currentIndex - 1));
+      if (lbNext) lbNext.addEventListener("click", () => showPhoto(currentIndex + 1));
 
       if (lightbox) {
         lightbox.addEventListener("click", (e) => {
           if (e.target === lightbox) closeLightbox();
         });
-
-        let touchStartX = 0;
-        lightbox.addEventListener(
-          "touchstart",
-          (e) => {
-            if (e.changedTouches && e.changedTouches.length) {
-              touchStartX = e.changedTouches[0].clientX;
-            }
-          },
-          { passive: true }
-        );
-
-        lightbox.addEventListener(
-          "touchend",
-          (e) => {
-            if (e.changedTouches && e.changedTouches.length) {
-              const deltaX = e.changedTouches[0].clientX - touchStartX;
-              if (Math.abs(deltaX) > 45) {
-                if (deltaX < 0) renderLightbox(currentIndex + 1);
-                else renderLightbox(currentIndex - 1);
-              }
-            }
-          },
-          { passive: true }
-        );
       }
 
       document.addEventListener("keydown", (e) => {
-        if (!lightbox || !lightbox.classList.contains("is-open")) return;
+        if (!lightbox || lightbox.hidden) return;
         if (e.key === "Escape") closeLightbox();
-        else if (e.key === "ArrowLeft") renderLightbox(currentIndex - 1);
-        else if (e.key === "ArrowRight") renderLightbox(currentIndex + 1);
+        if (e.key === "ArrowLeft") showPhoto(currentIndex - 1);
+        if (e.key === "ArrowRight") showPhoto(currentIndex + 1);
       });
     })();
   </script>
