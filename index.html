@@ -474,6 +474,7 @@
 
     .portrait-wrap {
       margin: 0;
+      width: 100%;
     }
 
     .portrait-card {
@@ -497,9 +498,12 @@
     }
 
     .portrait-badge {
-      display: inline-flex;
+      display: flex;
       flex-wrap: wrap;
       align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
       gap: 0.5rem;
       margin-top: 0.9rem;
       padding: 0.48rem 0.95rem;
@@ -674,56 +678,88 @@
     /* Skills */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
-      gap: 1.2rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.4rem;
     }
 
     .skill-card {
-      padding: 1.45rem;
-      border-radius: var(--radius-md);
-      background: var(--bg-surface);
+      position: relative;
+      overflow: hidden;
+      padding: 1.6rem 1.7rem;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, var(--bg-surface) 0%, rgba(252, 250, 246, 0.88) 100%);
       border: 1px solid var(--border-subtle);
-      transition: transform 0.22s var(--ease-out), border-color 0.22s var(--ease-out);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.25s var(--ease-out), border-color 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+    }
+
+    .skill-card::before {
+      content: "";
+      position: absolute;
+      inset-inline: 0;
+      top: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--forest-800), var(--accent-gold));
+      opacity: 0.75;
+      transition: opacity 0.25s var(--ease-out);
     }
 
     .skill-card:hover {
-      transform: translateY(-2px);
+      transform: translateY(-4px);
       border-color: var(--border-strong);
+      box-shadow: var(--shadow-md);
+    }
+
+    .skill-card:hover::before {
+      opacity: 1;
     }
 
     .skill-card h3 {
-      margin: 0 0 0.9rem;
-      padding-bottom: 0.65rem;
+      margin: 0 0 1.05rem;
+      padding-bottom: 0.75rem;
       border-bottom: 1px solid var(--border-subtle);
       font-family: var(--font-display);
-      font-size: 1.12rem;
+      font-size: 1.2rem;
       font-weight: 500;
+      color: var(--text-primary);
     }
 
     .skill-list {
       list-style: none;
       margin: 0;
       padding: 0;
-      display: grid;
-      gap: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
     }
 
     .skill-list li {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 0.5rem;
-      font-size: 0.94rem;
-      color: var(--text-secondary);
+      gap: 0.45rem;
+      padding: 0.42rem 0.85rem;
+      border-radius: var(--radius-pill);
+      background: var(--bg-alt);
+      border: 1px solid var(--border-subtle);
+      font-size: 0.9rem;
+      font-weight: 450;
+      color: var(--text-primary);
+      transition: background-color 0.2s var(--ease-out), border-color 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+    }
+
+    .skill-list li:hover {
+      background: var(--accent-soft);
+      border-color: rgba(27, 60, 49, 0.28);
+      transform: translateY(-1px);
     }
 
     .badge-level {
       font-family: var(--font-mono);
-      font-size: 0.72rem;
-      padding: 0.14rem 0.52rem;
+      font-size: 0.68rem;
+      padding: 0.12rem 0.48rem;
       border-radius: var(--radius-pill);
-      background: var(--accent-soft);
-      color: var(--accent);
+      background: var(--forest-800);
+      color: var(--parchment-100);
     }
 
     /* Work */
@@ -1120,27 +1156,6 @@
       height: 20px;
     }
 
-    .copy-email-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      min-height: 38px;
-      padding: 0.4rem 0.95rem;
-      border-radius: var(--radius-pill);
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      color: var(--text-on-dark-muted);
-      border: 1px solid var(--border-dark);
-      background: rgba(255, 255, 255, 0.03);
-      transition: all 0.2s var(--ease-out);
-    }
-
-    .copy-email-btn:hover {
-      color: var(--parchment-100);
-      border-color: rgba(247, 244, 237, 0.35);
-      background: rgba(255, 255, 255, 0.08);
-    }
-
     .site-footer {
       background-color: var(--bg-dark-deep);
       color: var(--text-on-dark-muted);
@@ -1284,6 +1299,10 @@
     }
 
     @media (max-width: 720px) {
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
       .nav-toggle {
         display: inline-flex;
       }
@@ -1458,9 +1477,9 @@
     <section id="skills" class="section section-alt" aria-labelledby="skills-heading">
       <div class="container">
         <div class="section-header reveal">
-          <p class="eyebrow">Technical and professional</p>
+          <p class="eyebrow">Technical stack</p>
           <h2 id="skills-heading" class="section-title">Skills</h2>
-          <p class="section-desc">The core languages, frameworks, and tools I use to turn ideas into working systems.</p>
+          <p class="section-desc">The core languages, coursework, libraries, and tools I use to turn ideas into working systems.</p>
         </div>
 
         <div class="skills-grid">
@@ -1506,17 +1525,6 @@
               <li>VS Code</li>
               <li>Jupyter Notebook</li>
               <li>Anaconda</li>
-            </ul>
-          </article>
-
-          <article class="skill-card reveal">
-            <h3>Professional skills</h3>
-            <ul class="skill-list">
-              <li>Team collaboration</li>
-              <li>Adaptability</li>
-              <li>Strategic thinking</li>
-              <li>Time management</li>
-              <li>Communication</li>
             </ul>
           </article>
         </div>
@@ -1762,9 +1770,6 @@
               </a>
             </li>
           </ul>
-          <button class="copy-email-btn" type="button" data-copy-email="bpkakarla@gmail.com">
-            <span>Copy bpkakarla@gmail.com</span>
-          </button>
         </div>
       </div>
     </section>
@@ -1844,23 +1849,6 @@
           });
         });
       });
-
-      const copyBtn = document.querySelector("[data-copy-email]");
-      if (copyBtn) {
-        copyBtn.addEventListener("click", async () => {
-          const email = copyBtn.getAttribute("data-copy-email") || "bpkakarla@gmail.com";
-          const label = copyBtn.querySelector("span");
-          try {
-            await navigator.clipboard.writeText(email);
-            if (label) {
-              label.textContent = "Copied " + email;
-              setTimeout(() => { label.textContent = "Copy " + email; }, 2200);
-            }
-          } catch (_) {
-            window.location.href = "mailto:" + email;
-          }
-        });
-      }
 
       const triggers = Array.from(document.querySelectorAll(".photo-trigger"));
       const lightbox = document.getElementById("lightbox");
