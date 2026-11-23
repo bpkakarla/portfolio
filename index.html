@@ -12,9 +12,40 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..650&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3CclipPath id='circleClip'%3E%3Ccircle cx='32' cy='32' r='32'/%3E%3C/clipPath%3E%3C/defs%3E%3Cimage href='assets/images/icon.jpeg' width='64' height='64' preserveAspectRatio='xMidYMid slice' clip-path='url(%23circleClip)'/%3E%3C/svg%3E" />
+  <link rel="icon" id="favicon" href="assets/images/icon.jpeg" />
 
-  <style>
+<script>
+  (function () {
+    const iconLink = document.getElementById("favicon");
+    if (!iconLink) return;
+
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = function () {
+      const size = Math.max(img.width, img.height) || 64;
+      const canvas = document.createElement("canvas");
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext("2d");
+
+      ctx.beginPath();
+      ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.clip();
+
+      const scale = Math.max(size / img.width, size / img.height);
+      const w = img.width * scale;
+      const h = img.height * scale;
+      const x = (size - w) / 2;
+      const y = (size - h) / 2;
+      ctx.drawImage(img, x, y, w, h);
+
+      iconLink.type = "image/png";
+      iconLink.href = canvas.toDataURL("image/png");
+    };
+    img.src = iconLink.href;
+  })();
+</script>
     :root {
       --forest-950: #0c1d17;
       --forest-900: #132c23;
@@ -441,13 +472,9 @@
 
     .portrait-wrap {
       margin: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
 
     .portrait-card {
-      width: 100%;
       border-radius: var(--radius-lg);
       overflow: hidden;
       background: var(--bg-alt);
@@ -468,28 +495,23 @@
     }
 
     .portrait-badge {
-      display: flex;
+      display: inline-flex;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      width: 100%;
       gap: 0.5rem;
-      margin-top: 0.95rem;
-      padding: 0.52rem 1rem;
+      margin-top: 0.9rem;
+      padding: 0.48rem 0.95rem;
       border-radius: var(--radius-pill);
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       font-family: var(--font-mono);
       font-size: 0.75rem;
       color: var(--text-secondary);
-      box-shadow: var(--shadow-sm);
     }
 
     .status-dot {
       width: 8px;
       height: 8px;
-      flex-shrink: 0;
       border-radius: 50%;
       background: #22a06b;
       box-shadow: 0 0 0 3px rgba(34, 160, 107, 0.2);
@@ -647,68 +669,32 @@
       color: var(--text-secondary);
     }
 
-    /* Skills — Sculpted 2x2 Editorial Bento Cards */
+    /* Skills */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.45rem;
+      grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+      gap: 1.2rem;
     }
 
     .skill-card {
-      position: relative;
-      overflow: hidden;
-      padding: 1.65rem 1.75rem;
-      border-radius: 18px 18px 24px 10px;
+      padding: 1.45rem;
+      border-radius: var(--radius-md);
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.25s var(--ease-spring), border-color 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
-    }
-
-    .skill-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--forest-800), var(--accent-gold));
-      opacity: 0.78;
-      transition: opacity 0.25s var(--ease-out);
+      transition: transform 0.22s var(--ease-out), border-color 0.22s var(--ease-out);
     }
 
     .skill-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-2px);
       border-color: var(--border-strong);
-      box-shadow: var(--shadow-md);
-    }
-
-    .skill-card:hover::before {
-      opacity: 1;
-    }
-
-    .skill-card-head {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 0.75rem;
-      margin-bottom: 1.15rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid var(--border-subtle);
     }
 
     .skill-card h3 {
-      margin: 0;
+      margin: 0 0 0.9rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid var(--border-subtle);
       font-family: var(--font-display);
-      font-size: 1.24rem;
-      font-weight: 500;
-      letter-spacing: -0.015em;
-    }
-
-    .skill-index {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--accent-gold);
+      font-size: 1.12rem;
       font-weight: 500;
     }
 
@@ -716,34 +702,23 @@
       list-style: none;
       margin: 0;
       padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.55rem;
+      display: grid;
+      gap: 0.5rem;
     }
 
     .skill-list li {
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 0.45rem;
-      padding: 0.42rem 0.85rem;
-      border-radius: var(--radius-pill);
-      background: var(--bg-canvas);
-      border: 1px solid var(--border-subtle);
-      font-size: 0.9rem;
-      color: var(--text-primary);
-      transition: transform 0.18s var(--ease-spring), background-color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
-    }
-
-    .skill-list li:hover {
-      transform: translateY(-1px);
-      background: var(--accent-soft);
-      border-color: rgba(27, 60, 49, 0.28);
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-size: 0.94rem;
+      color: var(--text-secondary);
     }
 
     .badge-level {
       font-family: var(--font-mono);
-      font-size: 0.7rem;
-      padding: 0.12rem 0.48rem;
+      font-size: 0.72rem;
+      padding: 0.14rem 0.52rem;
       border-radius: var(--radius-pill);
       background: var(--accent-soft);
       color: var(--accent);
@@ -1104,7 +1079,9 @@
 
     .contact-actions {
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.1rem;
     }
 
     .social-row {
@@ -1139,6 +1116,27 @@
     .social-btn svg {
       width: 20px;
       height: 20px;
+    }
+
+    .copy-email-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      min-height: 38px;
+      padding: 0.4rem 0.95rem;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-on-dark-muted);
+      border: 1px solid var(--border-dark);
+      background: rgba(255, 255, 255, 0.03);
+      transition: all 0.2s var(--ease-out);
+    }
+
+    .copy-email-btn:hover {
+      color: var(--parchment-100);
+      border-color: rgba(247, 244, 237, 0.35);
+      background: rgba(255, 255, 255, 0.08);
     }
 
     .site-footer {
@@ -1266,8 +1264,7 @@
 
     @media (max-width: 900px) {
       .hero-grid,
-      .about-grid,
-      .skills-grid {
+      .about-grid {
         grid-template-columns: 1fr;
       }
 
@@ -1394,7 +1391,7 @@
           </div>
           <figcaption class="portrait-badge">
             <span class="status-dot" aria-hidden="true"></span>
-            Computer Science &amp; Applied AI · ML Systems · Software · Photography
+            Applied AI · Software · Photography
           </figcaption>
         </figure>
       </div>
@@ -1459,17 +1456,14 @@
     <section id="skills" class="section section-alt" aria-labelledby="skills-heading">
       <div class="container">
         <div class="section-header reveal">
-          <p class="eyebrow">Technical stack</p>
+          <p class="eyebrow">Technical and professional</p>
           <h2 id="skills-heading" class="section-title">Skills</h2>
-          <p class="section-desc">The core languages, foundations, libraries, and tools I use to turn ideas into working systems.</p>
+          <p class="section-desc">The core languages, frameworks, and tools I use to turn ideas into working systems.</p>
         </div>
 
         <div class="skills-grid">
           <article class="skill-card reveal">
-            <div class="skill-card-head">
-              <h3>Programming languages</h3>
-              <span class="skill-index">01</span>
-            </div>
+            <h3>Programming languages</h3>
             <ul class="skill-list">
               <li>Python</li>
               <li>Java <span class="badge-level">Basic</span></li>
@@ -1480,10 +1474,7 @@
           </article>
 
           <article class="skill-card reveal">
-            <div class="skill-card-head">
-              <h3>Coursework</h3>
-              <span class="skill-index">02</span>
-            </div>
+            <h3>Coursework</h3>
             <ul class="skill-list">
               <li>DBMS</li>
               <li>Object-oriented programming</li>
@@ -1496,10 +1487,7 @@
           </article>
 
           <article class="skill-card reveal">
-            <div class="skill-card-head">
-              <h3>Libraries</h3>
-              <span class="skill-index">03</span>
-            </div>
+            <h3>Libraries</h3>
             <ul class="skill-list">
               <li>Pandas</li>
               <li>NumPy</li>
@@ -1509,16 +1497,24 @@
           </article>
 
           <article class="skill-card reveal">
-            <div class="skill-card-head">
-              <h3>Developer tools</h3>
-              <span class="skill-index">04</span>
-            </div>
+            <h3>Developer tools</h3>
             <ul class="skill-list">
               <li>Git / GitHub</li>
               <li>Google Colab</li>
               <li>VS Code</li>
               <li>Jupyter Notebook</li>
               <li>Anaconda</li>
+            </ul>
+          </article>
+
+          <article class="skill-card reveal">
+            <h3>Professional skills</h3>
+            <ul class="skill-list">
+              <li>Team collaboration</li>
+              <li>Adaptability</li>
+              <li>Strategic thinking</li>
+              <li>Time management</li>
+              <li>Communication</li>
             </ul>
           </article>
         </div>
@@ -1596,28 +1592,28 @@
         </div>
 
         <div class="work-group sub-block" data-group="publications">
-          <h3 id="research-heading" class="sub-block-title">Research publications</h3>
+          <h3 id="research-heading" class="sub-block-title">Research Publications</h3>
           <ul class="paper-list" aria-labelledby="research-heading">
             <li class="paper-item reveal">
               <div>
                 <p class="paper-title">Agri Assist: An AI Integrated Farmer Assistant</p>
                 <p class="paper-venue">International Conference on Machine Learning and Data Engineering · <time datetime="2025-04">April 2025</time></p>
               </div>
-              <a class="paper-link" href="https://www.sciencedirect.com/science/article/pii/S1877050925017119" target="_blank" rel="noopener noreferrer">Read paper &rarr;</a>
+              <a class="paper-link" href="https://www.sciencedirect.com/science/article/pii/S1877050925017119" target="_blank" rel="noopener noreferrer">Read Paper &rarr;</a>
             </li>
             <li class="paper-item reveal">
               <div>
                 <p class="paper-title">A Holistic Approach to Handling Metallic Waste for Environmental Sustainability</p>
                 <p class="paper-venue">3rd International Conference for Advancement in Technology (ICONAT) · <time datetime="2024-12">December 2024</time></p>
               </div>
-              <a class="paper-link" href="https://ieeexplore.ieee.org/abstract/document/10774699" target="_blank" rel="noopener noreferrer">Read paper &rarr;</a>
+              <a class="paper-link" href="https://ieeexplore.ieee.org/abstract/document/10774699" target="_blank" rel="noopener noreferrer">Read Paper &rarr;</a>
             </li>
             <li class="paper-item reveal">
               <div>
                 <p class="paper-title">Image Denoising using Multiscale Transforms</p>
                 <p class="paper-venue">The 15th International IEEE Conference on Computing, Communication and Networking Technologies · <time datetime="2024-11">November 2024</time></p>
               </div>
-              <a class="paper-link" href="https://ieeexplore.ieee.org/abstract/document/10724429" target="_blank" rel="noopener noreferrer">Read paper &rarr;</a>
+              <a class="paper-link" href="https://ieeexplore.ieee.org/abstract/document/10724429" target="_blank" rel="noopener noreferrer">Read Paper &rarr;</a>
             </li>
           </ul>
         </div>
@@ -1706,6 +1702,16 @@
               <span class="photo-index">05</span>
             </figcaption>
           </figure>
+          
+          <figure class="photo-card reveal">
+            <button class="photo-trigger" type="button" data-src="assets/images/photo6.jpeg" data-caption="A wheeled cannon on a paved plaza at sunset with a solar tree and railway coach behind." aria-label="Open photograph: Plaza cannon at sunset">
+              <img src="assets/images/photo6.jpeg" width="960" height="1280" alt="A vintage wheeled cannon on a circular stone pad in a tiled plaza at sunset, with a branching solar structure and a red-and-cream rail coach in the background." loading="lazy" decoding="async" />
+            </button>
+            <figcaption class="photo-caption">
+              <span>Plaza cannon</span>
+              <span class="photo-index">06</span>
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -1754,6 +1760,9 @@
               </a>
             </li>
           </ul>
+          <button class="copy-email-btn" type="button" data-copy-email="bpkakarla@gmail.com">
+            <span>Copy bpkakarla@gmail.com</span>
+          </button>
         </div>
       </div>
     </section>
@@ -1833,6 +1842,23 @@
           });
         });
       });
+
+      const copyBtn = document.querySelector("[data-copy-email]");
+      if (copyBtn) {
+        copyBtn.addEventListener("click", async () => {
+          const email = copyBtn.getAttribute("data-copy-email") || "bpkakarla@gmail.com";
+          const label = copyBtn.querySelector("span");
+          try {
+            await navigator.clipboard.writeText(email);
+            if (label) {
+              label.textContent = "Copied " + email;
+              setTimeout(() => { label.textContent = "Copy " + email; }, 2200);
+            }
+          } catch (_) {
+            window.location.href = "mailto:" + email;
+          }
+        });
+      }
 
       const triggers = Array.from(document.querySelectorAll(".photo-trigger"));
       const lightbox = document.getElementById("lightbox");
