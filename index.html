@@ -12,6 +12,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..650&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
+  <link rel="icon" href="assets/images/icon.png" />
+
   <style>
     :root {
       --forest-950: #0c1d17;
@@ -145,7 +147,6 @@
       white-space: nowrap;
     }
 
-    /* Keep reveal sections visible by default so nothing ever stays hidden */
     .reveal {
       opacity: 1;
       transform: none;
@@ -464,15 +465,16 @@
 
     .portrait-badge {
       display: inline-flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 0.5rem;
       margin-top: 0.9rem;
-      padding: 0.45rem 0.9rem;
+      padding: 0.48rem 0.95rem;
       border-radius: var(--radius-pill);
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       font-family: var(--font-mono);
-      font-size: 0.76rem;
+      font-size: 0.75rem;
       color: var(--text-secondary);
     }
 
@@ -800,6 +802,10 @@
       text-underline-offset: 3px;
     }
 
+    .inline-link:hover {
+      color: var(--accent-hover);
+    }
+
     .tag-row {
       display: flex;
       flex-wrap: wrap;
@@ -839,10 +845,10 @@
 
     .paper-item {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       justify-content: space-between;
       gap: 1rem 2rem;
-      padding-block: 1.1rem;
+      padding-block: 1.15rem;
       border-bottom: 1px solid var(--border-subtle);
     }
 
@@ -852,23 +858,34 @@
       color: var(--text-primary);
     }
 
-    .paper-title a:hover {
-      color: var(--accent);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
     .paper-venue {
       margin: 0;
       font-size: 0.9rem;
       color: var(--text-secondary);
     }
 
-    .paper-date {
+    .paper-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.45rem 0.95rem;
+      border-radius: var(--radius-pill);
       font-family: var(--font-mono);
-      font-size: 0.82rem;
-      color: var(--text-muted);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border: 1px solid rgba(27, 60, 49, 0.22);
       white-space: nowrap;
+      transition: transform 0.2s var(--ease-spring), background-color 0.2s var(--ease-out), color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+    }
+
+    .paper-link:hover,
+    .paper-link:focus-visible {
+      transform: translateY(-2px);
+      background: var(--forest-800);
+      color: var(--parchment-100);
+      border-color: var(--forest-800);
     }
 
     .cert-grid {
@@ -1265,7 +1282,8 @@
 
       .paper-item {
         flex-direction: column;
-        gap: 0.35rem;
+        align-items: flex-start;
+        gap: 0.65rem;
       }
 
       .gallery-grid {
@@ -1315,7 +1333,6 @@
     <section class="hero" aria-labelledby="hero-heading">
       <div class="container hero-grid">
         <div>
-          <p class="eyebrow">Computer Science &amp; Applied AI</p>
           <h1 id="hero-heading" class="hero-title">
             <span class="hero-line">Bhanu Prakash</span>
             <span class="hero-line hero-line-italic">Kakarla</span>
@@ -1343,7 +1360,7 @@
           </div>
           <figcaption class="portrait-badge">
             <span class="status-dot" aria-hidden="true"></span>
-            ML Systems · Software · Photography
+            Applied AI · Software · Photography
           </figcaption>
         </figure>
       </div>
@@ -1548,24 +1565,24 @@
           <ul class="paper-list" aria-labelledby="research-heading">
             <li class="paper-item reveal">
               <div>
-                <p class="paper-title"><a href="https://www.sciencedirect.com/science/article/pii/S1877050925017119" target="_blank" rel="noopener noreferrer">Agri Assist: An AI Integrated Farmer Assistant</a></p>
-                <p class="paper-venue">International Conference on Machine Learning and Data Engineering</p>
+                <p class="paper-title">Agri Assist: An AI Integrated Farmer Assistant</p>
+                <p class="paper-venue">International Conference on Machine Learning and Data Engineering · <time datetime="2025-04">April 2025</time></p>
               </div>
-              <time class="paper-date" datetime="2025-04">April 2025</time>
+              <a class="paper-link" href="https://www.sciencedirect.com/science/article/pii/S1877050925017119" target="_blank" rel="noopener noreferrer">Read paper &rarr;</a>
             </li>
             <li class="paper-item reveal">
               <div>
-                <p class="paper-title"><a href="https://ieeexplore.ieee.org/abstract/document/10774699" target="_blank" rel="noopener noreferrer">A Holistic Approach to Handling Metallic Waste for Environmental Sustainability</a></p>
-                <p class="paper-venue">3rd International Conference for Advancement in Technology (ICONAT)</p>
+                <p class="paper-title">A Holistic Approach to Handling Metallic Waste for Environmental Sustainability</p>
+                <p class="paper-venue">3rd International Conference for Advancement in Technology (ICONAT) · <time datetime="2024-12">December 2024</time></p>
               </div>
-              <time class="paper-date" datetime="2024-12">December 2024</time>
+              <a class="paper-link" href="https://ieeexplore.ieee.org/abstract/document/10774699" target="_blank" rel="noopener noreferrer">Read paper &rarr;</a>
             </li>
             <li class="paper-item reveal">
               <div>
-                <p class="paper-title"><a href="https://ieeexplore.ieee.org/abstract/document/10724429" target="_blank" rel="noopener noreferrer">Image Denoising using Multiscale Transforms</a></p>
-                <p class="paper-venue">The 15th International IEEE Conference on Computing, Communication and Networking Technologies</p>
+                <p class="paper-title">Image Denoising using Multiscale Transforms</p>
+                <p class="paper-venue">The 15th International IEEE Conference on Computing, Communication and Networking Technologies · <time datetime="2024-11">November 2024</time></p>
               </div>
-              <time class="paper-date" datetime="2024-11">November 2024</time>
+              <a class="paper-link" href="https://ieeexplore.ieee.org/abstract/document/10724429" target="_blank" rel="noopener noreferrer">Read paper &rarr;</a>
             </li>
           </ul>
         </div>
