@@ -2677,16 +2677,17 @@
         }
       };
 
-      const createEjectingSelfiePolaroid = (dataUrl) => {
+const createEjectingSelfiePolaroid = (dataUrl) => {
         if (!selfieStrip) return;
 
         // Start eject sound at the exact moment the photo begins rolling out
         const ejectAudio = playPreloaded("eject");
         const audioDur = ejectAudio ? ejectAudio.duration : NaN;
+        const slowFactor = 1.4;
         const ejectDurationSec =
           Number.isFinite(audioDur) && audioDur > 0.3
-            ? Math.min(audioDur, 8)
-            : 2.5;
+            ? Math.min(audioDur * slowFactor, 12)
+            : 3.6;
 
         const card = document.createElement("figure");
         card.className = "selfie-polaroid is-developing";
@@ -2718,7 +2719,7 @@
           link.click();
           link.remove();
           dlBtn.remove();
-          label.textContent = "Downloaded (1x)";
+          label.textContent = "Saved ✨)";
         }, { once: true });
 
         footer.appendChild(label);
