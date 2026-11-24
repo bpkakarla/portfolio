@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bhanu Prakash Kakarla — Software, Applied AI &amp; Photography</title>
+  <title>Bhanu Prakash Kakarla — Software, Applied AI &amp; Photography ✨</title>
   <meta name="description" content="Portfolio of Bhanu Prakash Kakarla: CSE grad, Published AI researcher, Python & AWS builder, and unedited editorial photographer." />
   <meta name="author" content="Bhanu Prakash Kakarla" />
   <meta name="theme-color" content="#1b3c31" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..650&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..650&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="icon" id="favicon" href="assets/images/icon.jpeg" />
 
@@ -55,51 +55,54 @@
       --forest-700: #244e40;
       --forest-600: #2f6251;
 
-      --parchment-50: #fcfaf6;
-      --parchment-100: #f7f4ed;
-      --parchment-200: #efe9dc;
+      --parchment-50: #fdfbf7;
+      --parchment-100: #f7f3e8;
+      --parchment-200: #efe8d8;
 
       --bg-canvas: var(--parchment-100);
       --bg-alt: var(--parchment-200);
       --bg-surface: var(--parchment-50);
-      --bg-glass: rgba(247, 244, 237, 0.86);
+      --bg-glass: rgba(247, 243, 232, 0.85);
       --bg-dark: var(--forest-800);
       --bg-dark-deep: var(--forest-900);
-      --bg-dark-card: rgba(255, 255, 255, 0.05);
+      --bg-dark-card: rgba(255, 255, 255, 0.06);
 
       --text-primary: #14201b;
       --text-secondary: #43534c;
       --text-muted: #65766e;
       --text-on-dark: var(--parchment-100);
-      --text-on-dark-muted: rgba(247, 244, 237, 0.78);
+      --text-on-dark-muted: rgba(247, 244, 237, 0.82);
 
       --accent: var(--forest-800);
       --accent-hover: var(--forest-700);
-      --accent-soft: rgba(27, 60, 49, 0.09);
-      --accent-gold: #b68d40;
+      --accent-soft: rgba(27, 60, 49, 0.08);
+      --accent-gold: #c99a3e;
+      --accent-gold-light: #f3d999;
 
       --border-subtle: rgba(20, 32, 27, 0.11);
       --border-strong: rgba(20, 32, 27, 0.22);
-      --border-dark: rgba(247, 244, 237, 0.16);
+      --border-dark: rgba(247, 244, 237, 0.18);
 
-      --shadow-sm: 0 4px 14px rgba(19, 44, 35, 0.05);
-      --shadow-md: 0 14px 34px rgba(19, 44, 35, 0.08);
+      --shadow-sm: 0 4px 16px rgba(19, 44, 35, 0.05);
+      --shadow-md: 0 14px 36px rgba(19, 44, 35, 0.09);
       --shadow-lg: 0 24px 60px rgba(12, 29, 23, 0.16);
+      --shadow-magical: 0 12px 32px rgba(201, 154, 62, 0.18);
 
       --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+      --font-hand: "Caveat", cursive;
       --font-sans: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
       --container-max: 1180px;
       --gutter: clamp(1.15rem, 4vw, 2.5rem);
       --section-space: clamp(4.25rem, 8vw, 7rem);
-      --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 22px;
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
       --radius-pill: 999px;
 
       --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-      --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+      --ease-spring: cubic-bezier(0.34, 1.45, 0.64, 1);
     }
 
     *, *::before, *::after {
@@ -123,15 +126,42 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    /* Enchanted Storybook Background Glow */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: -1;
+      z-index: -2;
       background:
-        radial-gradient(circle at 88% 8%, rgba(27, 60, 49, 0.06), transparent 42%),
-        radial-gradient(circle at 12% 35%, rgba(182, 141, 64, 0.05), transparent 38%);
+        radial-gradient(circle at 85% 10%, rgba(201, 154, 62, 0.12), transparent 44%),
+        radial-gradient(circle at 12% 32%, rgba(27, 60, 49, 0.08), transparent 42%),
+        radial-gradient(circle at 75% 75%, rgba(201, 154, 62, 0.09), transparent 45%);
+    }
+
+    /* Floating Pixie Dust Canvas */
+    #pixie-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 40;
+    }
+
+    /* Screen Flash Effect for Polaroid Camera */
+    .camera-flash-overlay {
+      position: fixed;
+      inset: 0;
+      background: #fffdf7;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 999;
+      transition: opacity 0.45s ease-out;
+    }
+    .camera-flash-overlay.is-flashing {
+      opacity: 0.92;
+      transition: none;
     }
 
     img {
@@ -155,13 +185,9 @@
     }
 
     :focus-visible {
-      outline: 2.5px solid var(--accent);
+      outline: 2.5px solid var(--accent-gold);
       outline-offset: 3px;
       border-radius: 6px;
-    }
-
-    .dark-zone :focus-visible {
-      outline-color: var(--parchment-100);
     }
 
     .container {
@@ -171,28 +197,25 @@
       padding-inline: var(--gutter);
     }
 
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      clip: rect(0 0 0 0);
-      white-space: nowrap;
-    }
-
     .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+    }
+    .reveal.is-visible {
       opacity: 1;
-      transform: none;
+      transform: translateY(0);
     }
 
     .scroll-progress {
       position: fixed;
       top: 0;
       left: 0;
-      height: 3px;
+      height: 3.5px;
       width: 0%;
       z-index: 120;
-      background: linear-gradient(90deg, var(--forest-800), var(--accent-gold), var(--forest-600));
+      background: linear-gradient(90deg, var(--forest-800), var(--accent-gold), #f3d999, var(--forest-600));
+      box-shadow: 0 0 10px rgba(201, 154, 62, 0.5);
     }
 
     .skip-link {
@@ -208,7 +231,6 @@
       box-shadow: var(--shadow-md);
       transition: top 0.2s var(--ease-out);
     }
-
     .skip-link:focus {
       top: 1rem;
     }
@@ -219,9 +241,10 @@
       top: 0;
       z-index: 90;
       background: var(--bg-glass);
-      backdrop-filter: blur(14px) saturate(140%);
-      -webkit-backdrop-filter: blur(14px) saturate(140%);
+      backdrop-filter: blur(16px) saturate(150%);
+      -webkit-backdrop-filter: blur(16px) saturate(150%);
       border-bottom: 1px solid var(--border-subtle);
+      transition: box-shadow 0.3s ease;
     }
 
     .site-header.is-scrolled {
@@ -249,12 +272,13 @@
     .brand-mark {
       display: inline-grid;
       place-items: center;
-      width: 34px;
-      height: 34px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       overflow: hidden;
       background: var(--bg-dark);
-      box-shadow: 0 4px 12px rgba(27, 60, 49, 0.22);
+      border: 1.5px solid var(--accent-gold);
+      box-shadow: 0 4px 12px rgba(201, 154, 62, 0.28);
     }
 
     .brand-mark img {
@@ -291,7 +315,7 @@
       width: 100%;
       height: 2px;
       border-radius: 2px;
-      background: var(--accent);
+      background: linear-gradient(90deg, var(--accent), var(--accent-gold));
       transform: scaleX(0);
       transform-origin: right;
       transition: transform 0.28s var(--ease-out);
@@ -332,33 +356,24 @@
       transition: transform 0.25s var(--ease-out), opacity 0.2s var(--ease-out);
     }
 
-    .hamburger {
-      position: relative;
-    }
-
+    .hamburger { position: relative; }
     .hamburger::before,
     .hamburger::after {
       content: "";
       position: absolute;
       left: 0;
     }
-
     .hamburger::before { top: -6px; }
     .hamburger::after { top: 6px; }
 
-    .nav-toggle[aria-expanded="true"] .hamburger {
-      background: transparent;
-    }
-    .nav-toggle[aria-expanded="true"] .hamburger::before {
-      transform: translateY(6px) rotate(45deg);
-    }
-    .nav-toggle[aria-expanded="true"] .hamburger::after {
-      transform: translateY(-6px) rotate(-45deg);
-    }
+    .nav-toggle[aria-expanded="true"] .hamburger { background: transparent; }
+    .nav-toggle[aria-expanded="true"] .hamburger::before { transform: translateY(6px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] .hamburger::after { transform: translateY(-6px) rotate(-45deg); }
 
     /* Hero */
     .hero {
       padding-block: clamp(3rem, 6.5vw, 5.25rem);
+      position: relative;
     }
 
     .hero-grid {
@@ -382,11 +397,9 @@
     }
 
     .eyebrow::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--accent-gold);
+      content: "✦";
+      color: var(--accent-gold);
+      font-size: 0.9rem;
     }
 
     .eyebrow-light {
@@ -394,7 +407,7 @@
     }
 
     .eyebrow-light::before {
-      background: #dfb86b;
+      color: #f3d999;
     }
 
     .hero-title {
@@ -412,7 +425,9 @@
 
     .hero-line-italic {
       font-style: italic;
-      color: var(--forest-800);
+      background: linear-gradient(120deg, var(--forest-800) 20%, #8f6822 65%, var(--forest-700) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .hero-lede {
@@ -437,31 +452,35 @@
     }
 
     .btn {
+      position: relative;
+      overflow: hidden;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 0.55rem;
-      min-height: 44px;
-      padding: 0.78rem 1.5rem;
+      min-height: 46px;
+      padding: 0.8rem 1.6rem;
       border-radius: var(--radius-pill);
       font-size: 0.95rem;
       font-weight: 500;
-      transition: transform 0.22s var(--ease-spring), background-color 0.2s var(--ease-out), border-color 0.2s var(--ease-out), box-shadow 0.22s var(--ease-out);
+      transition: transform 0.25s var(--ease-spring), background-color 0.2s var(--ease-out), border-color 0.2s var(--ease-out), box-shadow 0.25s var(--ease-out);
     }
 
     .btn:hover {
-      transform: translateY(-2px);
+      transform: translateY(-2.5px);
     }
 
     .btn-primary {
-      background: var(--forest-800);
+      background: linear-gradient(135deg, var(--forest-800), var(--forest-900));
       color: var(--parchment-100);
-      box-shadow: 0 8px 22px rgba(27, 60, 49, 0.22);
+      border: 1px solid rgba(201, 154, 62, 0.35);
+      box-shadow: 0 8px 24px rgba(27, 60, 49, 0.22);
     }
 
     .btn-primary:hover,
     .btn-primary:focus-visible {
-      background: var(--forest-700);
+      background: linear-gradient(135deg, var(--forest-700), var(--forest-800));
+      box-shadow: 0 12px 28px rgba(201, 154, 62, 0.28);
     }
 
     .btn-ghost {
@@ -473,7 +492,7 @@
     .btn-ghost:hover,
     .btn-ghost:focus-visible {
       background: var(--accent-soft);
-      border-color: var(--accent);
+      border-color: var(--accent-gold);
     }
 
     .portrait-wrap {
@@ -482,11 +501,12 @@
     }
 
     .portrait-card {
+      position: relative;
       border-radius: var(--radius-lg);
       overflow: hidden;
       background: var(--bg-alt);
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-lg);
+      border: 2px solid rgba(201, 154, 62, 0.32);
+      box-shadow: var(--shadow-lg), var(--shadow-magical);
     }
 
     .portrait-card img {
@@ -494,11 +514,11 @@
       aspect-ratio: 3 / 4;
       object-fit: cover;
       object-position: center top;
-      transition: transform 0.6s var(--ease-out);
+      transition: transform 0.7s var(--ease-out);
     }
 
     .portrait-card:hover img {
-      transform: scale(1.02);
+      transform: scale(1.03);
     }
 
     .portrait-badge {
@@ -509,11 +529,12 @@
       text-align: center;
       width: 100%;
       gap: 0.5rem;
-      margin-top: 0.9rem;
-      padding: 0.48rem 0.95rem;
+      margin-top: 0.95rem;
+      padding: 0.52rem 1rem;
       border-radius: var(--radius-pill);
       background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid rgba(201, 154, 62, 0.35);
+      box-shadow: var(--shadow-sm);
       font-family: var(--font-mono);
       font-size: 0.75rem;
       color: var(--text-secondary);
@@ -524,13 +545,14 @@
       height: 8px;
       border-radius: 50%;
       background: #22a06b;
-      box-shadow: 0 0 0 3px rgba(34, 160, 107, 0.2);
+      box-shadow: 0 0 0 3px rgba(34, 160, 107, 0.22);
     }
 
     /* Sections */
     .section {
       padding-block: var(--section-space);
       border-top: 1px solid var(--border-subtle);
+      position: relative;
     }
 
     .section-alt {
@@ -572,8 +594,10 @@
 
     .quote-block {
       margin: 1.85rem 0;
-      padding: 0.35rem 0 0.35rem 1.4rem;
-      border-left: 3px solid var(--forest-800);
+      padding: 0.55rem 0 0.55rem 1.4rem;
+      border-left: 3px solid var(--accent-gold);
+      background: linear-gradient(90deg, rgba(201, 154, 62, 0.08), transparent);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     }
 
     .quote-block p {
@@ -593,7 +617,7 @@
     }
 
     .pillar-card {
-      padding: 1.2rem;
+      padding: 1.25rem;
       border-radius: var(--radius-md);
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
@@ -602,8 +626,8 @@
 
     .pillar-card:hover {
       transform: translateY(-3px);
-      border-color: var(--border-strong);
-      box-shadow: var(--shadow-sm);
+      border-color: var(--accent-gold);
+      box-shadow: var(--shadow-magical);
     }
 
     .pillar-card h3 {
@@ -642,9 +666,7 @@
       padding-bottom: 1.9rem;
     }
 
-    .timeline-item:last-child {
-      padding-bottom: 0;
-    }
+    .timeline-item:last-child { padding-bottom: 0; }
 
     .timeline-item::before {
       content: "";
@@ -654,7 +676,7 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: var(--forest-800);
+      background: var(--accent-gold);
       box-shadow: 0 0 0 4px var(--bg-canvas);
     }
 
@@ -691,7 +713,7 @@
       overflow: hidden;
       padding: 1.6rem 1.7rem;
       border-radius: var(--radius-lg);
-      background: linear-gradient(180deg, var(--bg-surface) 0%, rgba(252, 250, 246, 0.88) 100%);
+      background: linear-gradient(180deg, var(--bg-surface) 0%, rgba(253, 251, 247, 0.9) 100%);
       border: 1px solid var(--border-subtle);
       box-shadow: var(--shadow-sm);
       transition: transform 0.25s var(--ease-out), border-color 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
@@ -704,18 +726,13 @@
       top: 0;
       height: 3px;
       background: linear-gradient(90deg, var(--forest-800), var(--accent-gold));
-      opacity: 0.75;
-      transition: opacity 0.25s var(--ease-out);
+      opacity: 0.8;
     }
 
     .skill-card:hover {
       transform: translateY(-4px);
-      border-color: var(--border-strong);
+      border-color: rgba(201, 154, 62, 0.45);
       box-shadow: var(--shadow-md);
-    }
-
-    .skill-card:hover::before {
-      opacity: 1;
     }
 
     .skill-card h3 {
@@ -753,8 +770,8 @@
 
     .skill-list li:hover {
       background: var(--accent-soft);
-      border-color: rgba(27, 60, 49, 0.28);
-      transform: translateY(-1px);
+      border-color: var(--accent-gold);
+      transform: translateY(-1.5px);
     }
 
     .badge-level {
@@ -788,7 +805,7 @@
 
     .filter-btn:hover {
       color: var(--text-primary);
-      border-color: var(--border-strong);
+      border-color: var(--accent-gold);
     }
 
     .filter-btn.is-active {
@@ -798,9 +815,7 @@
       box-shadow: 0 6px 16px rgba(27, 60, 49, 0.18);
     }
 
-    .work-group[hidden] {
-      display: none;
-    }
+    .work-group[hidden] { display: none; }
 
     .projects-stack {
       display: grid;
@@ -820,7 +835,7 @@
 
     .project-card:hover {
       transform: translateY(-3px);
-      border-color: var(--border-strong);
+      border-color: rgba(201, 154, 62, 0.45);
       box-shadow: var(--shadow-md);
     }
 
@@ -829,7 +844,7 @@
       font-family: var(--font-mono);
       font-size: 0.95rem;
       font-weight: 500;
-      color: var(--accent);
+      color: var(--accent-gold);
     }
 
     .project-top {
@@ -874,10 +889,7 @@
       text-decoration: underline;
       text-underline-offset: 3px;
     }
-
-    .inline-link:hover {
-      color: var(--accent-hover);
-    }
+    .inline-link:hover { color: var(--accent-hover); }
 
     .tag-row {
       display: flex;
@@ -898,10 +910,7 @@
       border: 1px solid var(--border-subtle);
     }
 
-    .sub-block {
-      margin-top: clamp(2.75rem, 5vw, 4rem);
-    }
-
+    .sub-block { margin-top: clamp(2.75rem, 5vw, 4rem); }
     .sub-block-title {
       margin: 0 0 1.2rem;
       font-family: var(--font-display);
@@ -950,7 +959,7 @@
       background: var(--accent-soft);
       border: 1px solid rgba(27, 60, 49, 0.22);
       white-space: nowrap;
-      transition: transform 0.2s var(--ease-spring), background-color 0.2s var(--ease-out), color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+      transition: transform 0.2s var(--ease-spring), background-color 0.2s var(--ease-out), color 0.2s var(--ease-out);
     }
 
     .paper-link:hover,
@@ -958,7 +967,6 @@
       transform: translateY(-2px);
       background: var(--forest-800);
       color: var(--parchment-100);
-      border-color: var(--forest-800);
     }
 
     .cert-grid {
@@ -985,7 +993,7 @@
 
     .cert-card:hover {
       transform: translateY(-3px);
-      border-color: var(--border-strong);
+      border-color: var(--accent-gold);
       box-shadow: var(--shadow-sm);
     }
 
@@ -1001,39 +1009,392 @@
       color: var(--text-secondary);
     }
 
-    /* Photography Gallery */
-    .gallery-grid {
+    /* ============================================================
+       ENCHANTED POLAROID STUDIO (#photography)
+       ============================================================ */
+    .polaroid-studio {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .camera-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 5;
+    }
+
+    /* Vintage Polaroid Land Camera */
+    .polaroid-camera {
+      position: relative;
+      width: min(330px, 88vw);
+      background: linear-gradient(165deg, #fcfaf5 0%, #ede6d6 100%);
+      border-radius: 26px 26px 18px 18px;
+      padding: 20px 22px 18px;
+      box-shadow:
+        0 24px 48px rgba(15, 34, 27, 0.22),
+        0 6px 16px rgba(15, 34, 27, 0.12),
+        inset 0 2px 3px rgba(255, 255, 255, 0.9),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.08);
+      border: 1.5px solid #dcd3c0;
+      user-select: none;
+      transition: transform 0.3s var(--ease-spring);
+    }
+
+    .polaroid-camera.is-snapping {
+      transform: scale(0.97) rotate(-1deg);
+    }
+
+    /* Camera Top Deck: Flash + Viewfinder */
+    .camera-top-deck {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-inline: 6px;
+    }
+
+    .camera-flash {
+      width: 68px;
+      height: 36px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #2b3035, #171a1d);
+      border: 2px solid #b8afa0;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.8);
+    }
+    .camera-flash::after {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      border-radius: 4px;
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.15) 0px,
+        rgba(255, 255, 255, 0.15) 3px,
+        rgba(255, 240, 200, 0.45) 3px,
+        rgba(255, 240, 200, 0.45) 6px
+      );
+    }
+    .camera-flash.flash-fire::after {
+      background: #ffffff;
+      box-shadow: 0 0 24px #fff8d6;
+    }
+
+    .camera-brand-badge {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #5b554b;
+      background: rgba(0, 0, 0, 0.05);
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+
+    .camera-viewfinder {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: #1c2220;
+      border: 3px solid #b8afa0;
+      display: grid;
+      place-items: center;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.9);
+    }
+    .camera-viewfinder::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      background: radial-gradient(circle at 35% 35%, #5da9a6, #132826 75%);
+    }
+
+    /* Camera Main Body: Rainbow Stripe + Lens + Red Shutter */
+    .camera-face {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 10px;
+    }
+
+    /* Classic Rainbow Stripe */
+    .polaroid-rainbow {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 34px;
+      transform: translateX(-50%);
+      background: linear-gradient(
+        90deg,
+        #e63946 0% 20%,
+        #f77f00 20% 40%,
+        #fcbf49 40% 60%,
+        #2a9d8f 60% 80%,
+        #264653 80% 100%
+      );
+      opacity: 0.9;
+      z-index: 0;
+    }
+
+    /* Film Counter Window */
+    .film-counter-box {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .film-counter-screen {
+      width: 38px;
+      height: 28px;
+      border-radius: 6px;
+      background: #141917;
+      color: #f3d999;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: grid;
+      place-items: center;
+      border: 1.5px solid #8f8779;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
+    }
+    .film-counter-label {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #5b554b;
+    }
+
+    /* Center Camera Lens */
+    .camera-lens {
+      position: relative;
+      z-index: 2;
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #2b2f33, #121417);
+      border: 5px solid #d4cbb8;
+      box-shadow:
+        0 10px 20px rgba(0, 0, 0, 0.35),
+        inset 0 2px 5px rgba(255, 255, 255, 0.25);
+      display: grid;
+      place-items: center;
+    }
+    .camera-lens-ring {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      border: 2px dashed rgba(255, 255, 255, 0.2);
+      display: grid;
+      place-items: center;
+    }
+    .camera-lens-glass {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 32% 30%, #4895ef 0%, #1d3557 42%, #090d16 80%);
+      box-shadow: inset 0 0 12px #000;
+      position: relative;
+      transition: transform 0.25s ease;
+    }
+    .camera-lens-glass::after {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      width: 13px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.65);
+      transform: rotate(-28deg);
+    }
+    .polaroid-camera:hover .camera-lens-glass {
+      transform: scale(1.06);
+    }
+
+    /* Big Tactile Capture Button */
+    .shutter-wrap {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .shutter-btn {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #ff5a5f, #c81d25 75%);
+      border: 4px solid #dcd3c0;
+      box-shadow:
+        0 6px 14px rgba(200, 29, 37, 0.45),
+        inset 0 2px 4px rgba(255, 255, 255, 0.55);
+      transition: transform 0.14s ease, box-shadow 0.14s ease;
+      position: relative;
+    }
+
+    .shutter-btn:hover:not(:disabled) {
+      transform: scale(1.07);
+      box-shadow:
+        0 8px 20px rgba(200, 29, 37, 0.6),
+        0 0 0 5px rgba(255, 90, 95, 0.22);
+    }
+
+    .shutter-btn:active:not(:disabled) {
+      transform: scale(0.92);
+    }
+
+    .shutter-btn:disabled {
+      background: #8c857b;
+      box-shadow: none;
+      cursor: default;
+    }
+
+    .shutter-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #c81d25;
+    }
+    .shutter-btn:disabled + .shutter-label {
+      color: var(--text-muted);
+    }
+
+    /* Camera Bottom Slot */
+    .camera-slot-housing {
+      margin-top: 14px;
+      background: #232725;
+      border-radius: 8px;
+      padding: 6px 12px;
+      box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.85);
+    }
+    .camera-slot {
+      height: 6px;
+      background: #0a0c0b;
+      border-radius: 4px;
+    }
+
+    /* Camera Controls Bar */
+    .camera-controls {
+      margin-top: 1.15rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+
+    .camera-hint {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      margin: 0;
+      text-align: center;
+    }
+
+    .btn-mini {
+      padding: 0.42rem 0.95rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.82rem;
+      font-weight: 500;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      color: var(--text-primary);
+      transition: all 0.2s ease;
+    }
+    .btn-mini:hover {
+      border-color: var(--accent-gold);
+      background: var(--accent-soft);
+      transform: translateY(-1px);
+    }
+
+    /* Ejected Polaroid Cards Grid */
+    .polaroid-board {
+      width: 100%;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.35rem;
+      gap: 1.75rem;
+      padding-top: 0.5rem;
     }
 
-    .photo-card {
+    .polaroid-frame {
       margin: 0;
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.28s var(--ease-out), box-shadow 0.28s var(--ease-out);
+      background: #fffefb;
+      padding: 14px 14px 20px;
+      border-radius: 4px;
+      box-shadow:
+        0 14px 30px rgba(15, 34, 27, 0.14),
+        0 2px 6px rgba(15, 34, 27, 0.08);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      transform: rotate(var(--tilt, 0deg));
+      transition: transform 0.35s var(--ease-spring), box-shadow 0.35s ease;
+      animation: polaroidEject 0.75s var(--ease-spring) forwards;
     }
 
-    .photo-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
+    .polaroid-frame[hidden] {
+      display: none;
+    }
+
+    .polaroid-frame:nth-child(odd) { --tilt: -1.6deg; }
+    .polaroid-frame:nth-child(even) { --tilt: 1.5deg; }
+    .polaroid-frame:nth-child(3n) { --tilt: -0.9deg; }
+
+    .polaroid-frame:hover {
+      transform: translateY(-8px) rotate(0deg) scale(1.025);
+      box-shadow:
+        0 24px 44px rgba(15, 34, 27, 0.2),
+        0 0 0 2px rgba(201, 154, 62, 0.45);
+      z-index: 4;
+    }
+
+    @keyframes polaroidEject {
+      0% {
+        opacity: 0;
+        transform: translateY(-55px) scale(0.84) rotate(0deg);
+      }
+      65% {
+        opacity: 1;
+        transform: translateY(6px) scale(1.01) rotate(var(--tilt, 0deg));
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(var(--tilt, 0deg));
+      }
     }
 
     .photo-trigger {
       display: block;
       width: 100%;
       overflow: hidden;
+      background: #18201d;
+      position: relative;
     }
 
     .photo-trigger img {
       width: 100%;
       aspect-ratio: 3 / 4;
       object-fit: cover;
-      transition: transform 0.5s var(--ease-out);
+      transition: transform 0.5s var(--ease-out), filter 2.2s ease-out;
+    }
+
+    .polaroid-frame.is-developing .photo-trigger img {
+      filter: brightness(0.18) contrast(0.6) sepia(0.85) blur(3px);
+    }
+
+    .polaroid-frame.is-developed .photo-trigger img {
+      filter: brightness(1) contrast(1) sepia(0) blur(0);
     }
 
     .photo-card--landscape .photo-trigger img {
@@ -1044,20 +1405,26 @@
       transform: scale(1.04);
     }
 
-    .photo-caption {
+    .polaroid-caption {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 0.5rem;
-      padding: 0.9rem 1.05rem;
-      font-size: 0.92rem;
-      font-weight: 500;
+      padding-top: 0.85rem;
+      font-family: var(--font-hand);
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: #232b28;
+      line-height: 1.1;
     }
 
     .photo-index {
       font-family: var(--font-mono);
-      font-size: 0.78rem;
+      font-size: 0.74rem;
       color: var(--accent);
+      background: var(--bg-alt);
+      padding: 0.18rem 0.5rem;
+      border-radius: 999px;
     }
 
     /* Resume Banner */
@@ -1069,8 +1436,8 @@
       gap: 1.5rem 2.5rem;
       padding: clamp(1.75rem, 3.8vw, 2.65rem);
       border-radius: var(--radius-lg);
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
+      background: linear-gradient(135deg, var(--bg-surface), #faf5e8);
+      border: 1.5px solid rgba(201, 154, 62, 0.35);
       box-shadow: var(--shadow-md);
     }
 
@@ -1089,7 +1456,7 @@
 
     /* Contact & Footer */
     .dark-zone {
-      background-color: var(--bg-dark);
+      background: radial-gradient(circle at 80% 20%, #244e40 0%, var(--bg-dark) 55%, var(--forest-950) 100%);
       color: var(--text-on-dark);
       border-top-color: transparent;
     }
@@ -1128,11 +1495,12 @@
 
     .social-row {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       list-style: none;
       margin: 0;
       padding: 0;
-      gap: 0.95rem;
+      gap: 0.9rem;
     }
 
     .social-btn {
@@ -1145,14 +1513,15 @@
       background: var(--bg-dark-card);
       border: 1px solid var(--border-dark);
       color: var(--parchment-100);
-      transition: transform 0.22s var(--ease-spring), background-color 0.2s var(--ease-out), color 0.2s var(--ease-out);
+      transition: transform 0.25s var(--ease-spring), background-color 0.2s var(--ease-out), color 0.2s var(--ease-out), box-shadow 0.2s ease;
     }
 
     .social-btn:hover {
-      transform: translateY(-3px);
+      transform: translateY(-4px) scale(1.06);
       background: var(--parchment-100);
       color: var(--forest-900);
-      border-color: var(--parchment-100);
+      border-color: var(--accent-gold);
+      box-shadow: 0 8px 20px rgba(243, 217, 153, 0.28);
     }
 
     .social-btn svg {
@@ -1176,10 +1545,7 @@
       padding-block: 1.25rem;
     }
 
-    .footer-inner p {
-      margin: 0;
-    }
-
+    .footer-inner p { margin: 0; }
     .footer-inner a:hover {
       color: var(--parchment-100);
       text-decoration: underline;
@@ -1194,8 +1560,8 @@
       display: grid;
       place-items: center;
       padding: 1rem;
-      background: rgba(9, 20, 16, 0.84);
-      backdrop-filter: blur(8px);
+      background: rgba(9, 20, 16, 0.86);
+      backdrop-filter: blur(10px);
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.25s var(--ease-out), visibility 0.25s var(--ease-out);
@@ -1213,15 +1579,13 @@
       border-radius: var(--radius-lg);
       background: var(--forest-900);
       color: var(--parchment-100);
-      border: 1px solid var(--border-dark);
+      border: 1px solid rgba(201, 154, 62, 0.35);
       box-shadow: var(--shadow-lg);
       transform: scale(0.96);
       transition: transform 0.28s var(--ease-out);
     }
 
-    .lightbox-backdrop.is-open .lightbox-panel {
-      transform: scale(1);
-    }
+    .lightbox-backdrop.is-open .lightbox-panel { transform: scale(1); }
 
     .lightbox-head {
       display: flex;
@@ -1245,10 +1609,7 @@
       font-size: 0.85rem;
       color: var(--parchment-100);
     }
-
-    .lightbox-close:hover {
-      background: rgba(255, 255, 255, 0.08);
-    }
+    .lightbox-close:hover { background: rgba(255, 255, 255, 0.1); }
 
     .lightbox-stage {
       display: grid;
@@ -1271,15 +1632,12 @@
       font-size: 0.85rem;
       color: var(--parchment-100);
     }
-
-    .lightbox-nav:hover {
-      background: rgba(255, 255, 255, 0.08);
-    }
+    .lightbox-nav:hover { background: rgba(255, 255, 255, 0.1); }
 
     .lightbox-caption {
       margin: 0.9rem 0 0;
       text-align: center;
-      font-size: 0.95rem;
+      font-size: 0.98rem;
       color: var(--text-on-dark-muted);
     }
 
@@ -1288,29 +1646,14 @@
       .about-grid {
         grid-template-columns: 1fr;
       }
-
-      .portrait-wrap {
-        max-width: 400px;
-      }
-
-      .pillars-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .portrait-wrap { max-width: 400px; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .polaroid-board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 720px) {
-      .skills-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .nav-toggle {
-        display: inline-flex;
-      }
-
+      .skills-grid { grid-template-columns: 1fr; }
+      .nav-toggle { display: inline-flex; }
       .site-nav {
         display: none;
         position: absolute;
@@ -1321,37 +1664,23 @@
         border-bottom: 1px solid var(--border-subtle);
         padding: 1rem var(--gutter) 1.5rem;
       }
-
-      .site-nav.is-open {
-        display: block;
-      }
-
+      .site-nav.is-open { display: block; }
       .nav-list {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.9rem;
       }
-
-      .project-card {
-        grid-template-columns: 1fr;
-      }
-
+      .project-card { grid-template-columns: 1fr; }
       .paper-item {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.65rem;
       }
-
-      .gallery-grid {
-        grid-template-columns: 1fr;
-      }
+      .polaroid-board { grid-template-columns: 1fr; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
+      html { scroll-behavior: auto; }
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
@@ -1360,6 +1689,8 @@
   </style>
 </head>
 <body id="top">
+  <canvas id="pixie-canvas" aria-hidden="true"></canvas>
+  <div class="camera-flash-overlay" id="flash-overlay" aria-hidden="true"></div>
   <div class="scroll-progress" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
 
@@ -1367,9 +1698,9 @@
     <div class="container header-inner">
       <a class="brand" href="#top">
         <span class="brand-mark" aria-hidden="true">
-          <img src="assets/images/icon.jpeg" alt="" width="34" height="34" />
+          <img src="assets/images/icon.jpeg" alt="" width="36" height="36" />
         </span>
-        <span>Portfolio</span>
+        <span>Portfolio ✨</span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">
         <span class="hamburger" aria-hidden="true"></span>
@@ -1379,7 +1710,7 @@
           <li><a class="nav-link" href="#about">About</a></li>
           <li><a class="nav-link" href="#skills">Skills</a></li>
           <li><a class="nav-link" href="#work">Work</a></li>
-          <li><a class="nav-link" href="#photography">Photography</a></li>
+          <li><a class="nav-link" href="#photography">Photography 📸</a></li>
           <li><a class="nav-link" href="#resume">Resume</a></li>
           <li><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
@@ -1391,18 +1722,19 @@
     <section class="hero" aria-labelledby="hero-heading">
       <div class="container hero-grid">
         <div>
+          <p class="eyebrow">Welcome to my storybook</p>
           <h1 id="hero-heading" class="hero-title">
             <span class="hero-line">Bhanu Prakash</span>
-            <span class="hero-line hero-line-italic">Kakarla</span>
+            <span class="hero-line hero-line-italic">Kakarla ✨</span>
           </h1>
-          <p class="hero-lede">I study hard problems until they become something a person can use — a model, a service, or a clearer picture of the world.</p>
-          <p class="hero-sub">Computer Science graduate passionate about software development, emerging technologies, and continuous learning. Beyond technology, I have a keen passion for photography and capturing meaningful moments.</p>
+          <p class="hero-lede">I study hard problems until they become something a person can use — a model, a service, or a clearer picture of the world. 🌟</p>
+          <p class="hero-sub">Computer Science graduate passionate about software development, emerging technologies, and continuous learning. Beyond technology, I have a keen passion for photography and capturing meaningful moments. 📷</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="assets/documents/Bhanu Prakash Kakarla.pdf" download="Bhanu-Prakash-Kakarla-Resume.pdf">
               <svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18"><path d="M12 4v10m0 0 4-4m-4 4-4-4M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Resume
+              Resume 📄
             </a>
-            <a class="btn btn-ghost" href="#contact">Contact</a>
+            <a class="btn btn-ghost" href="#contact">Say Hello ✉️</a>
           </div>
         </div>
 
@@ -1418,7 +1750,7 @@
           </div>
           <figcaption class="portrait-badge">
             <span class="status-dot" aria-hidden="true"></span>
-            Applied AI · Software · Photography
+            Applied AI · Software · Photography ✨
           </figcaption>
         </figure>
       </div>
@@ -1428,7 +1760,7 @@
       <div class="container">
         <div class="section-header reveal">
           <p class="eyebrow">Education and background</p>
-          <h2 id="about-heading" class="section-title">About</h2>
+          <h2 id="about-heading" class="section-title">About 🌿</h2>
         </div>
 
         <div class="about-grid">
@@ -1437,27 +1769,27 @@
             <p>That edge governs how I build in computer science—no shortcuts, only proof that holds up, clarity on why a system decides what it does, and raw ideas forged into software people can actually open. I don't build for applause in a vacuum; I build until the system answers every question and survives every test.</p>
 
             <blockquote class="quote-block">
-              <p>The best way to predict the future is to invent it.</p>
+              <p>“The best way to predict the future is to invent it.” ✨</p>
             </blockquote>
 
             <div class="pillars-grid">
               <article class="pillar-card">
-                <h3>Photography</h3>
+                <h3>📸 Photography</h3>
                 <p>Unedited frames, original proportions—I capture the quiet tension of a moment before it slips away.</p>
               </article>
               <article class="pillar-card">
-                <h3>How I like to work</h3>
+                <h3>⚙️ How I work</h3>
                 <p>No guesswork, no half-measures—I dissect the core problem, wire up the fundamentals, and build until the system proves itself.</p>
               </article>
               <article class="pillar-card">
-                <h3>Programs</h3>
+                <h3>🏆 Programs</h3>
                 <p>Forged in Amazon ML Summer Camp and Flipkart Grid 5.0; backed by AWS, Google AI, and Kaggle.</p>
               </article>
             </div>
           </div>
 
           <div class="reveal">
-            <h3 class="side-heading">Education</h3>
+            <h3 class="side-heading">🎓 Education</h3>
             <ol class="timeline">
               <li class="timeline-item">
                 <p class="timeline-when">2021 — 2025</p>
@@ -1484,13 +1816,13 @@
       <div class="container">
         <div class="section-header reveal">
           <p class="eyebrow">Technical stack</p>
-          <h2 id="skills-heading" class="section-title">Skills</h2>
+          <h2 id="skills-heading" class="section-title">Skills 🪄</h2>
           <p class="section-desc">The core languages, coursework, libraries, and tools I use to turn ideas into working systems.</p>
         </div>
 
         <div class="skills-grid">
           <article class="skill-card reveal">
-            <h3>Programming languages</h3>
+            <h3>💻 Programming languages</h3>
             <ul class="skill-list">
               <li>Python</li>
               <li>Java <span class="badge-level">Basic</span></li>
@@ -1501,7 +1833,7 @@
           </article>
 
           <article class="skill-card reveal">
-            <h3>Coursework</h3>
+            <h3>📚 Coursework</h3>
             <ul class="skill-list">
               <li>DBMS</li>
               <li>Object-oriented programming</li>
@@ -1514,7 +1846,7 @@
           </article>
 
           <article class="skill-card reveal">
-            <h3>Libraries</h3>
+            <h3>🧠 Libraries</h3>
             <ul class="skill-list">
               <li>Pandas</li>
               <li>NumPy</li>
@@ -1524,7 +1856,7 @@
           </article>
 
           <article class="skill-card reveal">
-            <h3>Developer tools</h3>
+            <h3>🛠️ Developer tools</h3>
             <ul class="skill-list">
               <li>Git / GitHub</li>
               <li>Google Colab</li>
@@ -1541,12 +1873,12 @@
       <div class="container">
         <div class="section-header reveal">
           <p class="eyebrow">Projects, research, and certifications</p>
-          <h2 id="work-heading" class="section-title">Experience &amp; projects</h2>
+          <h2 id="work-heading" class="section-title">Experience &amp; projects 🚀</h2>
           <p class="section-desc">Systems built from scratch, peer-reviewed research, and credentials earned along the way—work that speaks for itself.</p>
         </div>
 
         <div class="filter-bar reveal" role="tablist" aria-label="Filter work by category">
-          <button class="filter-btn is-active" type="button" data-filter="all">All Work</button>
+          <button class="filter-btn is-active" type="button" data-filter="all">All Work ✨</button>
           <button class="filter-btn" type="button" data-filter="projects">Projects</button>
           <button class="filter-btn" type="button" data-filter="publications">Publications</button>
           <button class="filter-btn" type="button" data-filter="certifications">Certifications</button>
@@ -1608,7 +1940,7 @@
         </div>
 
         <div class="work-group sub-block" data-group="publications">
-          <h3 id="research-heading" class="sub-block-title">Research Publications</h3>
+          <h3 id="research-heading" class="sub-block-title">📜 Research Publications</h3>
           <ul class="paper-list" aria-labelledby="research-heading">
             <li class="paper-item reveal">
               <div>
@@ -1635,7 +1967,7 @@
         </div>
 
         <div class="work-group sub-block" data-group="certifications">
-          <h3 class="sub-block-title">Certifications</h3>
+          <h3 class="sub-block-title">🎖️ Certifications</h3>
           <ul class="cert-grid">
             <li class="reveal">
               <a class="cert-card" href="certs/aws.jpeg" target="_blank" rel="noopener noreferrer">
@@ -1660,74 +1992,125 @@
       </div>
     </section>
 
+    <!-- ENCHANTED POLAROID CAMERA SECTION -->
     <section id="photography" class="section section-alt" aria-labelledby="photo-heading">
       <div class="container">
         <div class="section-header reveal">
-          <p class="eyebrow">Personal work</p>
-          <h2 id="photo-heading" class="section-title">Photography</h2>
-          <p class="section-desc">Between building systems, I capture still moments—no crops, no altered ratios, just the frame as it happened. Select any frame to expand.</p>
+          <p class="eyebrow">Personal work · Interactive darkroom</p>
+          <h2 id="photo-heading" class="section-title">Photography 📸</h2>
+          <p class="section-desc">Press the red shutter button on the Polaroid camera to snap and develop my unedited frames one by one. Click any developed Polaroid to view it full-screen. ✨</p>
         </div>
 
-        <div class="gallery-grid" data-gallery>
-          <figure class="photo-card reveal">
-            <button class="photo-trigger" type="button" data-src="assets/images/photo1.jpeg" data-caption="A coral rose photographed up close." aria-label="Open photograph: Coral rose">
-              <img src="assets/images/photo1.jpeg" width="960" height="1280" alt="A coral-pink rose in bloom, photographed close against dark leaves." loading="lazy" decoding="async" />
-            </button>
-            <figcaption class="photo-caption">
-              <span>Coral rose</span>
-              <span class="photo-index">01</span>
-            </figcaption>
-          </figure>
+        <div class="polaroid-studio reveal">
+          <!-- Interactive Polaroid Camera -->
+          <div class="camera-stage">
+            <div class="polaroid-camera" id="polaroid-camera">
+              <div class="camera-top-deck">
+                <div class="camera-flash" id="camera-flash" aria-hidden="true"></div>
+                <span class="camera-brand-badge">BPK · Land 600</span>
+                <div class="camera-viewfinder" aria-hidden="true"></div>
+              </div>
 
-          <figure class="photo-card reveal">
-            <button class="photo-trigger" type="button" data-src="assets/images/photo2.jpeg" data-caption="The sun ringed by a halo in a bright sky." aria-label="Open photograph: Solar halo">
-              <img src="assets/images/photo2.jpeg" width="960" height="1280" alt="The sun surrounded by a faint circular halo in a blue, lightly clouded sky." loading="lazy" decoding="async" />
-            </button>
-            <figcaption class="photo-caption">
-              <span>Solar halo</span>
-              <span class="photo-index">02</span>
-            </figcaption>
-          </figure>
+              <div class="camera-face">
+                <div class="polaroid-rainbow" aria-hidden="true"></div>
 
-          <figure class="photo-card reveal">
-            <button class="photo-trigger" type="button" data-src="assets/images/photo3.jpeg" data-caption="A figure walking into the surf at dusk." aria-label="Open photograph: Into the water">
-              <img src="assets/images/photo3.jpeg" width="960" height="1280" alt="A silhouetted person stepping into ocean waves under a dusk sky." loading="lazy" decoding="async" />
-            </button>
-            <figcaption class="photo-caption">
-              <span>Into the water</span>
-              <span class="photo-index">03</span>
-            </figcaption>
-          </figure>
+                <div class="film-counter-box">
+                  <div class="film-counter-screen" id="film-counter" aria-live="polite">06</div>
+                  <span class="film-counter-label">Shots</span>
+                </div>
 
-          <figure class="photo-card reveal">
-            <button class="photo-trigger" type="button" data-src="assets/images/photo4.jpeg" data-caption="A cold drink on a ledge above a beach at sunset." aria-label="Open photograph: Shoreline">
-              <img src="assets/images/photo4.jpeg" width="960" height="1280" alt="A mason jar drink with wafers on a wooden ledge, overlooking a busy beach at sunset." loading="lazy" decoding="async" />
-            </button>
-            <figcaption class="photo-caption">
-              <span>Shoreline</span>
-              <span class="photo-index">04</span>
-            </figcaption>
-          </figure>
+                <div class="camera-lens" aria-hidden="true">
+                  <div class="camera-lens-ring">
+                    <div class="camera-lens-glass"></div>
+                  </div>
+                </div>
 
-          <figure class="photo-card photo-card--landscape reveal">
-            <button class="photo-trigger" type="button" data-src="assets/images/photo5.jpeg" data-caption="Houses and trees spread across a steep, forested hillside." aria-label="Open photograph: Hillside">
-              <img src="assets/images/photo5.jpeg" width="1280" height="960" alt="A wide view of a forested hillside with scattered houses under a clear sky." loading="lazy" decoding="async" />
-            </button>
-            <figcaption class="photo-caption">
-              <span>Hillside</span>
-              <span class="photo-index">05</span>
-            </figcaption>
-          </figure>
+                <div class="shutter-wrap">
+                  <button
+                    class="shutter-btn"
+                    type="button"
+                    id="capture-btn"
+                    aria-label="Capture photo with Polaroid camera"
+                    title="Click to snap a photo!">
+                  </button>
+                  <span class="shutter-label" id="shutter-label">Capture</span>
+                </div>
+              </div>
 
-          <figure class="photo-card reveal">
-            <button class="photo-trigger" type="button" data-src="assets/images/photo6.jpeg" data-caption="A wheeled cannon on a paved plaza at sunset with a solar tree and railway coach behind." aria-label="Open photograph: Plaza cannon at sunset">
-              <img src="assets/images/photo6.jpeg" width="960" height="1280" alt="A vintage wheeled cannon on a circular stone pad in a tiled plaza at sunset, with a branching solar structure and a red-and-cream rail coach in the background." loading="lazy" decoding="async" />
-            </button>
-            <figcaption class="photo-caption">
-              <span>Plaza cannon</span>
-              <span class="photo-index">06</span>
-            </figcaption>
-          </figure>
+              <div class="camera-slot-housing" aria-hidden="true">
+                <div class="camera-slot"></div>
+              </div>
+            </div>
+
+            <div class="camera-controls">
+              <p class="camera-hint" id="camera-status">✨ <strong>6 shots</strong> loaded in the cartridge — press the red button!</p>
+              <button type="button" class="btn-mini" id="reveal-all-btn">Develop All 🎞️</button>
+              <button type="button" class="btn-mini" id="reset-camera-btn" hidden>Reload Film 🔄</button>
+            </div>
+          </div>
+
+          <!-- Ejected Polaroids Board -->
+          <div class="polaroid-board" data-gallery id="polaroid-board">
+            <figure class="polaroid-frame" hidden>
+              <button class="photo-trigger" type="button" data-src="assets/images/photo1.jpeg" data-caption="A coral rose photographed up close." aria-label="Open photograph: Coral rose">
+                <img src="assets/images/photo1.jpeg" width="960" height="1280" alt="A coral-pink rose in bloom, photographed close against dark leaves." loading="lazy" decoding="async" />
+              </button>
+              <figcaption class="polaroid-caption">
+                <span>Coral rose 🌹</span>
+                <span class="photo-index">#01</span>
+              </figcaption>
+            </figure>
+
+            <figure class="polaroid-frame" hidden>
+              <button class="photo-trigger" type="button" data-src="assets/images/photo2.jpeg" data-caption="The sun ringed by a halo in a bright sky." aria-label="Open photograph: Solar halo">
+                <img src="assets/images/photo2.jpeg" width="960" height="1280" alt="The sun surrounded by a faint circular halo in a blue, lightly clouded sky." loading="lazy" decoding="async" />
+              </button>
+              <figcaption class="polaroid-caption">
+                <span>Solar halo ☀️</span>
+                <span class="photo-index">#02</span>
+              </figcaption>
+            </figure>
+
+            <figure class="polaroid-frame" hidden>
+              <button class="photo-trigger" type="button" data-src="assets/images/photo3.jpeg" data-caption="A figure walking into the surf at dusk." aria-label="Open photograph: Into the water">
+                <img src="assets/images/photo3.jpeg" width="960" height="1280" alt="A silhouetted person stepping into ocean waves under a dusk sky." loading="lazy" decoding="async" />
+              </button>
+              <figcaption class="polaroid-caption">
+                <span>Into the water 🌊</span>
+                <span class="photo-index">#03</span>
+              </figcaption>
+            </figure>
+
+            <figure class="polaroid-frame" hidden>
+              <button class="photo-trigger" type="button" data-src="assets/images/photo4.jpeg" data-caption="A cold drink on a ledge above a beach at sunset." aria-label="Open photograph: Shoreline">
+                <img src="assets/images/photo4.jpeg" width="960" height="1280" alt="A mason jar drink with wafers on a wooden ledge, overlooking a busy beach at sunset." loading="lazy" decoding="async" />
+              </button>
+              <figcaption class="polaroid-caption">
+                <span>Shoreline 🌅</span>
+                <span class="photo-index">#04</span>
+              </figcaption>
+            </figure>
+
+            <figure class="polaroid-frame photo-card--landscape" hidden>
+              <button class="photo-trigger" type="button" data-src="assets/images/photo5.jpeg" data-caption="Houses and trees spread across a steep, forested hillside." aria-label="Open photograph: Hillside">
+                <img src="assets/images/photo5.jpeg" width="1280" height="960" alt="A wide view of a forested hillside with scattered houses under a clear sky." loading="lazy" decoding="async" />
+              </button>
+              <figcaption class="polaroid-caption">
+                <span>Hillside ⛰️</span>
+                <span class="photo-index">#05</span>
+              </figcaption>
+            </figure>
+
+            <figure class="polaroid-frame" hidden>
+              <button class="photo-trigger" type="button" data-src="assets/images/photo6.jpeg" data-caption="A wheeled cannon on a paved plaza at sunset with a solar tree and railway coach behind." aria-label="Open photograph: Plaza cannon at sunset">
+                <img src="assets/images/photo6.jpeg" width="960" height="1280" alt="A vintage wheeled cannon on a circular stone pad in a tiled plaza at sunset, with a branching solar structure and a red-and-cream rail coach in the background." loading="lazy" decoding="async" />
+              </button>
+              <figcaption class="polaroid-caption">
+                <span>Plaza cannon 🌇</span>
+                <span class="photo-index">#06</span>
+              </figcaption>
+            </figure>
+          </div>
         </div>
       </div>
     </section>
@@ -1736,7 +2119,7 @@
       <div class="container">
         <div class="resume-box reveal">
           <div>
-            <h2 id="resume-heading">Resume</h2>
+            <h2 id="resume-heading">Resume 📄</h2>
             <p>A concise overview of my engineering background, technical stack, published research, and credentials.</p>
           </div>
           <div class="hero-actions">
@@ -1753,26 +2136,42 @@
     <section id="contact" class="section dark-zone" aria-labelledby="contact-heading">
       <div class="container contact-inner">
         <div class="reveal">
-          <p class="eyebrow eyebrow-light">Email, LinkedIn, and GitHub</p>
-          <h2 id="contact-heading" class="contact-title">Contact</h2>
-          <p class="contact-lead">Open to full-time engineering roles, technical collaborations, and conversations worth having. Reach out directly.</p>
+          <p class="eyebrow eyebrow-light">Email, LinkedIn, GitHub, Instagram &amp; X</p>
+          <h2 id="contact-heading" class="contact-title">Let's Connect ✨</h2>
+          <p class="contact-lead">Open to full-time engineering roles, technical collaborations, and conversations worth having. Reach out directly on any platform below.</p>
         </div>
 
         <div class="contact-actions reveal">
           <ul class="social-row">
             <li>
-              <a class="social-btn" href="mailto:bpkakarla@gmail.com" aria-label="Email Bhanu Prakash Kakarla">
+              <a class="social-btn" href="mailto:bpkakarla@gmail.com" aria-label="Email Bhanu Prakash Kakarla" title="Email">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16v11H4v-11Z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m4.5 7 7.5 6 7.5-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
               </a>
             </li>
             <li>
-              <a class="social-btn" href="https://www.linkedin.com/in/bpkakarla" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+              <a class="social-btn" href="https://www.linkedin.com/in/bpkakarla" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" title="LinkedIn">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 9.5V18M6.5 6.5v.02M10.5 18v-5.2a2.3 2.3 0 0 1 4.6 0V18M10.5 12.2V18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
             </li>
             <li>
-              <a class="social-btn" href="https://github.com/bpkakarla" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+              <a class="social-btn" href="https://github.com/bpkakarla" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" title="GitHub">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4 1.5-4-2.5-6-3m12 6v-3.9a3.1 3.1 0 0 0-.9-2.4c3 0 6-1.4 6-6a4.7 4.7 0 0 0-1.3-3.2 4.4 4.4 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.4 2.9 5.3 3.2 5.3 3.2a4.4 4.4 0 0 0-.1 3.2A4.7 4.7 0 0 0 4 9.6c0 4.6 3 6 6 6a3.1 3.1 0 0 0-.9 2.4V22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </li>
+            <li>
+              <a class="social-btn" href="https://instagram.com/bpkakarla" target="_blank" rel="noopener noreferrer" aria-label="Instagram profile (@bpkakarla)" title="Instagram (@bpkakarla)">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                  <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                  <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a class="social-btn" href="https://x.com/bpkakarla" target="_blank" rel="noopener noreferrer" aria-label="X profile (@bpkakarla)" title="X (@bpkakarla)">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4.5 4.5l5.9 7.8L4.2 19.5h1.9l5.1-5.9 4.2 5.9h4.4l-6.2-8.3 5.6-6.7h-1.9l-4.6 5.4-3.9-5.4H4.5z" fill="currentColor"/>
+                </svg>
               </a>
             </li>
           </ul>
@@ -1783,8 +2182,8 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>&copy; <span id="current-year">2026</span> Bhanu Prakash Kakarla. All rights reserved.</p>
-      <a href="#top">Back to top</a>
+      <p>&copy; <span id="current-year">2026</span> Bhanu Prakash Kakarla. Crafted with curiosity &amp; a touch of magic ✨</p>
+      <a href="#top">Back to top ↑</a>
     </div>
   </footer>
 
@@ -1792,12 +2191,12 @@
     <div class="lightbox-panel">
       <div class="lightbox-head">
         <p class="lightbox-counter" data-lightbox-counter></p>
-        <button class="lightbox-close" type="button" data-lightbox-close>Close</button>
+        <button class="lightbox-close" type="button" data-lightbox-close>Close ✕</button>
       </div>
       <div class="lightbox-stage">
-        <button class="lightbox-nav" type="button" data-lightbox-prev aria-label="Previous photograph">Prev</button>
+        <button class="lightbox-nav" type="button" data-lightbox-prev aria-label="Previous photograph">&larr; Prev</button>
         <img src="" alt="" data-lightbox-img />
-        <button class="lightbox-nav" type="button" data-lightbox-next aria-label="Next photograph">Next</button>
+        <button class="lightbox-nav" type="button" data-lightbox-next aria-label="Next photograph">Next &rarr;</button>
       </div>
       <p class="lightbox-caption" data-lightbox-caption></p>
     </div>
@@ -1805,10 +2204,9 @@
 
   <script>
     (function () {
+      /* 1. Year & Scroll Progress */
       const yearEl = document.getElementById("current-year");
-      if (yearEl) {
-        yearEl.textContent = String(new Date().getFullYear());
-      }
+      if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
       const progressBar = document.querySelector(".scroll-progress");
       const header = document.querySelector("[data-header]");
@@ -1819,13 +2217,28 @@
           const pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
           progressBar.style.width = pct + "%";
         }
-        if (header) {
-          header.classList.toggle("is-scrolled", scrollTop > 12);
-        }
+        if (header) header.classList.toggle("is-scrolled", scrollTop > 12);
       };
       window.addEventListener("scroll", updateScroll, { passive: true });
       updateScroll();
 
+      /* 2. Scroll Reveal Animations */
+      const revealEls = document.querySelectorAll(".reveal");
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        revealEls.forEach((el) => observer.observe(el));
+      } else {
+        revealEls.forEach((el) => el.classList.add("is-visible"));
+      }
+
+      /* 3. Mobile Nav */
       const navToggle = document.querySelector(".nav-toggle");
       const navEl = document.getElementById("primary-nav");
       if (navToggle && navEl) {
@@ -1834,7 +2247,6 @@
           navToggle.setAttribute("aria-expanded", String(!expanded));
           navEl.classList.toggle("is-open", !expanded);
         });
-
         navEl.querySelectorAll("a").forEach((link) => {
           link.addEventListener("click", () => {
             navToggle.setAttribute("aria-expanded", "false");
@@ -1843,6 +2255,7 @@
         });
       }
 
+      /* 4. Work Category Filter */
       const filterBtns = document.querySelectorAll(".filter-btn");
       const workGroups = document.querySelectorAll(".work-group");
       filterBtns.forEach((btn) => {
@@ -1856,6 +2269,130 @@
         });
       });
 
+      /* 5. Interactive Polaroid Camera & Sound Effects */
+      const captureBtn = document.getElementById("capture-btn");
+      const revealAllBtn = document.getElementById("reveal-all-btn");
+      const resetCameraBtn = document.getElementById("reset-camera-btn");
+      const cameraBody = document.getElementById("polaroid-camera");
+      const cameraFlash = document.getElementById("camera-flash");
+      const flashOverlay = document.getElementById("flash-overlay");
+      const filmCounter = document.getElementById("film-counter");
+      const shutterLabel = document.getElementById("shutter-label");
+      const cameraStatus = document.getElementById("camera-status");
+      const polaroidFrames = Array.from(document.querySelectorAll(".polaroid-frame"));
+      let ejectedCount = 0;
+
+      // Subtle mechanical shutter click via Web Audio API
+      const playShutterSound = () => {
+        try {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (!AudioCtx) return;
+          const ctx = new AudioCtx();
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = "triangle";
+          osc.frequency.setValueAtTime(520, ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(110, ctx.currentTime + 0.09);
+          gain.gain.setValueAtTime(0.16, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.1);
+        } catch (e) {}
+      };
+
+      const triggerFlash = () => {
+        if (cameraFlash) {
+          cameraFlash.classList.add("flash-fire");
+          setTimeout(() => cameraFlash.classList.remove("flash-fire"), 180);
+        }
+        if (flashOverlay) {
+          flashOverlay.classList.add("is-flashing");
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => flashOverlay.classList.remove("is-flashing"));
+          });
+        }
+        if (cameraBody) {
+          cameraBody.classList.add("is-snapping");
+          setTimeout(() => cameraBody.classList.remove("is-snapping"), 240);
+        }
+      };
+
+      const updateCameraUI = () => {
+        const remaining = polaroidFrames.length - ejectedCount;
+        if (filmCounter) filmCounter.textContent = String(remaining).padStart(2, "0");
+
+        if (remaining === 0) {
+          if (captureBtn) captureBtn.disabled = true;
+          if (shutterLabel) shutterLabel.textContent = "Empty";
+          if (revealAllBtn) revealAllBtn.hidden = true;
+          if (resetCameraBtn) resetCameraBtn.hidden = false;
+          if (cameraStatus) {
+            cameraStatus.innerHTML = "🎉 <strong>All 6 memories captured!</strong> Click any Polaroid to inspect.";
+          }
+        } else {
+          if (captureBtn) captureBtn.disabled = false;
+          if (shutterLabel) shutterLabel.textContent = "Capture";
+          if (revealAllBtn) revealAllBtn.hidden = false;
+          if (resetCameraBtn) resetCameraBtn.hidden = ejectedCount === 0;
+          if (cameraStatus) {
+            cameraStatus.innerHTML = `✨ <strong>${remaining} shot${remaining === 1 ? "" : "s"}</strong> left in cartridge — press the red button!`;
+          }
+        }
+      };
+
+      const ejectOnePolaroid = (instant = false) => {
+        if (ejectedCount >= polaroidFrames.length) return;
+        const frame = polaroidFrames[ejectedCount];
+        ejectedCount++;
+
+        frame.hidden = false;
+        if (instant) {
+          frame.classList.remove("is-developing");
+          frame.classList.add("is-developed");
+        } else {
+          frame.classList.remove("is-developed");
+          frame.classList.add("is-developing");
+          setTimeout(() => {
+            frame.classList.remove("is-developing");
+            frame.classList.add("is-developed");
+          }, 220);
+        }
+        updateCameraUI();
+      };
+
+      if (captureBtn) {
+        captureBtn.addEventListener("click", () => {
+          if (ejectedCount >= polaroidFrames.length) return;
+          playShutterSound();
+          triggerFlash();
+          ejectOnePolaroid(false);
+        });
+      }
+
+      if (revealAllBtn) {
+        revealAllBtn.addEventListener("click", () => {
+          playShutterSound();
+          triggerFlash();
+          while (ejectedCount < polaroidFrames.length) {
+            ejectOnePolaroid(true);
+          }
+        });
+      }
+
+      if (resetCameraBtn) {
+        resetCameraBtn.addEventListener("click", () => {
+          polaroidFrames.forEach((frame) => {
+            frame.hidden = true;
+            frame.classList.remove("is-developing", "is-developed");
+          });
+          ejectedCount = 0;
+          updateCameraUI();
+        });
+      }
+
+      /* 6. Lightbox Modal */
       const triggers = Array.from(document.querySelectorAll(".photo-trigger"));
       const lightbox = document.getElementById("lightbox");
       const lbImg = lightbox ? lightbox.querySelector("[data-lightbox-img]") : null;
@@ -1909,6 +2446,51 @@
         if (e.key === "ArrowLeft") showPhoto(currentIndex - 1);
         if (e.key === "ArrowRight") showPhoto(currentIndex + 1);
       });
+
+      /* 7. Ambient Golden Pixie Dust Particles */
+      const canvas = document.getElementById("pixie-canvas");
+      if (canvas && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const ctx = canvas.getContext("2d");
+        let width = (canvas.width = window.innerWidth);
+        let height = (canvas.height = window.innerHeight);
+
+        window.addEventListener("resize", () => {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        });
+
+        const particles = Array.from({ length: 28 }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: Math.random() * 2.2 + 0.8,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: -Math.random() * 0.35 - 0.12,
+          alpha: Math.random() * 0.6 + 0.2,
+          phase: Math.random() * Math.PI * 2
+        }));
+
+        const animatePixieDust = () => {
+          ctx.clearRect(0, 0, width, height);
+          particles.forEach((p) => {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.phase += 0.025;
+            if (p.y < -10) { p.y = height + 10; p.x = Math.random() * width; }
+            if (p.x < -10) p.x = width + 10;
+            if (p.x > width + 10) p.x = -10;
+
+            const twinkle = p.alpha * (0.65 + 0.35 * Math.sin(p.phase));
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(201, 154, 62, ${twinkle})`;
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = "rgba(243, 217, 153, 0.85)";
+            ctx.fill();
+          });
+          requestAnimationFrame(animatePixieDust);
+        };
+        animatePixieDust();
+      }
     })();
   </script>
 </body>
