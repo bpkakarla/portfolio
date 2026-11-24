@@ -62,7 +62,7 @@
       --bg-canvas: var(--parchment-100);
       --bg-alt: var(--parchment-200);
       --bg-surface: var(--parchment-50);
-      --bg-glass: rgba(247, 243, 232, 0.88);
+      --bg-glass: rgba(247, 243, 232, 0.9);
       --bg-dark: var(--forest-800);
       --bg-dark-deep: var(--forest-900);
       --bg-dark-card: rgba(255, 255, 255, 0.06);
@@ -94,7 +94,7 @@
       --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
       --container-max: 1180px;
-      --gutter: clamp(1.15rem, 4vw, 2.5rem);
+      --gutter: clamp(1rem, 4vw, 2.5rem);
       --section-space: clamp(4.25rem, 8vw, 7rem);
       --radius-sm: 10px;
       --radius-md: 16px;
@@ -111,7 +111,7 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 84px;
+      scroll-padding-top: 90px;
       -webkit-text-size-adjust: 100%;
     }
 
@@ -232,7 +232,9 @@
       top: 1rem;
     }
 
-    /* Header & Live Telemetry */
+    /* ============================================================
+       DASHBOARD HEADER (VISIBLE ON BOTH DESKTOP & MOBILE)
+       ============================================================ */
     .site-header {
       position: sticky;
       top: 0;
@@ -250,10 +252,12 @@
 
     .header-inner {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       min-height: 70px;
-      gap: 1rem;
+      padding-block: 0.55rem;
+      gap: 0.65rem 1rem;
     }
 
     .brand {
@@ -261,7 +265,7 @@
       align-items: center;
       gap: 0.65rem;
       font-family: var(--font-display);
-      font-size: 1.3rem;
+      font-size: 1.28rem;
       font-weight: 600;
       letter-spacing: -0.02em;
       flex-shrink: 0;
@@ -289,7 +293,7 @@
     .header-right {
       display: flex;
       align-items: center;
-      gap: clamp(0.85rem, 2vw, 1.75rem);
+      gap: clamp(0.75rem, 2vw, 1.65rem);
     }
 
     .nav-list {
@@ -298,7 +302,7 @@
       list-style: none;
       margin: 0;
       padding: 0;
-      gap: clamp(0.9rem, 1.8vw, 1.65rem);
+      gap: clamp(0.85rem, 1.7vw, 1.55rem);
     }
 
     .nav-link {
@@ -341,11 +345,11 @@
     .dashboard-telemetry {
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
-      padding: 0.36rem 0.85rem;
+      gap: 0.55rem;
+      padding: 0.34rem 0.8rem;
       border-radius: var(--radius-pill);
-      background: rgba(253, 251, 247, 0.78);
-      border: 1px solid rgba(201, 154, 62, 0.32);
+      background: rgba(253, 251, 247, 0.85);
+      border: 1px solid rgba(201, 154, 62, 0.35);
       box-shadow: 0 2px 10px rgba(19, 44, 35, 0.04);
       font-family: var(--font-mono);
       font-size: 0.72rem;
@@ -356,7 +360,7 @@
     .telemetry-item {
       display: inline-flex;
       align-items: center;
-      gap: 0.32rem;
+      gap: 0.3rem;
     }
 
     .telemetry-time {
@@ -374,8 +378,8 @@
 
     .nav-toggle {
       display: none;
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
       border-radius: var(--radius-sm);
       align-items: center;
       justify-content: center;
@@ -410,7 +414,7 @@
 
     /* Hero */
     .hero {
-      padding-block: clamp(3rem, 6.5vw, 5.25rem);
+      padding-block: clamp(2.75rem, 6vw, 5rem);
       position: relative;
     }
 
@@ -534,70 +538,11 @@
     }
 
     /* ============================================================
-       PORTRAIT & NON-OVERLAPPING GREETING CARD
+       PORTRAIT: TOP-LEFT WAVE + MESSAGE JUST BELOW FACE
        ============================================================ */
     .portrait-wrap {
       margin: 0;
       width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    /* Crisp Greeting Banner ABOVE the portrait so it never covers the face */
-    .greeting-card {
-      display: none;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 0.75rem;
-      padding: 0.95rem 1.15rem;
-      border-radius: var(--radius-md);
-      background: linear-gradient(135deg, #fffdf8, #f7efe0);
-      border: 1.5px solid var(--accent-gold);
-      box-shadow: 0 12px 28px rgba(19, 44, 35, 0.12);
-      animation: greetingPop 0.45s var(--ease-spring) forwards;
-    }
-
-    .portrait-wrap.is-greeting .greeting-card {
-      display: flex;
-    }
-
-    @keyframes greetingPop {
-      0% {
-        opacity: 0;
-        transform: translateY(10px) scale(0.97);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    .greeting-card-title {
-      margin: 0 0 0.2rem;
-      font-family: var(--font-display);
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--forest-800);
-    }
-
-    .greeting-card-text {
-      margin: 0;
-      font-size: 0.88rem;
-      line-height: 1.48;
-      color: var(--text-secondary);
-    }
-
-    .greeting-close {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      padding: 0.2rem 0.45rem;
-      border-radius: 6px;
-      flex-shrink: 0;
-    }
-    .greeting-close:hover {
-      color: var(--text-primary);
-      background: rgba(20, 32, 27, 0.06);
     }
 
     .portrait-card {
@@ -623,34 +568,33 @@
       transform: scale(1.025);
     }
 
-    /* Smooth turn toward viewer when greeting */
     .portrait-wrap.is-greeting .portrait-card {
       transform: perspective(900px) rotateY(-8deg) scale(1.02);
       border-color: var(--accent-gold);
       box-shadow:
-        0 24px 55px rgba(12, 29, 23, 0.2),
-        0 0 0 3px rgba(201, 154, 62, 0.25);
+        0 24px 55px rgba(12, 29, 23, 0.22),
+        0 0 0 3px rgba(201, 154, 62, 0.28);
     }
 
-    /* Animated waving hand positioned in lower-right corner (away from face) */
+    /* Waving hand in TOP-LEFT corner from viewer's perspective */
     .wave-hand-badge {
       position: absolute;
-      bottom: 16px;
-      right: 16px;
-      width: 52px;
-      height: 52px;
+      top: 14px;
+      left: 14px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       background: rgba(253, 251, 247, 0.96);
       border: 2px solid var(--accent-gold);
       box-shadow: 0 8px 20px rgba(12, 29, 23, 0.22);
       display: grid;
       place-items: center;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       opacity: 0;
       transform: scale(0.5);
       pointer-events: none;
       transition: opacity 0.3s ease, transform 0.4s var(--ease-spring);
-      z-index: 6;
+      z-index: 8;
     }
 
     .portrait-wrap.is-greeting .wave-hand-badge {
@@ -669,6 +613,66 @@
       100% { transform: rotate(22deg); }
     }
 
+    /* Greeting message positioned JUST BELOW the face (around ~32% down the portrait) */
+    .greeting-below-face {
+      position: absolute;
+      top: 32%;
+      left: 6%;
+      right: 6%;
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-md);
+      background: rgba(253, 251, 247, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1.5px solid var(--accent-gold);
+      box-shadow: 0 14px 32px rgba(12, 29, 23, 0.22);
+      z-index: 9;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px) scale(0.96);
+      transition: opacity 0.35s var(--ease-out), transform 0.42s var(--ease-spring), visibility 0.35s;
+    }
+
+    .portrait-wrap.is-greeting .greeting-below-face {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    .greeting-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .greeting-title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--forest-800);
+    }
+
+    .greeting-close {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      padding: 0.15rem 0.4rem;
+      border-radius: 6px;
+    }
+    .greeting-close:hover {
+      color: var(--text-primary);
+      background: rgba(20, 32, 27, 0.08);
+    }
+
+    .greeting-body {
+      margin: 0;
+      font-size: 0.84rem;
+      line-height: 1.42;
+      color: var(--text-secondary);
+    }
+
     .portrait-badge {
       display: flex;
       flex-wrap: wrap;
@@ -677,7 +681,7 @@
       text-align: center;
       width: 100%;
       gap: 0.5rem;
-      margin-top: 0.15rem;
+      margin-top: 0.95rem;
       padding: 0.52rem 1rem;
       border-radius: var(--radius-pill);
       background: var(--bg-surface);
@@ -1148,13 +1152,13 @@
     }
 
     /* ============================================================
-       POLAROID STUDIO: LIVE WEBCAM + FILM EJECTION + SCATTERED BOARD
+       POLAROID STUDIO (LIVE CAMERA ONLY) + OPEN SCATTERED GALLERY BELOW
        ============================================================ */
     .polaroid-studio {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2.5rem;
+      gap: 2.75rem;
     }
 
     .camera-console {
@@ -1276,33 +1280,19 @@
       z-index: 0;
     }
 
-    .film-counter-box {
+    .camera-mode-tag {
       position: relative;
       z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-    }
-    .film-counter-screen {
-      width: 38px;
-      height: 28px;
-      border-radius: 7px;
-      background: #141917;
-      color: #f3d999;
       font-family: var(--font-mono);
-      font-size: 0.78rem;
+      font-size: 0.62rem;
       font-weight: 600;
-      display: grid;
-      place-items: center;
-      border: 1.5px solid #9e9687;
-    }
-    .film-counter-label {
-      font-family: var(--font-mono);
-      font-size: 0.58rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--text-muted);
+      color: var(--forest-800);
+      background: rgba(253, 251, 247, 0.9);
+      border: 1px solid rgba(20, 32, 27, 0.14);
+      padding: 4px 8px;
+      border-radius: 7px;
     }
 
     .camera-lens {
@@ -1404,7 +1394,14 @@
       border-radius: 4px;
     }
 
-    /* Live Webcam Preview Box (opens when Capture is clicked) */
+    .camera-hint {
+      margin: 0.85rem 0 0;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      text-align: center;
+    }
+
+    /* Live Webcam Panel */
     .webcam-panel {
       display: none;
       flex-direction: column;
@@ -1412,7 +1409,7 @@
       gap: 0.7rem;
       width: 100%;
       max-width: 350px;
-      margin-top: 1.15rem;
+      margin-top: 1rem;
       padding: 0.9rem;
       border-radius: var(--radius-md);
       background: var(--bg-surface);
@@ -1450,29 +1447,12 @@
       text-align: center;
     }
 
-    .camera-controls {
-      margin-top: 1.15rem;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 0.65rem;
-    }
-
-    .camera-hint {
-      width: 100%;
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      margin: 0 0 0.25rem;
-      text-align: center;
-    }
-
     .btn-mini {
       padding: 0.44rem 1.05rem;
       border-radius: var(--radius-pill);
       font-size: 0.82rem;
       font-weight: 500;
-      background: var(--bg-surface);
+      background: var(--bg-alt);
       border: 1px solid var(--border-strong);
       color: var(--text-primary);
       transition: all 0.2s ease;
@@ -1483,7 +1463,7 @@
       transform: translateY(-1px);
     }
 
-    /* Live One-Time Selfie Row */
+    /* Live One-Time Selfie Polaroids */
     .selfie-strip {
       width: 100%;
       display: flex;
@@ -1500,7 +1480,7 @@
       border: 1.5px solid rgba(201, 154, 62, 0.45);
       box-shadow: 0 16px 34px rgba(15, 34, 27, 0.14);
       transform: rotate(var(--selfie-tilt, -2deg));
-      animation: filmSlideOut 0.85s var(--ease-out) forwards;
+      transition: filter 0.3s ease;
     }
 
     .selfie-polaroid img {
@@ -1508,7 +1488,7 @@
       aspect-ratio: 4 / 3;
       object-fit: cover;
       border-radius: 3px;
-      transition: filter 2s ease-out;
+      transition: filter 1.8s ease-out;
     }
 
     .selfie-polaroid.is-developing img {
@@ -1550,89 +1530,72 @@
     }
 
     /* ============================================================
-       SCATTERED POLAROID BOARD (EJECTED LIKE REAL FILM)
+       OPEN SCATTERED GALLERY GRID BELOW POLAROID (ALWAYS VISIBLE)
        ============================================================ */
-    .polaroid-board {
+    .open-gallery-wrap {
+      width: 100%;
+    }
+
+    .open-gallery-heading {
+      margin: 0 0 1.35rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .open-gallery-grid {
       width: 100%;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 2rem 1.75rem;
       align-items: start;
-      padding-block: 0.5rem;
     }
 
-    .polaroid-frame {
+    .gallery-card {
       margin: 0;
-      background: #ffffff;
-      padding: 13px 13px 18px;
-      border-radius: 5px;
+      background: var(--bg-surface);
+      padding: 11px 11px 14px;
+      border-radius: var(--radius-md);
       box-shadow:
-        0 12px 28px rgba(15, 34, 27, 0.12),
-        0 2px 6px rgba(15, 34, 27, 0.06);
-      border: 1px solid rgba(20, 32, 27, 0.08);
-      transform: translate(var(--scatter-x, 0px), var(--scatter-y, 0px)) rotate(var(--scatter-rot, 0deg));
-      transition: transform 0.35s var(--ease-spring), box-shadow 0.35s ease, border-color 0.3s ease;
-      animation: filmSlideOut 0.8s var(--ease-out) forwards;
+        0 10px 24px rgba(15, 34, 27, 0.09),
+        0 2px 6px rgba(15, 34, 27, 0.05);
+      border: 1px solid var(--border-subtle);
+      transform: translate(var(--gx, 0px), var(--gy, 0px)) rotate(var(--grot, 0deg));
+      transition: transform 0.32s var(--ease-spring), box-shadow 0.32s ease, border-color 0.3s ease;
     }
 
-    .polaroid-frame[hidden] {
-      display: none;
-    }
+    /* Subtle organic scatter that stays clean and structured */
+    .gallery-card:nth-child(1) { --gx: -3px; --gy: 6px; --grot: -2.2deg; }
+    .gallery-card:nth-child(2) { --gx: 4px; --gy: -5px; --grot: 2deg; }
+    .gallery-card:nth-child(3) { --gx: -2px; --gy: 8px; --grot: -1.6deg; }
+    .gallery-card:nth-child(4) { --gx: 3px; --gy: -4px; --grot: 2.3deg; }
+    .gallery-card:nth-child(5) { --gx: -4px; --gy: 6px; --grot: -1.9deg; }
+    .gallery-card:nth-child(6) { --gx: 3px; --gy: 5px; --grot: 1.7deg; }
 
-    /* Natural scattered offsets & tilts */
-    .polaroid-frame:nth-child(1) { --scatter-x: -4px; --scatter-y: 8px; --scatter-rot: -3.2deg; }
-    .polaroid-frame:nth-child(2) { --scatter-x: 6px; --scatter-y: -6px; --scatter-rot: 2.8deg; }
-    .polaroid-frame:nth-child(3) { --scatter-x: -3px; --scatter-y: 12px; --scatter-rot: -2.1deg; }
-    .polaroid-frame:nth-child(4) { --scatter-x: 5px; --scatter-y: 4px; --scatter-rot: 3.4deg; }
-    .polaroid-frame:nth-child(5) { --scatter-x: -6px; --scatter-y: -8px; --scatter-rot: -2.7deg; }
-    .polaroid-frame:nth-child(6) { --scatter-x: 4px; --scatter-y: 10px; --scatter-rot: 2.2deg; }
-
-    .polaroid-frame:hover {
-      transform: translate(0px, -8px) rotate(0deg) scale(1.03);
-      border-color: rgba(201, 154, 62, 0.6);
-      box-shadow:
-        0 22px 42px rgba(15, 34, 27, 0.18),
-        0 0 0 2px rgba(201, 154, 62, 0.35);
-      z-index: 5;
-    }
-
-    @keyframes filmSlideOut {
-      0% {
-        opacity: 0;
-        transform: translateY(-70px) scale(0.82) rotate(0deg);
-      }
-      55% {
-        opacity: 1;
-        transform: translate(var(--scatter-x, 0px), -14px) scale(0.96) rotate(var(--scatter-rot, 0deg));
-      }
-      100% {
-        opacity: 1;
-        transform: translate(var(--scatter-x, 0px), var(--scatter-y, 0px)) scale(1) rotate(var(--scatter-rot, 0deg));
-      }
+    .gallery-card:hover {
+      transform: translate(0px, -6px) rotate(0deg) scale(1.02);
+      border-color: rgba(201, 154, 62, 0.55);
+      box-shadow: 0 18px 36px rgba(15, 34, 27, 0.15);
+      z-index: 4;
     }
 
     .photo-trigger {
       display: block;
       width: 100%;
       overflow: hidden;
-      border-radius: 3px;
+      border-radius: var(--radius-sm);
       background: #18201d;
-      position: relative;
     }
 
     .photo-trigger img {
       width: 100%;
       aspect-ratio: 3 / 4;
       object-fit: cover;
-      transition: transform 0.5s var(--ease-out), filter 2.4s ease-out;
-    }
-
-    .polaroid-frame.is-developing .photo-trigger img {
-      filter: brightness(0.14) contrast(0.6) sepia(0.85) blur(3px);
-    }
-
-    .polaroid-frame.is-developed .photo-trigger img {
-      filter: brightness(1) contrast(1) sepia(0) blur(0);
+      transition: transform 0.45s var(--ease-out);
     }
 
     .photo-card--landscape .photo-trigger img {
@@ -1643,16 +1606,16 @@
       transform: scale(1.035);
     }
 
-    .polaroid-caption {
+    .gallery-caption {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 0.5rem;
-      padding-top: 0.85rem;
+      padding-top: 0.7rem;
       font-family: var(--font-hand);
-      font-size: 1.42rem;
+      font-size: 1.32rem;
       font-weight: 600;
-      color: #1e2824;
+      color: var(--text-primary);
       line-height: 1.1;
     }
 
@@ -1661,7 +1624,7 @@
       font-size: 0.72rem;
       color: var(--accent);
       background: var(--bg-alt);
-      padding: 0.18rem 0.52rem;
+      padding: 0.16rem 0.5rem;
       border-radius: 999px;
     }
 
@@ -1879,10 +1842,6 @@
       color: var(--text-on-dark-muted);
     }
 
-    @media (max-width: 1020px) {
-      .dashboard-telemetry { display: none; }
-    }
-
     @media (max-width: 900px) {
       .hero-grid,
       .about-grid {
@@ -1890,7 +1849,7 @@
       }
       .portrait-wrap { max-width: 400px; }
       .pillars-grid { grid-template-columns: 1fr; }
-      .polaroid-board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .open-gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 720px) {
@@ -1912,19 +1871,28 @@
         align-items: flex-start;
         gap: 0.9rem;
       }
+      /* Keep time, date & weather visible cleanly on mobile */
+      .dashboard-telemetry {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        font-size: 0.68rem;
+        gap: 0.45rem;
+        padding: 0.3rem 0.65rem;
+      }
       .project-card { grid-template-columns: 1fr; }
       .paper-item {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.65rem;
       }
-      .polaroid-board {
+      .open-gallery-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 1.4rem;
       }
-      .polaroid-frame {
-        --scatter-x: 0px;
-        --scatter-y: 0px;
+      .gallery-card {
+        --gx: 0px;
+        --gy: 0px;
       }
     }
 
@@ -1999,16 +1967,19 @@
         </div>
 
         <figure class="portrait-wrap" id="portrait-wrap">
-          <!-- Crisp Greeting Banner ABOVE the portrait (never covers face) -->
-          <div class="greeting-card" id="greeting-card" role="status" aria-live="polite">
-            <div>
-              <p class="greeting-card-title">Hey, welcome to my portfolio!</p>
-              <p class="greeting-card-text">Glad you stopped by — explore my AI builds, research papers, or snap a live Polaroid below.</p>
-            </div>
-            <button type="button" class="greeting-close" id="greeting-close" aria-label="Close greeting">✕</button>
-          </div>
-
           <div class="portrait-card">
+            <!-- Waving hand in TOP-LEFT corner from viewer's perspective -->
+            <div class="wave-hand-badge" aria-hidden="true"><span>👋</span></div>
+
+            <!-- Message displayed JUST BELOW the face -->
+            <div class="greeting-below-face" id="greeting-box" role="status" aria-live="polite">
+              <div class="greeting-top">
+                <p class="greeting-title">Hey, welcome to my portfolio!</p>
+                <button type="button" class="greeting-close" id="greeting-close" aria-label="Close greeting">✕</button>
+              </div>
+              <p class="greeting-body">Glad you stopped by — explore my AI builds, research, or snap a live Polaroid below.</p>
+            </div>
+
             <img
               src="assets/images/profile.jpeg"
               width="1199"
@@ -2016,7 +1987,6 @@
               alt="Portrait of Bhanu Prakash Kakarla standing on a lawn in a dark suit, with a flowering tree and a campus building behind him."
               fetchpriority="high"
               decoding="async" />
-            <div class="wave-hand-badge" aria-hidden="true"><span>👋</span></div>
           </div>
 
           <figcaption class="portrait-badge">
@@ -2263,13 +2233,13 @@
       </div>
     </section>
 
-    <!-- POLAROID CAMERA SECTION: DIRECT WEBCAM + FILM EJECTION + SCATTERED BOARD -->
+    <!-- POLAROID CAMERA (LIVE CAPTURE ONLY) + OPEN SCATTERED GALLERY BELOW -->
     <section id="photography" class="section section-alt" aria-labelledby="photo-heading">
       <div class="container">
         <div class="section-header reveal">
           <p class="eyebrow">Personal work</p>
           <h2 id="photo-heading" class="section-title">Photography 📸</h2>
-          <p class="section-desc">Click Capture to open your live webcam and snap a one-time downloadable Polaroid—or eject my 6 curated frames below to see them slide out and scatter.</p>
+          <p class="section-desc">Use the Polaroid camera to open your live camera and take a one-time downloadable Polaroid snapshot, or browse my unedited frames below.</p>
         </div>
 
         <div class="polaroid-studio reveal">
@@ -2277,17 +2247,14 @@
             <div class="polaroid-camera" id="polaroid-camera">
               <div class="camera-top-deck">
                 <div class="camera-flash" id="camera-flash" aria-hidden="true"></div>
-                <span class="camera-brand-badge">BPK · Land 600</span>
+                <span class="camera-brand-badge">BPK · Instant</span>
                 <div class="camera-viewfinder" aria-hidden="true"></div>
               </div>
 
               <div class="camera-face">
                 <div class="polaroid-rainbow" aria-hidden="true"></div>
 
-                <div class="film-counter-box">
-                  <div class="film-counter-screen" id="film-counter" aria-live="polite">06</div>
-                  <span class="film-counter-label">Gallery</span>
-                </div>
+                <span class="camera-mode-tag">Live Cam</span>
 
                 <div class="camera-lens" aria-hidden="true">
                   <div class="camera-lens-ring">
@@ -2300,10 +2267,10 @@
                     class="shutter-btn"
                     type="button"
                     id="capture-btn"
-                    aria-label="Open webcam or capture photo"
-                    title="Click to open webcam & snap">
+                    aria-label="Open live camera to capture Polaroid"
+                    title="Click to open live camera">
                   </button>
-                  <span class="shutter-label" id="shutter-label">Capture</span>
+                  <span class="shutter-label">Capture</span>
                 </div>
               </div>
 
@@ -2312,7 +2279,9 @@
               </div>
             </div>
 
-            <!-- Live Webcam Panel (opens directly when Capture is clicked) -->
+            <p class="camera-hint">Press <strong>Capture</strong> to open your camera · One-time download only (not saved)</p>
+
+            <!-- Live Webcam Panel -->
             <div class="webcam-panel" id="webcam-panel">
               <div class="webcam-video-wrap">
                 <video id="webcam-video" autoplay playsinline muted></video>
@@ -2324,79 +2293,75 @@
               </div>
               <p class="webcam-error" id="webcam-error" hidden></p>
             </div>
-
-            <div class="camera-controls">
-              <p class="camera-hint" id="camera-status">Press <strong>Capture</strong> to open webcam · Eject my 6 Polaroid frames below</p>
-              <button type="button" class="btn-mini" id="eject-next-btn">Eject Next Frame (0/6)</button>
-              <button type="button" class="btn-mini" id="reveal-all-btn">Eject All 6</button>
-              <button type="button" class="btn-mini" id="reset-camera-btn" hidden>Reset Frames</button>
-            </div>
           </div>
 
-          <!-- One-Time Live Selfie Polaroids -->
+          <!-- Live One-Time Selfie Polaroids -->
           <div class="selfie-strip" id="selfie-strip" aria-live="polite"></div>
 
-          <!-- Scattered Polaroid Frames Board -->
-          <div class="polaroid-board" data-gallery id="polaroid-board">
-            <figure class="polaroid-frame" hidden>
-              <button class="photo-trigger" type="button" data-src="assets/images/photo1.jpeg" data-caption="A coral rose photographed up close." aria-label="Open photograph: Coral rose">
-                <img src="assets/images/photo1.jpeg" width="960" height="1280" alt="A coral-pink rose in bloom, photographed close against dark leaves." loading="lazy" decoding="async" />
-              </button>
-              <figcaption class="polaroid-caption">
-                <span>Coral rose 🌹</span>
-                <span class="photo-index">#01</span>
-              </figcaption>
-            </figure>
+          <!-- Open Scattered Gallery Grid Below Polaroid -->
+          <div class="open-gallery-wrap">
+            <h3 class="open-gallery-heading">Selected Frames</h3>
+            <div class="open-gallery-grid" data-gallery>
+              <figure class="gallery-card">
+                <button class="photo-trigger" type="button" data-src="assets/images/photo1.jpeg" data-caption="A coral rose photographed up close." aria-label="Open photograph: Coral rose">
+                  <img src="assets/images/photo1.jpeg" width="960" height="1280" alt="A coral-pink rose in bloom, photographed close against dark leaves." loading="lazy" decoding="async" />
+                </button>
+                <figcaption class="gallery-caption">
+                  <span>Coral rose 🌹</span>
+                  <span class="photo-index">#01</span>
+                </figcaption>
+              </figure>
 
-            <figure class="polaroid-frame" hidden>
-              <button class="photo-trigger" type="button" data-src="assets/images/photo2.jpeg" data-caption="The sun ringed by a halo in a bright sky." aria-label="Open photograph: Solar halo">
-                <img src="assets/images/photo2.jpeg" width="960" height="1280" alt="The sun surrounded by a faint circular halo in a blue, lightly clouded sky." loading="lazy" decoding="async" />
-              </button>
-              <figcaption class="polaroid-caption">
-                <span>Solar halo ☀️</span>
-                <span class="photo-index">#02</span>
-              </figcaption>
-            </figure>
+              <figure class="gallery-card">
+                <button class="photo-trigger" type="button" data-src="assets/images/photo2.jpeg" data-caption="The sun ringed by a halo in a bright sky." aria-label="Open photograph: Solar halo">
+                  <img src="assets/images/photo2.jpeg" width="960" height="1280" alt="The sun surrounded by a faint circular halo in a blue, lightly clouded sky." loading="lazy" decoding="async" />
+                </button>
+                <figcaption class="gallery-caption">
+                  <span>Solar halo ☀️</span>
+                  <span class="photo-index">#02</span>
+                </figcaption>
+              </figure>
 
-            <figure class="polaroid-frame" hidden>
-              <button class="photo-trigger" type="button" data-src="assets/images/photo3.jpeg" data-caption="A figure walking into the surf at dusk." aria-label="Open photograph: Into the water">
-                <img src="assets/images/photo3.jpeg" width="960" height="1280" alt="A silhouetted person stepping into ocean waves under a dusk sky." loading="lazy" decoding="async" />
-              </button>
-              <figcaption class="polaroid-caption">
-                <span>Into the water 🌊</span>
-                <span class="photo-index">#03</span>
-              </figcaption>
-            </figure>
+              <figure class="gallery-card">
+                <button class="photo-trigger" type="button" data-src="assets/images/photo3.jpeg" data-caption="A figure walking into the surf at dusk." aria-label="Open photograph: Into the water">
+                  <img src="assets/images/photo3.jpeg" width="960" height="1280" alt="A silhouetted person stepping into ocean waves under a dusk sky." loading="lazy" decoding="async" />
+                </button>
+                <figcaption class="gallery-caption">
+                  <span>Into the water 🌊</span>
+                  <span class="photo-index">#03</span>
+                </figcaption>
+              </figure>
 
-            <figure class="polaroid-frame" hidden>
-              <button class="photo-trigger" type="button" data-src="assets/images/photo4.jpeg" data-caption="A cold drink on a ledge above a beach at sunset." aria-label="Open photograph: Shoreline">
-                <img src="assets/images/photo4.jpeg" width="960" height="1280" alt="A mason jar drink with wafers on a wooden ledge, overlooking a busy beach at sunset." loading="lazy" decoding="async" />
-              </button>
-              <figcaption class="polaroid-caption">
-                <span>Shoreline 🌅</span>
-                <span class="photo-index">#04</span>
-              </figcaption>
-            </figure>
+              <figure class="gallery-card">
+                <button class="photo-trigger" type="button" data-src="assets/images/photo4.jpeg" data-caption="A cold drink on a ledge above a beach at sunset." aria-label="Open photograph: Shoreline">
+                  <img src="assets/images/photo4.jpeg" width="960" height="1280" alt="A mason jar drink with wafers on a wooden ledge, overlooking a busy beach at sunset." loading="lazy" decoding="async" />
+                </button>
+                <figcaption class="gallery-caption">
+                  <span>Shoreline 🌅</span>
+                  <span class="photo-index">#04</span>
+                </figcaption>
+              </figure>
 
-            <figure class="polaroid-frame photo-card--landscape" hidden>
-              <button class="photo-trigger" type="button" data-src="assets/images/photo5.jpeg" data-caption="Houses and trees spread across a steep, forested hillside." aria-label="Open photograph: Hillside">
-                <img src="assets/images/photo5.jpeg" width="1280" height="960" alt="A wide view of a forested hillside with scattered houses under a clear sky." loading="lazy" decoding="async" />
-              </button>
-              <figcaption class="polaroid-caption">
-                <span>Hillside ⛰️</span>
-                <span class="photo-index">#05</span>
-              </figcaption>
-            </figure>
+              <figure class="gallery-card photo-card--landscape">
+                <button class="photo-trigger" type="button" data-src="assets/images/photo5.jpeg" data-caption="Houses and trees spread across a steep, forested hillside." aria-label="Open photograph: Hillside">
+                  <img src="assets/images/photo5.jpeg" width="1280" height="960" alt="A wide view of a forested hillside with scattered houses under a clear sky." loading="lazy" decoding="async" />
+                </button>
+                <figcaption class="gallery-caption">
+                  <span>Hillside ⛰️</span>
+                  <span class="photo-index">#05</span>
+                </figcaption>
+              </figure>
 
-            <figure class="polaroid-frame" hidden>
-              <button class="photo-trigger" type="button" data-src="assets/images/photo6.jpeg" data-caption="A wheeled cannon on a paved plaza at sunset with a solar tree and railway coach behind." aria-label="Open photograph: Plaza cannon at sunset">
-                <img src="assets/images/photo6.jpeg" width="960" height="1280" alt="A vintage wheeled cannon on a circular stone pad in a tiled plaza at sunset, with a branching solar structure and a red-and-cream rail coach in the background." loading="lazy" decoding="async" />
-              </button>
-              <figcaption class="polaroid-caption">
-                <span>Plaza cannon 🌇</span>
-                <span class="photo-index">#06</span>
-              </figcaption>
-            </figure>
+              <figure class="gallery-card">
+                <button class="photo-trigger" type="button" data-src="assets/images/photo6.jpeg" data-caption="A wheeled cannon on a paved plaza at sunset with a solar tree and railway coach behind." aria-label="Open photograph: Plaza cannon at sunset">
+                  <img src="assets/images/photo6.jpeg" width="960" height="1280" alt="A vintage wheeled cannon on a circular stone pad in a tiled plaza at sunset, with a branching solar structure and a red-and-cream rail coach in the background." loading="lazy" decoding="async" />
+                </button>
+                <figcaption class="gallery-caption">
+                  <span>Plaza cannon 🌇</span>
+                  <span class="photo-index">#06</span>
+                </figcaption>
+              </figure>
+            </div>
           </div>
         </div>
       </div>
@@ -2509,7 +2474,7 @@
       window.addEventListener("scroll", updateScroll, { passive: true });
       updateScroll();
 
-      /* 2. Live Time, Date & Weather Widget */
+      /* 2. Live Time, Date & Weather Widget (Mobile + Desktop) */
       const timeEl = document.getElementById("dash-time");
       const dateEl = document.getElementById("dash-date");
       const weatherEl = document.getElementById("dash-weather");
@@ -2559,7 +2524,7 @@
         fetchWeather(12.97, 77.59);
       }
 
-      /* 3. "Say Hello 👋" Portrait Turn, Wave & Non-Overlapping Greeting */
+      /* 3. "Say Hello 👋" Portrait Turn, Top-Left Wave & Message Below Face */
       const sayHelloBtn = document.getElementById("say-hello-btn");
       const portraitWrap = document.getElementById("portrait-wrap");
       const greetingClose = document.getElementById("greeting-close");
@@ -2630,18 +2595,11 @@
         });
       });
 
-      /* 7. Shutter Sound, Flash, Film Ejection & Live Webcam One-Time Download */
+      /* 7. Realistic Camera Shutter Sound + Live Webcam One-Time Polaroid */
       const captureBtn = document.getElementById("capture-btn");
-      const ejectNextBtn = document.getElementById("eject-next-btn");
-      const revealAllBtn = document.getElementById("reveal-all-btn");
-      const resetCameraBtn = document.getElementById("reset-camera-btn");
       const cameraBody = document.getElementById("polaroid-camera");
       const cameraFlash = document.getElementById("camera-flash");
       const flashOverlay = document.getElementById("flash-overlay");
-      const filmCounter = document.getElementById("film-counter");
-      const cameraStatus = document.getElementById("camera-status");
-      const polaroidFrames = Array.from(document.querySelectorAll(".polaroid-frame"));
-
       const webcamPanel = document.getElementById("webcam-panel");
       const webcamVideo = document.getElementById("webcam-video");
       const webcamCanvas = document.getElementById("webcam-canvas");
@@ -2651,26 +2609,51 @@
       const selfieStrip = document.getElementById("selfie-strip");
 
       let mediaStream = null;
-      let ejectedCount = 0;
 
+      // Crisp mechanical camera shutter click (filtered burst + curtain snap)
       const playShutterSound = () => {
         try {
           const AudioCtx = window.AudioContext || window.webkitAudioContext;
           if (!AudioCtx) return;
           const ctx = new AudioCtx();
+          const now = ctx.currentTime;
 
-          // Mechanical shutter snap + subtle film motor tick
-          const osc = ctx.createOscillator();
-          const gain = ctx.createGain();
-          osc.type = "triangle";
-          osc.frequency.setValueAtTime(640, ctx.currentTime);
-          osc.frequency.exponentialRampToValueAtTime(95, ctx.currentTime + 0.085);
-          gain.gain.setValueAtTime(0.18, ctx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.095);
-          osc.connect(gain);
-          gain.connect(ctx.destination);
-          osc.start();
-          osc.stop(ctx.currentTime + 0.095);
+          // 1. Short high-pass noise burst for mechanical shutter blade snap
+          const bufferSize = Math.floor(ctx.sampleRate * 0.045);
+          const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+          const data = buffer.getChannelData(0);
+          for (let i = 0; i < bufferSize; i++) {
+            data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.25));
+          }
+          const noise = ctx.createBufferSource();
+          noise.buffer = buffer;
+
+          const filter = ctx.createBiquadFilter();
+          filter.type = "bandpass";
+          filter.frequency.setValueAtTime(2200, now);
+          filter.Q.setValueAtTime(1.4, now);
+
+          const noiseGain = ctx.createGain();
+          noiseGain.gain.setValueAtTime(0.45, now);
+          noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.045);
+
+          noise.connect(filter);
+          filter.connect(noiseGain);
+          noiseGain.connect(ctx.destination);
+          noise.start(now);
+
+          // 2. Second mechanical click ~55ms later (shutter close)
+          const osc2 = ctx.createOscillator();
+          const gain2 = ctx.createGain();
+          osc2.type = "sine";
+          osc2.frequency.setValueAtTime(920, now + 0.055);
+          osc2.frequency.exponentialRampToValueAtTime(180, now + 0.09);
+          gain2.gain.setValueAtTime(0.22, now + 0.055);
+          gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
+          osc2.connect(gain2);
+          gain2.connect(ctx.destination);
+          osc2.start(now + 0.055);
+          osc2.stop(now + 0.09);
         } catch (e) {}
       };
 
@@ -2735,7 +2718,7 @@
         if (!selfieStrip) return;
         const card = document.createElement("figure");
         card.className = "selfie-polaroid is-developing";
-        card.style.setProperty("--selfie-tilt", `${(Math.random() * 6 - 3).toFixed(1)}deg`);
+        card.style.setProperty("--selfie-tilt", `${(Math.random() * 5 - 2.5).toFixed(1)}deg`);
 
         const img = document.createElement("img");
         img.src = dataUrl;
@@ -2753,7 +2736,6 @@
         dlBtn.className = "download-once-btn";
         dlBtn.textContent = "Download";
 
-        // One-time download: downloads once and removes the button so it isn't re-downloaded or saved
         dlBtn.addEventListener("click", () => {
           const link = document.createElement("a");
           link.href = dataUrl;
@@ -2811,76 +2793,7 @@
         closeWebcamBtn.addEventListener("click", stopWebcam);
       }
 
-      const updateGalleryUI = () => {
-        const remaining = polaroidFrames.length - ejectedCount;
-        if (filmCounter) filmCounter.textContent = String(remaining).padStart(2, "0");
-        if (ejectNextBtn) {
-          ejectNextBtn.textContent = `Eject Next Frame (${ejectedCount}/${polaroidFrames.length})`;
-          ejectNextBtn.disabled = ejectedCount >= polaroidFrames.length;
-        }
-        if (revealAllBtn) revealAllBtn.hidden = ejectedCount >= polaroidFrames.length;
-        if (resetCameraBtn) resetCameraBtn.hidden = ejectedCount === 0;
-        if (cameraStatus) {
-          if (ejectedCount === polaroidFrames.length) {
-            cameraStatus.innerHTML = "<strong>All 6 frames ejected &amp; scattered</strong> — click any frame to view full-screen";
-          } else {
-            cameraStatus.innerHTML = `Press <strong>Capture</strong> for live webcam · <strong>${remaining}</strong> portfolio frame${remaining === 1 ? "" : "s"} left to eject`;
-          }
-        }
-      };
-
-      const ejectOneFrame = (instant = false) => {
-        if (ejectedCount >= polaroidFrames.length) return;
-        const frame = polaroidFrames[ejectedCount];
-        ejectedCount++;
-
-        frame.hidden = false;
-        if (instant) {
-          frame.classList.remove("is-developing");
-          frame.classList.add("is-developed");
-        } else {
-          frame.classList.remove("is-developed");
-          frame.classList.add("is-developing");
-          setTimeout(() => {
-            frame.classList.remove("is-developing");
-            frame.classList.add("is-developed");
-          }, 220);
-        }
-        updateGalleryUI();
-      };
-
-      if (ejectNextBtn) {
-        ejectNextBtn.addEventListener("click", () => {
-          playShutterSound();
-          triggerFlash();
-          ejectOneFrame(false);
-        });
-      }
-
-      if (revealAllBtn) {
-        revealAllBtn.addEventListener("click", () => {
-          playShutterSound();
-          triggerFlash();
-          while (ejectedCount < polaroidFrames.length) {
-            ejectOneFrame(true);
-          }
-        });
-      }
-
-      if (resetCameraBtn) {
-        resetCameraBtn.addEventListener("click", () => {
-          polaroidFrames.forEach((frame) => {
-            frame.hidden = true;
-            frame.classList.remove("is-developing", "is-developed");
-          });
-          ejectedCount = 0;
-          updateGalleryUI();
-        });
-      }
-
-      updateGalleryUI();
-
-      /* 8. Lightbox Modal */
+      /* 8. Lightbox Modal for the 6 Open Gallery Photos */
       const triggers = Array.from(document.querySelectorAll(".photo-trigger"));
       const lightbox = document.getElementById("lightbox");
       const lbImg = lightbox ? lightbox.querySelector("[data-lightbox-img]") : null;
