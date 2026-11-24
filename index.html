@@ -157,7 +157,7 @@
       transition: opacity 0.4s ease-out;
     }
     .camera-flash-overlay.is-flashing {
-      opacity: 0.75;
+      opacity: 0.78;
       transition: none;
     }
 
@@ -232,9 +232,7 @@
       top: 1rem;
     }
 
-    /* ============================================================
-       MINIMALIST & AESTHETIC TOP DASHBOARD
-       ============================================================ */
+    /* Header & Live Telemetry */
     .site-header {
       position: sticky;
       top: 0;
@@ -340,7 +338,6 @@
       transform-origin: left;
     }
 
-    /* Ambient Time, Date & Weather Pill */
     .dashboard-telemetry {
       display: inline-flex;
       align-items: center;
@@ -537,12 +534,70 @@
     }
 
     /* ============================================================
-       PORTRAIT & INTERACTIVE "SAY HELLO" GREETING BUBBLE
+       PORTRAIT & NON-OVERLAPPING GREETING CARD
        ============================================================ */
     .portrait-wrap {
       margin: 0;
       width: 100%;
-      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    /* Crisp Greeting Banner ABOVE the portrait so it never covers the face */
+    .greeting-card {
+      display: none;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.95rem 1.15rem;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #fffdf8, #f7efe0);
+      border: 1.5px solid var(--accent-gold);
+      box-shadow: 0 12px 28px rgba(19, 44, 35, 0.12);
+      animation: greetingPop 0.45s var(--ease-spring) forwards;
+    }
+
+    .portrait-wrap.is-greeting .greeting-card {
+      display: flex;
+    }
+
+    @keyframes greetingPop {
+      0% {
+        opacity: 0;
+        transform: translateY(10px) scale(0.97);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .greeting-card-title {
+      margin: 0 0 0.2rem;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--forest-800);
+    }
+
+    .greeting-card-text {
+      margin: 0;
+      font-size: 0.88rem;
+      line-height: 1.48;
+      color: var(--text-secondary);
+    }
+
+    .greeting-close {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      padding: 0.2rem 0.45rem;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+    .greeting-close:hover {
+      color: var(--text-primary);
+      background: rgba(20, 32, 27, 0.06);
     }
 
     .portrait-card {
@@ -568,113 +623,50 @@
       transform: scale(1.025);
     }
 
-    /* When "Say Hello" is clicked: turns slightly toward visitor & glows */
+    /* Smooth turn toward viewer when greeting */
     .portrait-wrap.is-greeting .portrait-card {
-      transform: perspective(900px) rotateY(-9deg) rotateZ(-1.5deg) scale(1.03);
+      transform: perspective(900px) rotateY(-8deg) scale(1.02);
       border-color: var(--accent-gold);
       box-shadow:
-        0 28px 65px rgba(12, 29, 23, 0.24),
-        0 0 0 4px rgba(201, 154, 62, 0.28);
+        0 24px 55px rgba(12, 29, 23, 0.2),
+        0 0 0 3px rgba(201, 154, 62, 0.25);
     }
 
-    .portrait-wrap.is-greeting .portrait-card img {
-      transform: scale(1.06);
-    }
-
-    /* Waving Hand Badge on Portrait Corner */
+    /* Animated waving hand positioned in lower-right corner (away from face) */
     .wave-hand-badge {
       position: absolute;
-      bottom: 14px;
-      right: 14px;
-      width: 50px;
-      height: 50px;
+      bottom: 16px;
+      right: 16px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
-      background: rgba(253, 251, 247, 0.95);
+      background: rgba(253, 251, 247, 0.96);
       border: 2px solid var(--accent-gold);
-      box-shadow: 0 8px 20px rgba(12, 29, 23, 0.25);
+      box-shadow: 0 8px 20px rgba(12, 29, 23, 0.22);
       display: grid;
       place-items: center;
-      font-size: 1.55rem;
+      font-size: 1.6rem;
       opacity: 0;
-      transform: scale(0.4) rotate(-20deg);
+      transform: scale(0.5);
       pointer-events: none;
-      transition: opacity 0.35s ease, transform 0.45s var(--ease-spring);
+      transition: opacity 0.3s ease, transform 0.4s var(--ease-spring);
       z-index: 6;
     }
 
     .portrait-wrap.is-greeting .wave-hand-badge {
       opacity: 1;
-      transform: scale(1) rotate(0deg);
+      transform: scale(1);
     }
 
     .portrait-wrap.is-greeting .wave-hand-badge span {
       display: inline-block;
       transform-origin: 70% 70%;
-      animation: handWave 0.65s ease-in-out infinite alternate;
+      animation: handWave 0.6s ease-in-out infinite alternate;
     }
 
     @keyframes handWave {
-      0% { transform: rotate(-14deg); }
+      0% { transform: rotate(-16deg); }
       100% { transform: rotate(22deg); }
-    }
-
-    /* Speech Bubble emerging from Portrait */
-    .greeting-bubble {
-      position: absolute;
-      top: 1.1rem;
-      left: -1.4rem;
-      max-width: 280px;
-      padding: 1rem 1.15rem;
-      border-radius: 18px 18px 18px 4px;
-      background: rgba(253, 251, 247, 0.97);
-      backdrop-filter: blur(12px);
-      border: 1.5px solid var(--accent-gold);
-      box-shadow: 0 18px 42px rgba(15, 34, 27, 0.22);
-      z-index: 15;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(12px) scale(0.92);
-      transition: opacity 0.35s var(--ease-out), transform 0.45s var(--ease-spring), visibility 0.35s;
-    }
-
-    .portrait-wrap.is-greeting .greeting-bubble {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0) scale(1);
-    }
-
-    .greeting-bubble-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.5rem;
-      margin-bottom: 0.35rem;
-    }
-
-    .greeting-bubble-title {
-      margin: 0;
-      font-family: var(--font-display);
-      font-size: 1.04rem;
-      font-weight: 600;
-      color: var(--forest-800);
-    }
-
-    .greeting-close {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      padding: 2px 6px;
-      border-radius: 6px;
-    }
-    .greeting-close:hover {
-      color: var(--text-primary);
-      background: var(--bg-alt);
-    }
-
-    .greeting-bubble p {
-      margin: 0;
-      font-size: 0.88rem;
-      line-height: 1.5;
-      color: var(--text-secondary);
     }
 
     .portrait-badge {
@@ -685,7 +677,7 @@
       text-align: center;
       width: 100%;
       gap: 0.5rem;
-      margin-top: 0.95rem;
+      margin-top: 0.15rem;
       padding: 0.52rem 1rem;
       border-radius: var(--radius-pill);
       background: var(--bg-surface);
@@ -1156,13 +1148,13 @@
     }
 
     /* ============================================================
-       CLEAN, AESTHETIC & EYE-CATCHING POLAROID STUDIO (#photography)
+       POLAROID STUDIO: LIVE WEBCAM + FILM EJECTION + SCATTERED BOARD
        ============================================================ */
     .polaroid-studio {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2.75rem;
+      gap: 2.5rem;
     }
 
     .camera-console {
@@ -1170,13 +1162,13 @@
       flex-direction: column;
       align-items: center;
       width: 100%;
-      max-width: 440px;
+      max-width: 460px;
     }
 
     .polaroid-camera {
       position: relative;
       width: 100%;
-      max-width: 340px;
+      max-width: 350px;
       background: linear-gradient(170deg, #ffffff 0%, #f5efe2 100%);
       border-radius: 28px 28px 20px 20px;
       padding: 20px 24px 18px;
@@ -1390,12 +1382,6 @@
       transform: scale(0.92);
     }
 
-    .shutter-btn:disabled {
-      background: #9a9389;
-      box-shadow: none;
-      cursor: default;
-    }
-
     .shutter-label {
       font-family: var(--font-mono);
       font-size: 0.62rem;
@@ -1403,9 +1389,6 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: #c81d25;
-    }
-    .shutter-btn:disabled + .shutter-label {
-      color: var(--text-muted);
     }
 
     .camera-slot-housing {
@@ -1421,8 +1404,54 @@
       border-radius: 4px;
     }
 
+    /* Live Webcam Preview Box (opens when Capture is clicked) */
+    .webcam-panel {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.7rem;
+      width: 100%;
+      max-width: 350px;
+      margin-top: 1.15rem;
+      padding: 0.9rem;
+      border-radius: var(--radius-md);
+      background: var(--bg-surface);
+      border: 1.5px solid var(--accent-gold);
+      box-shadow: var(--shadow-md);
+    }
+    .webcam-panel.is-open {
+      display: flex;
+    }
+    .webcam-video-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: #111815;
+    }
+    .webcam-video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scaleX(-1);
+    }
+    .webcam-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.55rem;
+      width: 100%;
+    }
+    .webcam-error {
+      margin: 0;
+      font-size: 0.84rem;
+      color: #a42424;
+      text-align: center;
+    }
+
     .camera-controls {
-      margin-top: 1.25rem;
+      margin-top: 1.15rem;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -1432,7 +1461,7 @@
 
     .camera-hint {
       width: 100%;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       color: var(--text-secondary);
       margin: 0 0 0.25rem;
       text-align: center;
@@ -1454,48 +1483,131 @@
       transform: translateY(-1px);
     }
 
-    /* Neat, Clean & Balanced Polaroid Grid */
+    /* Live One-Time Selfie Row */
+    .selfie-strip {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .selfie-polaroid {
+      width: min(260px, 86vw);
+      background: #ffffff;
+      padding: 12px 12px 16px;
+      border-radius: 6px;
+      border: 1.5px solid rgba(201, 154, 62, 0.45);
+      box-shadow: 0 16px 34px rgba(15, 34, 27, 0.14);
+      transform: rotate(var(--selfie-tilt, -2deg));
+      animation: filmSlideOut 0.85s var(--ease-out) forwards;
+    }
+
+    .selfie-polaroid img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 3px;
+      transition: filter 2s ease-out;
+    }
+
+    .selfie-polaroid.is-developing img {
+      filter: brightness(0.18) contrast(0.65) sepia(0.8) blur(2px);
+    }
+
+    .selfie-polaroid.is-developed img {
+      filter: brightness(1) contrast(1) sepia(0) blur(0);
+    }
+
+    .selfie-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding-top: 0.7rem;
+    }
+
+    .selfie-label {
+      font-family: var(--font-hand);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #1e2824;
+    }
+
+    .download-once-btn {
+      padding: 0.32rem 0.75rem;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      background: var(--forest-800);
+      color: var(--parchment-100);
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+    .download-once-btn:hover {
+      background: var(--forest-700);
+      transform: translateY(-1px);
+    }
+
+    /* ============================================================
+       SCATTERED POLAROID BOARD (EJECTED LIKE REAL FILM)
+       ============================================================ */
     .polaroid-board {
       width: 100%;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.75rem;
+      gap: 2rem 1.75rem;
       align-items: start;
+      padding-block: 0.5rem;
     }
 
     .polaroid-frame {
       margin: 0;
       background: #ffffff;
       padding: 13px 13px 18px;
-      border-radius: 6px;
+      border-radius: 5px;
       box-shadow:
-        0 10px 26px rgba(15, 34, 27, 0.1),
-        0 2px 6px rgba(15, 34, 27, 0.05);
+        0 12px 28px rgba(15, 34, 27, 0.12),
+        0 2px 6px rgba(15, 34, 27, 0.06);
       border: 1px solid rgba(20, 32, 27, 0.08);
-      transition: transform 0.32s var(--ease-spring), box-shadow 0.32s ease, border-color 0.3s ease;
-      animation: polaroidSlideIn 0.65s var(--ease-out) forwards;
+      transform: translate(var(--scatter-x, 0px), var(--scatter-y, 0px)) rotate(var(--scatter-rot, 0deg));
+      transition: transform 0.35s var(--ease-spring), box-shadow 0.35s ease, border-color 0.3s ease;
+      animation: filmSlideOut 0.8s var(--ease-out) forwards;
     }
 
     .polaroid-frame[hidden] {
       display: none;
     }
 
+    /* Natural scattered offsets & tilts */
+    .polaroid-frame:nth-child(1) { --scatter-x: -4px; --scatter-y: 8px; --scatter-rot: -3.2deg; }
+    .polaroid-frame:nth-child(2) { --scatter-x: 6px; --scatter-y: -6px; --scatter-rot: 2.8deg; }
+    .polaroid-frame:nth-child(3) { --scatter-x: -3px; --scatter-y: 12px; --scatter-rot: -2.1deg; }
+    .polaroid-frame:nth-child(4) { --scatter-x: 5px; --scatter-y: 4px; --scatter-rot: 3.4deg; }
+    .polaroid-frame:nth-child(5) { --scatter-x: -6px; --scatter-y: -8px; --scatter-rot: -2.7deg; }
+    .polaroid-frame:nth-child(6) { --scatter-x: 4px; --scatter-y: 10px; --scatter-rot: 2.2deg; }
+
     .polaroid-frame:hover {
-      transform: translateY(-6px);
-      border-color: rgba(201, 154, 62, 0.55);
+      transform: translate(0px, -8px) rotate(0deg) scale(1.03);
+      border-color: rgba(201, 154, 62, 0.6);
       box-shadow:
-        0 20px 40px rgba(15, 34, 27, 0.16),
-        0 0 0 1px rgba(201, 154, 62, 0.35);
+        0 22px 42px rgba(15, 34, 27, 0.18),
+        0 0 0 2px rgba(201, 154, 62, 0.35);
+      z-index: 5;
     }
 
-    @keyframes polaroidSlideIn {
+    @keyframes filmSlideOut {
       0% {
         opacity: 0;
-        transform: translateY(-28px) scale(0.94);
+        transform: translateY(-70px) scale(0.82) rotate(0deg);
+      }
+      55% {
+        opacity: 1;
+        transform: translate(var(--scatter-x, 0px), -14px) scale(0.96) rotate(var(--scatter-rot, 0deg));
       }
       100% {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translate(var(--scatter-x, 0px), var(--scatter-y, 0px)) scale(1) rotate(var(--scatter-rot, 0deg));
       }
     }
 
@@ -1512,11 +1624,11 @@
       width: 100%;
       aspect-ratio: 3 / 4;
       object-fit: cover;
-      transition: transform 0.5s var(--ease-out), filter 2.2s ease-out;
+      transition: transform 0.5s var(--ease-out), filter 2.4s ease-out;
     }
 
     .polaroid-frame.is-developing .photo-trigger img {
-      filter: brightness(0.16) contrast(0.65) sepia(0.8) blur(2.5px);
+      filter: brightness(0.14) contrast(0.6) sepia(0.85) blur(3px);
     }
 
     .polaroid-frame.is-developed .photo-trigger img {
@@ -1768,9 +1880,7 @@
     }
 
     @media (max-width: 1020px) {
-      .dashboard-telemetry {
-        display: none;
-      }
+      .dashboard-telemetry { display: none; }
     }
 
     @media (max-width: 900px) {
@@ -1779,10 +1889,6 @@
         grid-template-columns: 1fr;
       }
       .portrait-wrap { max-width: 400px; }
-      .greeting-bubble {
-        left: 0.75rem;
-        top: 0.75rem;
-      }
       .pillars-grid { grid-template-columns: 1fr; }
       .polaroid-board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
@@ -1812,7 +1918,14 @@
         align-items: flex-start;
         gap: 0.65rem;
       }
-      .polaroid-board { grid-template-columns: 1fr; }
+      .polaroid-board {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .polaroid-frame {
+        --scatter-x: 0px;
+        --scatter-y: 0px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1855,7 +1968,6 @@
           </ul>
         </nav>
 
-        <!-- Minimalist Live Time, Date & Weather Widget -->
         <div class="dashboard-telemetry" aria-label="Local time, date, and weather">
           <span class="telemetry-item telemetry-time" id="dash-time">--:--</span>
           <span class="telemetry-sep" aria-hidden="true"></span>
@@ -1882,18 +1994,18 @@
               <svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18"><path d="M12 4v10m0 0 4-4m-4 4-4-4M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               Resume 📄
             </a>
-            <button class="btn btn-ghost" type="button" id="say-hello-btn">Say Hello ✉️</button>
+            <button class="btn btn-ghost" type="button" id="say-hello-btn">Say Hello 👋</button>
           </div>
         </div>
 
         <figure class="portrait-wrap" id="portrait-wrap">
-          <!-- Interactive Speech Bubble triggered by "Say Hello" -->
-          <div class="greeting-bubble" id="greeting-bubble" role="status" aria-live="polite">
-            <div class="greeting-bubble-header">
-              <p class="greeting-bubble-title">Hey, welcome to my portfolio! ✨</p>
-              <button type="button" class="greeting-close" id="greeting-close" aria-label="Close greeting">✕</button>
+          <!-- Crisp Greeting Banner ABOVE the portrait (never covers face) -->
+          <div class="greeting-card" id="greeting-card" role="status" aria-live="polite">
+            <div>
+              <p class="greeting-card-title">Hey, welcome to my portfolio!</p>
+              <p class="greeting-card-text">Glad you stopped by — explore my AI builds, research papers, or snap a live Polaroid below.</p>
             </div>
-            <p>So glad you stopped by. Take a stroll through my AI builds, research, and snap a few Polaroids while you're here!</p>
+            <button type="button" class="greeting-close" id="greeting-close" aria-label="Close greeting">✕</button>
           </div>
 
           <div class="portrait-card">
@@ -2151,13 +2263,13 @@
       </div>
     </section>
 
-    <!-- CLEAN & AESTHETIC POLAROID STUDIO -->
+    <!-- POLAROID CAMERA SECTION: DIRECT WEBCAM + FILM EJECTION + SCATTERED BOARD -->
     <section id="photography" class="section section-alt" aria-labelledby="photo-heading">
       <div class="container">
         <div class="section-header reveal">
           <p class="eyebrow">Personal work</p>
           <h2 id="photo-heading" class="section-title">Photography 📸</h2>
-          <p class="section-desc">Press the red shutter button on the Polaroid camera to snap and develop my unedited frames one by one. Select any Polaroid to view it full-screen.</p>
+          <p class="section-desc">Click Capture to open your live webcam and snap a one-time downloadable Polaroid—or eject my 6 curated frames below to see them slide out and scatter.</p>
         </div>
 
         <div class="polaroid-studio reveal">
@@ -2174,7 +2286,7 @@
 
                 <div class="film-counter-box">
                   <div class="film-counter-screen" id="film-counter" aria-live="polite">06</div>
-                  <span class="film-counter-label">Shots</span>
+                  <span class="film-counter-label">Gallery</span>
                 </div>
 
                 <div class="camera-lens" aria-hidden="true">
@@ -2188,8 +2300,8 @@
                     class="shutter-btn"
                     type="button"
                     id="capture-btn"
-                    aria-label="Capture photo with Polaroid camera"
-                    title="Click to snap a photo">
+                    aria-label="Open webcam or capture photo"
+                    title="Click to open webcam & snap">
                   </button>
                   <span class="shutter-label" id="shutter-label">Capture</span>
                 </div>
@@ -2200,13 +2312,31 @@
               </div>
             </div>
 
+            <!-- Live Webcam Panel (opens directly when Capture is clicked) -->
+            <div class="webcam-panel" id="webcam-panel">
+              <div class="webcam-video-wrap">
+                <video id="webcam-video" autoplay playsinline muted></video>
+              </div>
+              <canvas id="webcam-canvas" hidden></canvas>
+              <div class="webcam-actions">
+                <button type="button" class="btn-mini" id="snap-webcam-btn">Snap Polaroid 📸</button>
+                <button type="button" class="btn-mini" id="close-webcam-btn">Close Camera</button>
+              </div>
+              <p class="webcam-error" id="webcam-error" hidden></p>
+            </div>
+
             <div class="camera-controls">
-              <p class="camera-hint" id="camera-status"><strong>6 shots</strong> loaded — press the red shutter button</p>
-              <button type="button" class="btn-mini" id="reveal-all-btn">Develop All</button>
-              <button type="button" class="btn-mini" id="reset-camera-btn" hidden>Reload Film</button>
+              <p class="camera-hint" id="camera-status">Press <strong>Capture</strong> to open webcam · Eject my 6 Polaroid frames below</p>
+              <button type="button" class="btn-mini" id="eject-next-btn">Eject Next Frame (0/6)</button>
+              <button type="button" class="btn-mini" id="reveal-all-btn">Eject All 6</button>
+              <button type="button" class="btn-mini" id="reset-camera-btn" hidden>Reset Frames</button>
             </div>
           </div>
 
+          <!-- One-Time Live Selfie Polaroids -->
+          <div class="selfie-strip" id="selfie-strip" aria-live="polite"></div>
+
+          <!-- Scattered Polaroid Frames Board -->
           <div class="polaroid-board" data-gallery id="polaroid-board">
             <figure class="polaroid-frame" hidden>
               <button class="photo-trigger" type="button" data-src="assets/images/photo1.jpeg" data-caption="A coral rose photographed up close." aria-label="Open photograph: Coral rose">
@@ -2429,7 +2559,7 @@
         fetchWeather(12.97, 77.59);
       }
 
-      /* 3. Interactive "Say Hello" Portrait Greeting */
+      /* 3. "Say Hello 👋" Portrait Turn, Wave & Non-Overlapping Greeting */
       const sayHelloBtn = document.getElementById("say-hello-btn");
       const portraitWrap = document.getElementById("portrait-wrap");
       const greetingClose = document.getElementById("greeting-close");
@@ -2442,12 +2572,10 @@
         clearTimeout(greetingTimer);
         greetingTimer = setTimeout(() => {
           portraitWrap.classList.remove("is-greeting");
-        }, 7500);
+        }, 8000);
       };
 
-      if (sayHelloBtn) {
-        sayHelloBtn.addEventListener("click", triggerGreeting);
-      }
+      if (sayHelloBtn) sayHelloBtn.addEventListener("click", triggerGreeting);
       if (greetingClose && portraitWrap) {
         greetingClose.addEventListener("click", () => {
           clearTimeout(greetingTimer);
@@ -2502,17 +2630,27 @@
         });
       });
 
-      /* 7. Interactive Polaroid Camera & Sound Effects */
+      /* 7. Shutter Sound, Flash, Film Ejection & Live Webcam One-Time Download */
       const captureBtn = document.getElementById("capture-btn");
+      const ejectNextBtn = document.getElementById("eject-next-btn");
       const revealAllBtn = document.getElementById("reveal-all-btn");
       const resetCameraBtn = document.getElementById("reset-camera-btn");
       const cameraBody = document.getElementById("polaroid-camera");
       const cameraFlash = document.getElementById("camera-flash");
       const flashOverlay = document.getElementById("flash-overlay");
       const filmCounter = document.getElementById("film-counter");
-      const shutterLabel = document.getElementById("shutter-label");
       const cameraStatus = document.getElementById("camera-status");
       const polaroidFrames = Array.from(document.querySelectorAll(".polaroid-frame"));
+
+      const webcamPanel = document.getElementById("webcam-panel");
+      const webcamVideo = document.getElementById("webcam-video");
+      const webcamCanvas = document.getElementById("webcam-canvas");
+      const snapWebcamBtn = document.getElementById("snap-webcam-btn");
+      const closeWebcamBtn = document.getElementById("close-webcam-btn");
+      const webcamError = document.getElementById("webcam-error");
+      const selfieStrip = document.getElementById("selfie-strip");
+
+      let mediaStream = null;
       let ejectedCount = 0;
 
       const playShutterSound = () => {
@@ -2520,17 +2658,19 @@
           const AudioCtx = window.AudioContext || window.webkitAudioContext;
           if (!AudioCtx) return;
           const ctx = new AudioCtx();
+
+          // Mechanical shutter snap + subtle film motor tick
           const osc = ctx.createOscillator();
           const gain = ctx.createGain();
           osc.type = "triangle";
-          osc.frequency.setValueAtTime(520, ctx.currentTime);
-          osc.frequency.exponentialRampToValueAtTime(110, ctx.currentTime + 0.09);
-          gain.gain.setValueAtTime(0.14, ctx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
+          osc.frequency.setValueAtTime(640, ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(95, ctx.currentTime + 0.085);
+          gain.gain.setValueAtTime(0.18, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.095);
           osc.connect(gain);
           gain.connect(ctx.destination);
           osc.start();
-          osc.stop(ctx.currentTime + 0.1);
+          osc.stop(ctx.currentTime + 0.095);
         } catch (e) {}
       };
 
@@ -2551,30 +2691,145 @@
         }
       };
 
-      const updateCameraUI = () => {
-        const remaining = polaroidFrames.length - ejectedCount;
-        if (filmCounter) filmCounter.textContent = String(remaining).padStart(2, "0");
+      const stopWebcam = () => {
+        if (mediaStream) {
+          mediaStream.getTracks().forEach((track) => track.stop());
+          mediaStream = null;
+        }
+        if (webcamVideo) webcamVideo.srcObject = null;
+        if (webcamPanel) webcamPanel.classList.remove("is-open");
+      };
 
-        if (remaining === 0) {
-          if (captureBtn) captureBtn.disabled = true;
-          if (shutterLabel) shutterLabel.textContent = "Empty";
-          if (revealAllBtn) revealAllBtn.hidden = true;
-          if (resetCameraBtn) resetCameraBtn.hidden = false;
-          if (cameraStatus) {
-            cameraStatus.innerHTML = "<strong>All 6 frames developed</strong> — click any Polaroid to expand";
+      const openWebcam = async () => {
+        if (webcamError) {
+          webcamError.hidden = true;
+          webcamError.textContent = "";
+        }
+        if (webcamPanel) webcamPanel.classList.add("is-open");
+
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          if (webcamError) {
+            webcamError.hidden = false;
+            webcamError.textContent = "Webcam is not supported in this browser or context.";
           }
-        } else {
-          if (captureBtn) captureBtn.disabled = false;
-          if (shutterLabel) shutterLabel.textContent = "Capture";
-          if (revealAllBtn) revealAllBtn.hidden = false;
-          if (resetCameraBtn) resetCameraBtn.hidden = ejectedCount === 0;
-          if (cameraStatus) {
-            cameraStatus.innerHTML = `<strong>${remaining} shot${remaining === 1 ? "" : "s"}</strong> loaded — press the red shutter button`;
+          return;
+        }
+
+        try {
+          mediaStream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: "user" },
+            audio: false
+          });
+          if (webcamVideo) {
+            webcamVideo.srcObject = mediaStream;
+          }
+        } catch (err) {
+          if (webcamError) {
+            webcamError.hidden = false;
+            webcamError.textContent = "Camera permission denied or unavailable. Please allow camera access and try again.";
           }
         }
       };
 
-      const ejectOnePolaroid = (instant = false) => {
+      const createOneTimeSelfiePolaroid = (dataUrl) => {
+        if (!selfieStrip) return;
+        const card = document.createElement("figure");
+        card.className = "selfie-polaroid is-developing";
+        card.style.setProperty("--selfie-tilt", `${(Math.random() * 6 - 3).toFixed(1)}deg`);
+
+        const img = document.createElement("img");
+        img.src = dataUrl;
+        img.alt = "Live Polaroid snapshot taken with your camera";
+
+        const footer = document.createElement("div");
+        footer.className = "selfie-footer";
+
+        const label = document.createElement("span");
+        label.className = "selfie-label";
+        label.textContent = "Live Polaroid ✨";
+
+        const dlBtn = document.createElement("button");
+        dlBtn.type = "button";
+        dlBtn.className = "download-once-btn";
+        dlBtn.textContent = "Download";
+
+        // One-time download: downloads once and removes the button so it isn't re-downloaded or saved
+        dlBtn.addEventListener("click", () => {
+          const link = document.createElement("a");
+          link.href = dataUrl;
+          link.download = `polaroid-${Date.now()}.png`;
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+          dlBtn.remove();
+          label.textContent = "Downloaded (1x)";
+        }, { once: true });
+
+        footer.appendChild(label);
+        footer.appendChild(dlBtn);
+        card.appendChild(img);
+        card.appendChild(footer);
+        selfieStrip.prepend(card);
+
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            card.classList.remove("is-developing");
+            card.classList.add("is-developed");
+          }, 180);
+        });
+      };
+
+      if (captureBtn) {
+        captureBtn.addEventListener("click", () => {
+          playShutterSound();
+          openWebcam();
+        });
+      }
+
+      if (snapWebcamBtn && webcamVideo && webcamCanvas) {
+        snapWebcamBtn.addEventListener("click", () => {
+          const w = webcamVideo.videoWidth || 640;
+          const h = webcamVideo.videoHeight || 480;
+          webcamCanvas.width = w;
+          webcamCanvas.height = h;
+          const ctx = webcamCanvas.getContext("2d");
+          ctx.save();
+          ctx.translate(w, 0);
+          ctx.scale(-1, 1);
+          ctx.drawImage(webcamVideo, 0, 0, w, h);
+          ctx.restore();
+
+          const dataUrl = webcamCanvas.toDataURL("image/png");
+          playShutterSound();
+          triggerFlash();
+          createOneTimeSelfiePolaroid(dataUrl);
+          stopWebcam();
+        });
+      }
+
+      if (closeWebcamBtn) {
+        closeWebcamBtn.addEventListener("click", stopWebcam);
+      }
+
+      const updateGalleryUI = () => {
+        const remaining = polaroidFrames.length - ejectedCount;
+        if (filmCounter) filmCounter.textContent = String(remaining).padStart(2, "0");
+        if (ejectNextBtn) {
+          ejectNextBtn.textContent = `Eject Next Frame (${ejectedCount}/${polaroidFrames.length})`;
+          ejectNextBtn.disabled = ejectedCount >= polaroidFrames.length;
+        }
+        if (revealAllBtn) revealAllBtn.hidden = ejectedCount >= polaroidFrames.length;
+        if (resetCameraBtn) resetCameraBtn.hidden = ejectedCount === 0;
+        if (cameraStatus) {
+          if (ejectedCount === polaroidFrames.length) {
+            cameraStatus.innerHTML = "<strong>All 6 frames ejected &amp; scattered</strong> — click any frame to view full-screen";
+          } else {
+            cameraStatus.innerHTML = `Press <strong>Capture</strong> for live webcam · <strong>${remaining}</strong> portfolio frame${remaining === 1 ? "" : "s"} left to eject`;
+          }
+        }
+      };
+
+      const ejectOneFrame = (instant = false) => {
         if (ejectedCount >= polaroidFrames.length) return;
         const frame = polaroidFrames[ejectedCount];
         ejectedCount++;
@@ -2591,15 +2846,14 @@
             frame.classList.add("is-developed");
           }, 220);
         }
-        updateCameraUI();
+        updateGalleryUI();
       };
 
-      if (captureBtn) {
-        captureBtn.addEventListener("click", () => {
-          if (ejectedCount >= polaroidFrames.length) return;
+      if (ejectNextBtn) {
+        ejectNextBtn.addEventListener("click", () => {
           playShutterSound();
           triggerFlash();
-          ejectOnePolaroid(false);
+          ejectOneFrame(false);
         });
       }
 
@@ -2608,7 +2862,7 @@
           playShutterSound();
           triggerFlash();
           while (ejectedCount < polaroidFrames.length) {
-            ejectOnePolaroid(true);
+            ejectOneFrame(true);
           }
         });
       }
@@ -2620,9 +2874,11 @@
             frame.classList.remove("is-developing", "is-developed");
           });
           ejectedCount = 0;
-          updateCameraUI();
+          updateGalleryUI();
         });
       }
+
+      updateGalleryUI();
 
       /* 8. Lightbox Modal */
       const triggers = Array.from(document.querySelectorAll(".photo-trigger"));
