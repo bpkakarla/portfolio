@@ -2770,7 +2770,7 @@ const createEjectingSelfiePolaroid = (dataUrl) => {
           clearTimeout(ejectTimeoutId);
           ejectTimeoutId = setTimeout(() => {
             createEjectingSelfiePolaroid(dataUrl);
-          }, 1000);
+          }, 500);
         });
       }
 
