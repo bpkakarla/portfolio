@@ -2758,9 +2758,10 @@
           const dataUrl = webcamCanvas.toDataURL("image/png");
           stopWebcam();
 
+          // Wait 2 seconds before rolling down so eject audio and rolling sync
           setTimeout(() => {
             createEjectingSelfiePolaroid(dataUrl);
-          }, 120);
+          }, 2000);
         });
       }
 
