@@ -2580,7 +2580,7 @@
         });
       });
 
-      /* 7. Polaroid Live Camera + Synced MP3 Sounds + Printer-Like Ejection */
+/* 7. Polaroid Live Camera + Synced MP3 Sounds + Printer-Like Ejection */
       const captureBtn = document.getElementById("capture-btn");
       const cameraBody = document.getElementById("polaroid-camera");
       const cameraFlash = document.getElementById("camera-flash");
@@ -2618,6 +2618,7 @@
       };
 
       let mediaStream = null;
+      let ejectTimeoutId = null;
 
       const triggerFlash = () => {
         if (cameraFlash) {
@@ -2679,16 +2680,18 @@
       const createEjectingSelfiePolaroid = (dataUrl) => {
         if (!selfieStrip) return;
 
+        // Start eject sound at the exact moment the photo begins rolling out
         const ejectAudio = playPreloaded("eject");
+        const audioDur = ejectAudio ? ejectAudio.duration : NaN;
         const ejectDurationSec =
-          ejectAudio && Number.isFinite(ejectAudio.duration) && ejectAudio.duration > 0.2
-            ? Math.min(ejectAudio.duration, 6)
-            : 2.2;
+          Number.isFinite(audioDur) && audioDur > 0.3
+            ? Math.min(audioDur, 8)
+            : 2.5;
 
         const card = document.createElement("figure");
         card.className = "selfie-polaroid is-developing";
         card.style.setProperty("--selfie-tilt", `${(Math.random() * 4 - 2).toFixed(1)}deg`);
-        card.style.animation = `printerFeedOut ${ejectDurationSec}s cubic-bezier(0.25, 0.85, 0.35, 1) forwards`;
+        card.style.animation = `printerFeedOut ${ejectDurationSec}s cubic-bezier(0.22, 0.75, 0.36, 1) forwards`;
 
         const img = document.createElement("img");
         img.src = dataUrl;
@@ -2758,8 +2761,8 @@
           const dataUrl = webcamCanvas.toDataURL("image/png");
           stopWebcam();
 
-          // Wait 2 seconds before rolling down so eject audio and rolling sync
-          setTimeout(() => {
+          clearTimeout(ejectTimeoutId);
+          ejectTimeoutId = setTimeout(() => {
             createEjectingSelfiePolaroid(dataUrl);
           }, 2000);
         });
