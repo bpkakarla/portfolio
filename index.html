@@ -608,7 +608,6 @@
       100% { transform: rotate(22deg); }
     }
 
-    /* Positioned cleanly below chin on a 3:4 portrait */
     .greeting-below-chin {
       position: absolute;
       top: 47%;
@@ -1388,7 +1387,6 @@
       border-radius: 4px;
     }
 
-    /* Live Ejecting Print Tray directly beneath the camera slot */
     .ejection-chute {
       position: relative;
       width: 100%;
@@ -1410,7 +1408,6 @@
       text-align: center;
     }
 
-    /* Live Webcam Panel */
     .webcam-panel {
       display: none;
       flex-direction: column;
@@ -1472,7 +1469,6 @@
       transform: translateY(-1px);
     }
 
-    /* Printer-style slide-out animation for captured Polaroid */
     .selfie-polaroid {
       width: min(268px, 88vw);
       background: #ffffff;
@@ -1544,7 +1540,7 @@
       transform: translateY(-1px);
     }
 
-    /* Open Scattered Gallery Grid Below Polaroid (No #01-#06 badges) */
+    /* Open Scattered Gallery Grid Below Polaroid */
     .open-gallery-wrap {
       width: 100%;
     }
@@ -1973,7 +1969,6 @@
           <div class="portrait-card">
             <div class="wave-hand-badge" aria-hidden="true"><span>👋</span></div>
 
-            <!-- Message displayed cleanly below chin -->
             <div class="greeting-below-chin" id="greeting-box" role="status" aria-live="polite">
               <div class="greeting-top">
                 <p class="greeting-title">Hey, welcome to my portfolio!</p>
@@ -2281,12 +2276,10 @@
               </div>
             </div>
 
-            <!-- Printer-like ejection chute directly below the Polaroid slot -->
             <div class="ejection-chute" id="selfie-strip" aria-live="polite"></div>
 
             <p class="camera-hint">Press <strong>Capture</strong> to open camera · One-time download only (not saved)</p>
 
-            <!-- Live Webcam Panel -->
             <div class="webcam-panel" id="webcam-panel">
               <div class="webcam-video-wrap">
                 <video id="webcam-video" autoplay playsinline muted></video>
@@ -2300,7 +2293,6 @@
             </div>
           </div>
 
-          <!-- Open Scattered Gallery Grid Below Polaroid (no #01-#06 numbering) -->
           <div class="open-gallery-wrap">
             <h3 class="open-gallery-heading">Selected Frames</h3>
             <div class="open-gallery-grid" data-gallery>
@@ -2449,14 +2441,6 @@
         eject: "assets/audio/eject.mp3"
       };
 
-      const playAudioFile = (src) => {
-        try {
-          const audio = new Audio(src);
-          audio.currentTime = 0;
-          audio.play().catch(() => {});
-        } catch (e) {}
-      };
-
       /* 1. Year & Scroll Progress */
       const yearEl = document.getElementById("current-year");
       if (yearEl) yearEl.textContent = String(new Date().getFullYear());
@@ -2596,7 +2580,7 @@
         });
       });
 
-      /* 7. Polaroid Live Camera + 3 MP3 Sounds + Printer-Like Ejection */
+      /* 7. Polaroid Live Camera + Synced MP3 Sounds + Printer-Like Ejection */
       const captureBtn = document.getElementById("capture-btn");
       const cameraBody = document.getElementById("polaroid-camera");
       const cameraFlash = document.getElementById("camera-flash");
@@ -2608,6 +2592,30 @@
       const closeWebcamBtn = document.getElementById("close-webcam-btn");
       const webcamError = document.getElementById("webcam-error");
       const selfieStrip = document.getElementById("selfie-strip");
+
+      const preloadedSounds = {
+        capture: new Audio(SOUND_PATHS.capture),
+        snap: new Audio(SOUND_PATHS.snap),
+        eject: new Audio(SOUND_PATHS.eject)
+      };
+      Object.values(preloadedSounds).forEach((el) => {
+        el.preload = "auto";
+        el.load();
+      });
+
+      const playPreloaded = (key) => {
+        const el = preloadedSounds[key];
+        if (!el) return null;
+        try {
+          el.pause();
+          el.currentTime = 0;
+          const p = el.play();
+          if (p && typeof p.catch === "function") p.catch(() => {});
+          return el;
+        } catch (e) {
+          return null;
+        }
+      };
 
       let mediaStream = null;
 
@@ -2670,13 +2678,22 @@
 
       const createEjectingSelfiePolaroid = (dataUrl) => {
         if (!selfieStrip) return;
+
+        const ejectAudio = playPreloaded("eject");
+        const ejectDurationSec =
+          ejectAudio && Number.isFinite(ejectAudio.duration) && ejectAudio.duration > 0.2
+            ? Math.min(ejectAudio.duration, 6)
+            : 2.2;
+
         const card = document.createElement("figure");
         card.className = "selfie-polaroid is-developing";
         card.style.setProperty("--selfie-tilt", `${(Math.random() * 4 - 2).toFixed(1)}deg`);
+        card.style.animation = `printerFeedOut ${ejectDurationSec}s cubic-bezier(0.25, 0.85, 0.35, 1) forwards`;
 
         const img = document.createElement("img");
         img.src = dataUrl;
         img.alt = "Live Polaroid print sliding out of the camera";
+        img.style.transition = `filter ${ejectDurationSec}s ease-out`;
 
         const footer = document.createElement("div");
         footer.className = "selfie-footer";
@@ -2707,27 +2724,24 @@
         card.appendChild(footer);
         selfieStrip.prepend(card);
 
-        // Play eject sound right as the print slides out from the camera slot
-        playAudioFile(SOUND_PATHS.eject);
-
         requestAnimationFrame(() => {
-          setTimeout(() => {
+          requestAnimationFrame(() => {
             card.classList.remove("is-developing");
             card.classList.add("is-developed");
-          }, 260);
+          });
         });
       };
 
       if (captureBtn) {
         captureBtn.addEventListener("click", () => {
-          playAudioFile(SOUND_PATHS.capture);
+          playPreloaded("capture");
           openWebcam();
         });
       }
 
       if (snapWebcamBtn && webcamVideo && webcamCanvas) {
         snapWebcamBtn.addEventListener("click", () => {
-          playAudioFile(SOUND_PATHS.snap);
+          playPreloaded("snap");
           triggerFlash();
 
           const w = webcamVideo.videoWidth || 640;
@@ -2746,7 +2760,7 @@
 
           setTimeout(() => {
             createEjectingSelfiePolaroid(dataUrl);
-          }, 180);
+          }, 120);
         });
       }
 
