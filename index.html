@@ -232,9 +232,7 @@
       top: 1rem;
     }
 
-    /* ============================================================
-       DASHBOARD HEADER (VISIBLE ON BOTH DESKTOP & MOBILE)
-       ============================================================ */
+    /* Dashboard Header */
     .site-header {
       position: sticky;
       top: 0;
@@ -537,9 +535,7 @@
       border-color: var(--accent-gold);
     }
 
-    /* ============================================================
-       PORTRAIT: TOP-LEFT WAVE + MESSAGE JUST BELOW FACE
-       ============================================================ */
+    /* Portrait: Top-Left Wave + Greeting Positioned Below Chin */
     .portrait-wrap {
       margin: 0;
       width: 100%;
@@ -576,7 +572,6 @@
         0 0 0 3px rgba(201, 154, 62, 0.28);
     }
 
-    /* Waving hand in TOP-LEFT corner from viewer's perspective */
     .wave-hand-badge {
       position: absolute;
       top: 14px;
@@ -613,10 +608,10 @@
       100% { transform: rotate(22deg); }
     }
 
-    /* Greeting message positioned JUST BELOW the face (around ~32% down the portrait) */
-    .greeting-below-face {
+    /* Positioned cleanly below chin on a 3:4 portrait */
+    .greeting-below-chin {
       position: absolute;
-      top: 32%;
+      top: 47%;
       left: 6%;
       right: 6%;
       padding: 0.85rem 1rem;
@@ -633,7 +628,7 @@
       transition: opacity 0.35s var(--ease-out), transform 0.42s var(--ease-spring), visibility 0.35s;
     }
 
-    .portrait-wrap.is-greeting .greeting-below-face {
+    .portrait-wrap.is-greeting .greeting-below-chin {
       opacity: 1;
       visibility: visible;
       transform: translateY(0) scale(1);
@@ -1151,9 +1146,7 @@
       color: var(--text-secondary);
     }
 
-    /* ============================================================
-       POLAROID STUDIO (LIVE CAMERA ONLY) + OPEN SCATTERED GALLERY BELOW
-       ============================================================ */
+    /* Polaroid Camera & Printer-Like Film Ejection */
     .polaroid-studio {
       display: flex;
       flex-direction: column;
@@ -1184,6 +1177,7 @@
       border: 1px solid rgba(201, 154, 62, 0.35);
       user-select: none;
       transition: transform 0.3s var(--ease-spring);
+      z-index: 4;
     }
 
     .polaroid-camera.is-snapping {
@@ -1394,6 +1388,21 @@
       border-radius: 4px;
     }
 
+    /* Live Ejecting Print Tray directly beneath the camera slot */
+    .ejection-chute {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+      margin-top: -4px;
+      padding-top: 10px;
+      overflow: hidden;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
     .camera-hint {
       margin: 0.85rem 0 0;
       font-size: 0.9rem;
@@ -1463,24 +1472,30 @@
       transform: translateY(-1px);
     }
 
-    /* Live One-Time Selfie Polaroids */
-    .selfie-strip {
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-    }
-
+    /* Printer-style slide-out animation for captured Polaroid */
     .selfie-polaroid {
-      width: min(260px, 86vw);
+      width: min(268px, 88vw);
       background: #ffffff;
       padding: 12px 12px 16px;
       border-radius: 6px;
       border: 1.5px solid rgba(201, 154, 62, 0.45);
       box-shadow: 0 16px 34px rgba(15, 34, 27, 0.14);
-      transform: rotate(var(--selfie-tilt, -2deg));
-      transition: filter 0.3s ease;
+      transform: rotate(var(--selfie-tilt, -1.5deg));
+      animation: printerFeedOut 2.2s cubic-bezier(0.25, 0.85, 0.35, 1) forwards;
+    }
+
+    @keyframes printerFeedOut {
+      0% {
+        opacity: 0.85;
+        transform: translateY(-100%) rotate(0deg);
+      }
+      15% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0%) rotate(var(--selfie-tilt, -1.5deg));
+      }
     }
 
     .selfie-polaroid img {
@@ -1488,11 +1503,11 @@
       aspect-ratio: 4 / 3;
       object-fit: cover;
       border-radius: 3px;
-      transition: filter 1.8s ease-out;
+      transition: filter 2.2s ease-out;
     }
 
     .selfie-polaroid.is-developing img {
-      filter: brightness(0.18) contrast(0.65) sepia(0.8) blur(2px);
+      filter: brightness(0.22) contrast(0.7) sepia(0.75) blur(1.5px);
     }
 
     .selfie-polaroid.is-developed img {
@@ -1529,9 +1544,7 @@
       transform: translateY(-1px);
     }
 
-    /* ============================================================
-       OPEN SCATTERED GALLERY GRID BELOW POLAROID (ALWAYS VISIBLE)
-       ============================================================ */
+    /* Open Scattered Gallery Grid Below Polaroid (No #01-#06 badges) */
     .open-gallery-wrap {
       width: 100%;
     }
@@ -1568,7 +1581,6 @@
       transition: transform 0.32s var(--ease-spring), box-shadow 0.32s ease, border-color 0.3s ease;
     }
 
-    /* Subtle organic scatter that stays clean and structured */
     .gallery-card:nth-child(1) { --gx: -3px; --gy: 6px; --grot: -2.2deg; }
     .gallery-card:nth-child(2) { --gx: 4px; --gy: -5px; --grot: 2deg; }
     .gallery-card:nth-child(3) { --gx: -2px; --gy: 8px; --grot: -1.6deg; }
@@ -1607,25 +1619,12 @@
     }
 
     .gallery-caption {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.5rem;
       padding-top: 0.7rem;
       font-family: var(--font-hand);
       font-size: 1.32rem;
       font-weight: 600;
       color: var(--text-primary);
       line-height: 1.1;
-    }
-
-    .photo-index {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--accent);
-      background: var(--bg-alt);
-      padding: 0.16rem 0.5rem;
-      border-radius: 999px;
     }
 
     /* Resume Banner */
@@ -1842,6 +1841,10 @@
       color: var(--text-on-dark-muted);
     }
 
+    @media (max-width: 1020px) {
+      .dashboard-telemetry { display: none; }
+    }
+
     @media (max-width: 900px) {
       .hero-grid,
       .about-grid {
@@ -1871,8 +1874,8 @@
         align-items: flex-start;
         gap: 0.9rem;
       }
-      /* Keep time, date & weather visible cleanly on mobile */
       .dashboard-telemetry {
+        display: inline-flex;
         order: 3;
         width: 100%;
         justify-content: center;
@@ -1968,11 +1971,10 @@
 
         <figure class="portrait-wrap" id="portrait-wrap">
           <div class="portrait-card">
-            <!-- Waving hand in TOP-LEFT corner from viewer's perspective -->
             <div class="wave-hand-badge" aria-hidden="true"><span>👋</span></div>
 
-            <!-- Message displayed JUST BELOW the face -->
-            <div class="greeting-below-face" id="greeting-box" role="status" aria-live="polite">
+            <!-- Message displayed cleanly below chin -->
+            <div class="greeting-below-chin" id="greeting-box" role="status" aria-live="polite">
               <div class="greeting-top">
                 <p class="greeting-title">Hey, welcome to my portfolio!</p>
                 <button type="button" class="greeting-close" id="greeting-close" aria-label="Close greeting">✕</button>
@@ -2233,13 +2235,13 @@
       </div>
     </section>
 
-    <!-- POLAROID CAMERA (LIVE CAPTURE ONLY) + OPEN SCATTERED GALLERY BELOW -->
+    <!-- POLAROID LIVE CAMERA + OPEN SCATTERED GALLERY BELOW -->
     <section id="photography" class="section section-alt" aria-labelledby="photo-heading">
       <div class="container">
         <div class="section-header reveal">
           <p class="eyebrow">Personal work</p>
           <h2 id="photo-heading" class="section-title">Photography 📸</h2>
-          <p class="section-desc">Use the Polaroid camera to open your live camera and take a one-time downloadable Polaroid snapshot, or browse my unedited frames below.</p>
+          <p class="section-desc">Press Capture to open your live camera, snap a Polaroid, and watch the print feed out with a one-time download—or browse my unedited frames below.</p>
         </div>
 
         <div class="polaroid-studio reveal">
@@ -2279,7 +2281,10 @@
               </div>
             </div>
 
-            <p class="camera-hint">Press <strong>Capture</strong> to open your camera · One-time download only (not saved)</p>
+            <!-- Printer-like ejection chute directly below the Polaroid slot -->
+            <div class="ejection-chute" id="selfie-strip" aria-live="polite"></div>
+
+            <p class="camera-hint">Press <strong>Capture</strong> to open camera · One-time download only (not saved)</p>
 
             <!-- Live Webcam Panel -->
             <div class="webcam-panel" id="webcam-panel">
@@ -2295,10 +2300,7 @@
             </div>
           </div>
 
-          <!-- Live One-Time Selfie Polaroids -->
-          <div class="selfie-strip" id="selfie-strip" aria-live="polite"></div>
-
-          <!-- Open Scattered Gallery Grid Below Polaroid -->
+          <!-- Open Scattered Gallery Grid Below Polaroid (no #01-#06 numbering) -->
           <div class="open-gallery-wrap">
             <h3 class="open-gallery-heading">Selected Frames</h3>
             <div class="open-gallery-grid" data-gallery>
@@ -2306,60 +2308,42 @@
                 <button class="photo-trigger" type="button" data-src="assets/images/photo1.jpeg" data-caption="A coral rose photographed up close." aria-label="Open photograph: Coral rose">
                   <img src="assets/images/photo1.jpeg" width="960" height="1280" alt="A coral-pink rose in bloom, photographed close against dark leaves." loading="lazy" decoding="async" />
                 </button>
-                <figcaption class="gallery-caption">
-                  <span>Coral rose 🌹</span>
-                  <span class="photo-index">#01</span>
-                </figcaption>
+                <figcaption class="gallery-caption">Coral rose 🌹</figcaption>
               </figure>
 
               <figure class="gallery-card">
                 <button class="photo-trigger" type="button" data-src="assets/images/photo2.jpeg" data-caption="The sun ringed by a halo in a bright sky." aria-label="Open photograph: Solar halo">
                   <img src="assets/images/photo2.jpeg" width="960" height="1280" alt="The sun surrounded by a faint circular halo in a blue, lightly clouded sky." loading="lazy" decoding="async" />
                 </button>
-                <figcaption class="gallery-caption">
-                  <span>Solar halo ☀️</span>
-                  <span class="photo-index">#02</span>
-                </figcaption>
+                <figcaption class="gallery-caption">Solar halo ☀️</figcaption>
               </figure>
 
               <figure class="gallery-card">
                 <button class="photo-trigger" type="button" data-src="assets/images/photo3.jpeg" data-caption="A figure walking into the surf at dusk." aria-label="Open photograph: Into the water">
                   <img src="assets/images/photo3.jpeg" width="960" height="1280" alt="A silhouetted person stepping into ocean waves under a dusk sky." loading="lazy" decoding="async" />
                 </button>
-                <figcaption class="gallery-caption">
-                  <span>Into the water 🌊</span>
-                  <span class="photo-index">#03</span>
-                </figcaption>
+                <figcaption class="gallery-caption">Into the water 🌊</figcaption>
               </figure>
 
               <figure class="gallery-card">
                 <button class="photo-trigger" type="button" data-src="assets/images/photo4.jpeg" data-caption="A cold drink on a ledge above a beach at sunset." aria-label="Open photograph: Shoreline">
                   <img src="assets/images/photo4.jpeg" width="960" height="1280" alt="A mason jar drink with wafers on a wooden ledge, overlooking a busy beach at sunset." loading="lazy" decoding="async" />
                 </button>
-                <figcaption class="gallery-caption">
-                  <span>Shoreline 🌅</span>
-                  <span class="photo-index">#04</span>
-                </figcaption>
+                <figcaption class="gallery-caption">Shoreline 🌅</figcaption>
               </figure>
 
               <figure class="gallery-card photo-card--landscape">
                 <button class="photo-trigger" type="button" data-src="assets/images/photo5.jpeg" data-caption="Houses and trees spread across a steep, forested hillside." aria-label="Open photograph: Hillside">
                   <img src="assets/images/photo5.jpeg" width="1280" height="960" alt="A wide view of a forested hillside with scattered houses under a clear sky." loading="lazy" decoding="async" />
                 </button>
-                <figcaption class="gallery-caption">
-                  <span>Hillside ⛰️</span>
-                  <span class="photo-index">#05</span>
-                </figcaption>
+                <figcaption class="gallery-caption">Hillside ⛰️</figcaption>
               </figure>
 
               <figure class="gallery-card">
                 <button class="photo-trigger" type="button" data-src="assets/images/photo6.jpeg" data-caption="A wheeled cannon on a paved plaza at sunset with a solar tree and railway coach behind." aria-label="Open photograph: Plaza cannon at sunset">
                   <img src="assets/images/photo6.jpeg" width="960" height="1280" alt="A vintage wheeled cannon on a circular stone pad in a tiled plaza at sunset, with a branching solar structure and a red-and-cream rail coach in the background." loading="lazy" decoding="async" />
                 </button>
-                <figcaption class="gallery-caption">
-                  <span>Plaza cannon 🌇</span>
-                  <span class="photo-index">#06</span>
-                </figcaption>
+                <figcaption class="gallery-caption">Plaza cannon 🌇</figcaption>
               </figure>
             </div>
           </div>
@@ -2456,6 +2440,23 @@
 
   <script>
     (function () {
+      /* ============================================================
+         CUSTOM MP3 AUDIO PATHS (upload these 3 files to your repo)
+         ============================================================ */
+      const SOUND_PATHS = {
+        capture: "assets/audio/capture.mp3",
+        snap: "assets/audio/snap.mp3",
+        eject: "assets/audio/eject.mp3"
+      };
+
+      const playAudioFile = (src) => {
+        try {
+          const audio = new Audio(src);
+          audio.currentTime = 0;
+          audio.play().catch(() => {});
+        } catch (e) {}
+      };
+
       /* 1. Year & Scroll Progress */
       const yearEl = document.getElementById("current-year");
       if (yearEl) yearEl.textContent = String(new Date().getFullYear());
@@ -2474,7 +2475,7 @@
       window.addEventListener("scroll", updateScroll, { passive: true });
       updateScroll();
 
-      /* 2. Live Time, Date & Weather Widget (Mobile + Desktop) */
+      /* 2. Live Time, Date & Weather Widget */
       const timeEl = document.getElementById("dash-time");
       const dateEl = document.getElementById("dash-date");
       const weatherEl = document.getElementById("dash-weather");
@@ -2524,7 +2525,7 @@
         fetchWeather(12.97, 77.59);
       }
 
-      /* 3. "Say Hello 👋" Portrait Turn, Top-Left Wave & Message Below Face */
+      /* 3. "Say Hello 👋" Portrait Turn, Top-Left Wave & Greeting Below Chin */
       const sayHelloBtn = document.getElementById("say-hello-btn");
       const portraitWrap = document.getElementById("portrait-wrap");
       const greetingClose = document.getElementById("greeting-close");
@@ -2595,7 +2596,7 @@
         });
       });
 
-      /* 7. Realistic Camera Shutter Sound + Live Webcam One-Time Polaroid */
+      /* 7. Polaroid Live Camera + 3 MP3 Sounds + Printer-Like Ejection */
       const captureBtn = document.getElementById("capture-btn");
       const cameraBody = document.getElementById("polaroid-camera");
       const cameraFlash = document.getElementById("camera-flash");
@@ -2609,53 +2610,6 @@
       const selfieStrip = document.getElementById("selfie-strip");
 
       let mediaStream = null;
-
-      // Crisp mechanical camera shutter click (filtered burst + curtain snap)
-      const playShutterSound = () => {
-        try {
-          const AudioCtx = window.AudioContext || window.webkitAudioContext;
-          if (!AudioCtx) return;
-          const ctx = new AudioCtx();
-          const now = ctx.currentTime;
-
-          // 1. Short high-pass noise burst for mechanical shutter blade snap
-          const bufferSize = Math.floor(ctx.sampleRate * 0.045);
-          const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-          const data = buffer.getChannelData(0);
-          for (let i = 0; i < bufferSize; i++) {
-            data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.25));
-          }
-          const noise = ctx.createBufferSource();
-          noise.buffer = buffer;
-
-          const filter = ctx.createBiquadFilter();
-          filter.type = "bandpass";
-          filter.frequency.setValueAtTime(2200, now);
-          filter.Q.setValueAtTime(1.4, now);
-
-          const noiseGain = ctx.createGain();
-          noiseGain.gain.setValueAtTime(0.45, now);
-          noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.045);
-
-          noise.connect(filter);
-          filter.connect(noiseGain);
-          noiseGain.connect(ctx.destination);
-          noise.start(now);
-
-          // 2. Second mechanical click ~55ms later (shutter close)
-          const osc2 = ctx.createOscillator();
-          const gain2 = ctx.createGain();
-          osc2.type = "sine";
-          osc2.frequency.setValueAtTime(920, now + 0.055);
-          osc2.frequency.exponentialRampToValueAtTime(180, now + 0.09);
-          gain2.gain.setValueAtTime(0.22, now + 0.055);
-          gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
-          osc2.connect(gain2);
-          gain2.connect(ctx.destination);
-          osc2.start(now + 0.055);
-          osc2.stop(now + 0.09);
-        } catch (e) {}
-      };
 
       const triggerFlash = () => {
         if (cameraFlash) {
@@ -2714,22 +2668,22 @@
         }
       };
 
-      const createOneTimeSelfiePolaroid = (dataUrl) => {
+      const createEjectingSelfiePolaroid = (dataUrl) => {
         if (!selfieStrip) return;
         const card = document.createElement("figure");
         card.className = "selfie-polaroid is-developing";
-        card.style.setProperty("--selfie-tilt", `${(Math.random() * 5 - 2.5).toFixed(1)}deg`);
+        card.style.setProperty("--selfie-tilt", `${(Math.random() * 4 - 2).toFixed(1)}deg`);
 
         const img = document.createElement("img");
         img.src = dataUrl;
-        img.alt = "Live Polaroid snapshot taken with your camera";
+        img.alt = "Live Polaroid print sliding out of the camera";
 
         const footer = document.createElement("div");
         footer.className = "selfie-footer";
 
         const label = document.createElement("span");
         label.className = "selfie-label";
-        label.textContent = "Live Polaroid ✨";
+        label.textContent = "Polaroid Print ✨";
 
         const dlBtn = document.createElement("button");
         dlBtn.type = "button";
@@ -2753,23 +2707,29 @@
         card.appendChild(footer);
         selfieStrip.prepend(card);
 
+        // Play eject sound right as the print slides out from the camera slot
+        playAudioFile(SOUND_PATHS.eject);
+
         requestAnimationFrame(() => {
           setTimeout(() => {
             card.classList.remove("is-developing");
             card.classList.add("is-developed");
-          }, 180);
+          }, 260);
         });
       };
 
       if (captureBtn) {
         captureBtn.addEventListener("click", () => {
-          playShutterSound();
+          playAudioFile(SOUND_PATHS.capture);
           openWebcam();
         });
       }
 
       if (snapWebcamBtn && webcamVideo && webcamCanvas) {
         snapWebcamBtn.addEventListener("click", () => {
+          playAudioFile(SOUND_PATHS.snap);
+          triggerFlash();
+
           const w = webcamVideo.videoWidth || 640;
           const h = webcamVideo.videoHeight || 480;
           webcamCanvas.width = w;
@@ -2782,10 +2742,11 @@
           ctx.restore();
 
           const dataUrl = webcamCanvas.toDataURL("image/png");
-          playShutterSound();
-          triggerFlash();
-          createOneTimeSelfiePolaroid(dataUrl);
           stopWebcam();
+
+          setTimeout(() => {
+            createEjectingSelfiePolaroid(dataUrl);
+          }, 180);
         });
       }
 
