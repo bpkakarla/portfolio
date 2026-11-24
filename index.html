@@ -2680,24 +2680,14 @@
 const createEjectingSelfiePolaroid = (dataUrl) => {
         if (!selfieStrip) return;
 
-        // Start eject sound at the exact moment the photo begins rolling out
-        const ejectAudio = playPreloaded("eject");
-        const audioDur = ejectAudio ? ejectAudio.duration : NaN;
-        const slowFactor = 1.4;
-        const ejectDurationSec =
-          Number.isFinite(audioDur) && audioDur > 0.3
-            ? Math.min(audioDur * slowFactor, 12)
-            : 3.6;
-
         const card = document.createElement("figure");
         card.className = "selfie-polaroid is-developing";
         card.style.setProperty("--selfie-tilt", `${(Math.random() * 4 - 2).toFixed(1)}deg`);
-        card.style.animation = `printerFeedOut ${ejectDurationSec}s cubic-bezier(0.22, 0.75, 0.36, 1) forwards`;
+        card.style.transform = "translateY(-100%)";
 
         const img = document.createElement("img");
         img.src = dataUrl;
         img.alt = "Live Polaroid print sliding out of the camera";
-        img.style.transition = `filter ${ejectDurationSec}s ease-out`;
 
         const footer = document.createElement("div");
         footer.className = "selfie-footer";
@@ -2719,7 +2709,8 @@ const createEjectingSelfiePolaroid = (dataUrl) => {
           link.click();
           link.remove();
           dlBtn.remove();
-          label.textContent = "Saved 😎 ";
+          label.textContent = "Saved 😊";
+          label.style.color = "#8f6822";
         }, { once: true });
 
         footer.appendChild(label);
@@ -2728,11 +2719,25 @@ const createEjectingSelfiePolaroid = (dataUrl) => {
         card.appendChild(footer);
         selfieStrip.prepend(card);
 
+        // Force layout so the starting translateY(-100%) is applied before animating
+        void card.offsetHeight;
+
         requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            card.classList.remove("is-developing");
-            card.classList.add("is-developed");
-          });
+          const ejectAudio = playPreloaded("eject");
+          const audioDur = ejectAudio ? ejectAudio.duration : NaN;
+          const slowFactor = 1.4;
+          const ejectDurationSec =
+            Number.isFinite(audioDur) && audioDur > 0.3
+              ? Math.min(audioDur * slowFactor, 12)
+              : 3.6;
+
+          card.style.transform = "";
+          card.style.animationDelay = "0s";
+          card.style.animation = `printerFeedOut ${ejectDurationSec}s cubic-bezier(0.22, 0.75, 0.36, 1) forwards`;
+          img.style.transition = `filter ${ejectDurationSec}s ease-out`;
+
+          card.classList.remove("is-developing");
+          card.classList.add("is-developed");
         });
       };
 
@@ -2765,7 +2770,7 @@ const createEjectingSelfiePolaroid = (dataUrl) => {
           clearTimeout(ejectTimeoutId);
           ejectTimeoutId = setTimeout(() => {
             createEjectingSelfiePolaroid(dataUrl);
-          }, 3000);
+          }, 400);
         });
       }
 
