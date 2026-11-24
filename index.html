@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bhanu Prakash Kakarla — Software, Applied AI &amp; Photography ✨</title>
+  <title>Bhanu Prakash Kakarla — Software, Applied AI &amp; Photography</title>
   <meta name="description" content="Portfolio of Bhanu Prakash Kakarla: CSE grad, Published AI researcher, Python & AWS builder, and unedited editorial photographer." />
   <meta name="author" content="Bhanu Prakash Kakarla" />
   <meta name="theme-color" content="#1b3c31" />
@@ -126,7 +126,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Enchanted Storybook Background Glow */
     body::before {
       content: "";
       position: fixed;
@@ -139,7 +138,6 @@
         radial-gradient(circle at 75% 75%, rgba(201, 154, 62, 0.09), transparent 45%);
     }
 
-    /* Floating Pixie Dust Canvas */
     #pixie-canvas {
       position: fixed;
       inset: 0;
@@ -149,7 +147,6 @@
       z-index: 40;
     }
 
-    /* Screen Flash Effect for Polaroid Camera */
     .camera-flash-overlay {
       position: fixed;
       inset: 0;
@@ -1009,9 +1006,7 @@
       color: var(--text-secondary);
     }
 
-    /* ============================================================
-       ENCHANTED POLAROID STUDIO (#photography)
-       ============================================================ */
+    /* Polaroid Studio */
     .polaroid-studio {
       display: flex;
       flex-direction: column;
@@ -1027,7 +1022,6 @@
       z-index: 5;
     }
 
-    /* Vintage Polaroid Land Camera */
     .polaroid-camera {
       position: relative;
       width: min(330px, 88vw);
@@ -1048,7 +1042,6 @@
       transform: scale(0.97) rotate(-1deg);
     }
 
-    /* Camera Top Deck: Flash + Viewfinder */
     .camera-top-deck {
       display: flex;
       align-items: center;
@@ -1114,7 +1107,6 @@
       background: radial-gradient(circle at 35% 35%, #5da9a6, #132826 75%);
     }
 
-    /* Camera Main Body: Rainbow Stripe + Lens + Red Shutter */
     .camera-face {
       position: relative;
       display: flex;
@@ -1123,7 +1115,6 @@
       padding: 12px 10px;
     }
 
-    /* Classic Rainbow Stripe */
     .polaroid-rainbow {
       position: absolute;
       left: 50%;
@@ -1143,7 +1134,6 @@
       z-index: 0;
     }
 
-    /* Film Counter Window */
     .film-counter-box {
       position: relative;
       z-index: 2;
@@ -1174,7 +1164,6 @@
       color: #5b554b;
     }
 
-    /* Center Camera Lens */
     .camera-lens {
       position: relative;
       z-index: 2;
@@ -1221,7 +1210,6 @@
       transform: scale(1.06);
     }
 
-    /* Big Tactile Capture Button */
     .shutter-wrap {
       position: relative;
       z-index: 2;
@@ -1273,7 +1261,6 @@
       color: var(--text-muted);
     }
 
-    /* Camera Bottom Slot */
     .camera-slot-housing {
       margin-top: 14px;
       background: #232725;
@@ -1287,7 +1274,6 @@
       border-radius: 4px;
     }
 
-    /* Camera Controls Bar */
     .camera-controls {
       margin-top: 1.15rem;
       display: flex;
@@ -1320,7 +1306,6 @@
       transform: translateY(-1px);
     }
 
-    /* Ejected Polaroid Cards Grid */
     .polaroid-board {
       width: 100%;
       display: grid;
@@ -1700,7 +1685,7 @@
         <span class="brand-mark" aria-hidden="true">
           <img src="assets/images/icon.jpeg" alt="" width="36" height="36" />
         </span>
-        <span>Portfolio ✨</span>
+        <span>Portfolio</span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">
         <span class="hamburger" aria-hidden="true"></span>
@@ -1710,7 +1695,7 @@
           <li><a class="nav-link" href="#about">About</a></li>
           <li><a class="nav-link" href="#skills">Skills</a></li>
           <li><a class="nav-link" href="#work">Work</a></li>
-          <li><a class="nav-link" href="#photography">Photography 📸</a></li>
+          <li><a class="nav-link" href="#photography">Photography</a></li>
           <li><a class="nav-link" href="#resume">Resume</a></li>
           <li><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
@@ -1722,10 +1707,9 @@
     <section class="hero" aria-labelledby="hero-heading">
       <div class="container hero-grid">
         <div>
-          <p class="eyebrow">Welcome to my storybook</p>
           <h1 id="hero-heading" class="hero-title">
             <span class="hero-line">Bhanu Prakash</span>
-            <span class="hero-line hero-line-italic">Kakarla ✨</span>
+            <span class="hero-line hero-line-italic">Kakarla</span>
           </h1>
           <p class="hero-lede">I study hard problems until they become something a person can use — a model, a service, or a clearer picture of the world. 🌟</p>
           <p class="hero-sub">Computer Science graduate passionate about software development, emerging technologies, and continuous learning. Beyond technology, I have a keen passion for photography and capturing meaningful moments. 📷</p>
@@ -2002,7 +1986,6 @@
         </div>
 
         <div class="polaroid-studio reveal">
-          <!-- Interactive Polaroid Camera -->
           <div class="camera-stage">
             <div class="polaroid-camera" id="polaroid-camera">
               <div class="camera-top-deck">
@@ -2049,7 +2032,6 @@
             </div>
           </div>
 
-          <!-- Ejected Polaroids Board -->
           <div class="polaroid-board" data-gallery id="polaroid-board">
             <figure class="polaroid-frame" hidden>
               <button class="photo-trigger" type="button" data-src="assets/images/photo1.jpeg" data-caption="A coral rose photographed up close." aria-label="Open photograph: Coral rose">
@@ -2182,7 +2164,7 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>&copy; <span id="current-year">2026</span> Bhanu Prakash Kakarla. Crafted with curiosity &amp; a touch of magic ✨</p>
+      <p>&copy; <span id="current-year">2026</span> Bhanu Prakash Kakarla. All rights reserved.</p>
       <a href="#top">Back to top ↑</a>
     </div>
   </footer>
@@ -2204,7 +2186,6 @@
 
   <script>
     (function () {
-      /* 1. Year & Scroll Progress */
       const yearEl = document.getElementById("current-year");
       if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
@@ -2222,7 +2203,6 @@
       window.addEventListener("scroll", updateScroll, { passive: true });
       updateScroll();
 
-      /* 2. Scroll Reveal Animations */
       const revealEls = document.querySelectorAll(".reveal");
       if ("IntersectionObserver" in window) {
         const observer = new IntersectionObserver((entries) => {
@@ -2238,7 +2218,6 @@
         revealEls.forEach((el) => el.classList.add("is-visible"));
       }
 
-      /* 3. Mobile Nav */
       const navToggle = document.querySelector(".nav-toggle");
       const navEl = document.getElementById("primary-nav");
       if (navToggle && navEl) {
@@ -2255,7 +2234,6 @@
         });
       }
 
-      /* 4. Work Category Filter */
       const filterBtns = document.querySelectorAll(".filter-btn");
       const workGroups = document.querySelectorAll(".work-group");
       filterBtns.forEach((btn) => {
@@ -2269,7 +2247,6 @@
         });
       });
 
-      /* 5. Interactive Polaroid Camera & Sound Effects */
       const captureBtn = document.getElementById("capture-btn");
       const revealAllBtn = document.getElementById("reveal-all-btn");
       const resetCameraBtn = document.getElementById("reset-camera-btn");
@@ -2282,7 +2259,6 @@
       const polaroidFrames = Array.from(document.querySelectorAll(".polaroid-frame"));
       let ejectedCount = 0;
 
-      // Subtle mechanical shutter click via Web Audio API
       const playShutterSound = () => {
         try {
           const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -2392,7 +2368,6 @@
         });
       }
 
-      /* 6. Lightbox Modal */
       const triggers = Array.from(document.querySelectorAll(".photo-trigger"));
       const lightbox = document.getElementById("lightbox");
       const lbImg = lightbox ? lightbox.querySelector("[data-lightbox-img]") : null;
@@ -2447,7 +2422,6 @@
         if (e.key === "ArrowRight") showPhoto(currentIndex + 1);
       });
 
-      /* 7. Ambient Golden Pixie Dust Particles */
       const canvas = document.getElementById("pixie-canvas");
       if (canvas && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         const ctx = canvas.getContext("2d");
